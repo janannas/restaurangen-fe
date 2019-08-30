@@ -18,6 +18,9 @@ class Nav extends React.Component< {}, {}> {
             <Link to='/shop'>
                 <li>Shop</li>
             </Link>
+            <Link to='/admin'>
+                <li>Admin</li>
+            </Link>
           </ul>
 
       </nav>
