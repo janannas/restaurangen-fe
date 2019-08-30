@@ -4,6 +4,7 @@ import Nav from './components/Navigation/Nav';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Shop from './components/Shop/Shop';
+import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component< {}, {}> {
@@ -11,16 +12,17 @@ class App extends React.Component< {}, {}> {
   render() {
   
     return (
-      <Router>
-        <div className="App">
+      <div className="App">
+        <Router>
           <Nav />
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
               <Route path="/shop" component={Shop} />
-          </Switch>
-        </div>
-      </Router>
+            </Switch>
+          </Router>
+        <Footer />
+      </div>
     );
   }
 }
