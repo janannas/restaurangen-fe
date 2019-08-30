@@ -19,7 +19,7 @@ interface IBookingState {
 
 class Admin extends React.Component< {}, IBookingState > {
 
-  getBookingsUrl = 'http://localhost:80/Restaurangen/admin/get-bookings.php';
+  getBookingsUrl = 'http://localhost:8888/Restaurangen/admin/get-bookings.php';
 
   constructor(props: any) {
     super(props);
@@ -64,21 +64,30 @@ class Admin extends React.Component< {}, IBookingState > {
     console.log(this.state.bookingInfo);
 
     return (
-      <div className="App">
-        <ul>
+    <div className="App">
+        <table>
+        <tr>
+          <th>Booking ID</th>
+          <th>Customer ID</th>
+          <th>Email</th> 
+          <th>Guests</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Sitting</th>
+        </tr>
           {this.state.bookingInfo.map((booking: IBookingItem) => (
-              <div key={booking.booking_ID}>
-                <p>{booking.booking_ID}</p>
-                <p>{booking.costumer_ID}</p>
-                <p>{booking.email}</p>
-                <p>{booking.guests}</p>
-                <p>{booking.name}</p>
-                <p>{booking.phone}</p>
-                <p>{booking.sitting}</p>
-              </div>
+              <tr key={booking.booking_ID}>
+                <td>{booking.booking_ID}</td>
+                <td>{booking.costumer_ID}</td>
+                <td>{booking.email}</td>
+                <td>{booking.guests}</td>
+                <td>{booking.name}</td>
+                <td>{booking.phone}</td>
+                <td>{booking.sitting}</td>
+              </tr>
             )
           )}
-        </ul> 
+        </table> 
       </div>
     );
 
