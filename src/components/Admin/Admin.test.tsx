@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import Admin from './Admin';
 import { unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import mockAxios from "axios";
+import mockAxios from 'axios';
+import { shallow } from 'enzyme';
+
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Admin />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
-
 
 let container: any = null;
 beforeEach(() => {
@@ -26,12 +26,59 @@ afterEach(() => {
   container = null;
 });
 
-// it("fetch mock booking data", async () => {
-//   // setup
-//   mockAxios.get.mockImplementationOnce(() =>
-//     Promise.resolve({
-//       fakeBooking: { results: [
-//         {
+// const { componentDidMount } = require('./Admin');
+
+it('should call componentDidMount', async => {
+  // componentDidMount('./Admin', {}).then((response: any) => {
+  //   expect(response).toEqual({
+  //     data: {},
+  //   });
+  // });
+  // expect(mockAxios.request).toHaveBeenCalledWith({
+  //   method: 'get',
+  //   url: '/test'
+  // });
+  // expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  // // expect(consoleErrorSpy).not.toHaveBeenCalled();
+  // done();
+  mockAxios.get.mockImplementationOnce(() => {
+    Promise.resolve({
+      data: { results: [{
+        "booking_ID": "10",
+        "customer_ID": "111",
+        "guests": "6",
+        "sitting": "2019-10-28 18:00:00",
+        "name": "Fanny-Manny",
+        "email": "fanny-manny@me.com",
+        "phone": "070123456"
+      }] }
+    })
+  });
+
+  let wrapper = shallow(<Admin />);
+  //spyOn(wrapper.instance(), 'componentDidMount');
+  
+});
+
+
+// it('fetches and displays bookings', async () => {
+  // const fakeBooking = {
+  //   "booking_ID": "10",
+  //   "customer_ID": "111",
+  //   "guests": "6",
+  //   "sitting": "2019-10-28 18:00:00",
+  //   "name": "Fanny-Manny",
+  //   "email": "fanny-manny@me.com",
+  //   "phone": "070123456"
+  // }
+
+// });
+
+//   const { componentDidMount } = require('./Admin');
+
+//   it("should render booking data", async () => {
+//     componentDidMount().then((data: any) => {
+//       expect(data).toEqual({
 //         "booking_ID": "10",
 //         "customer_ID": "111",
 //         "guests": "6",
@@ -39,62 +86,49 @@ afterEach(() => {
 //         "name": "Fanny-Manny",
 //         "email": "fanny-manny@me.com",
 //         "phone": "070123456"
-//         }
-//       ]}
+//       });
 //     })
-//   );
+//   });
+  
 
-//   const textContent = await fetch("bookings");
 
-//   // expect
-//   expect(textContent).toEqual(.name);
-//   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-//   expect(mockAxios.get).toHaveBeenCalledWith(
-//     "fakeBooking",
-//     {
-//       params: {
-//         client_id: process.env.REACT_APP_UNSPLASH_TOKEN,
-//         query: "bookings"
-//       }
-//     }
-//   );
+// const get = url => {
+//   mockAxios.get-mockImplementationOnce(( => 
+//     Promise.resolve({
+//     fakeBooking: { result: [{
+//       "booking_ID": "10",
+//       "customer_ID": "111",
+//       "guests": "6",
+//       "sitting": "2019-10-28 18:00:00",
+//       "name": "Fanny-Manny",
+//       "email": "fanny-manny@me.com",
+//       "phone": "070123456"
+//     }]}
+//   });
+// }
+
+// const { componentDidMount } = require('./Admin');
+
+// it("should render booking data", async () => {
+//   componentDidMount().then((data: any) => {
+//     expect(data).toEqual({
+//       "booking_ID": "10",
+//       "customer_ID": "111",
+//       "guests": "6",
+//       "sitting": "2019-10-28 18:00:00",
+//       "name": "Fanny-Manny",
+//       "email": "fanny-manny@me.com",
+//       "phone": "070123456"
+//     });
+//   })
 // });
 
-it("renders booking data", async () => {
-  // let wrapper = shallow(<Admin />);
-  // wrapper.instance()
-
-  const fakeBooking = {
-    "booking_ID": "10",
-    "customer_ID": "111",
-    "guests": "6",
-    "sitting": "2019-10-28 18:00:00",
-    "name": "Fanny-Manny",
-    "email": "fanny-manny@me.com",
-    "phone": "070123456"
-  };
-
-  jest.spyOn(global, "axios.get").mockImplementation(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(fakeBooking)
-    })
-  );
-
-// Use the asynchronous version of act to apply resolved promises
-await act(async () => {
-  render(<Admin />, container);
-});
-
-expect(container.querySelector("td").textContent).toBe(fakeBooking.booking_ID);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.customer_ID);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.guests);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.sitting);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.name);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.email);
-expect(container.querySelector("td").textContent).toBe(fakeBooking.phone);
-
-//expect(container.textContent).toContain(fakeBooking.address);
-
-// remove the mock to ensure tests are completely isolated
-global.axios.get.mockRestore();
-});
+//   const fakeBooking = {
+//     "booking_ID": "10",
+//     "customer_ID": "111",
+//     "guests": "6",
+//     "sitting": "2019-10-28 18:00:00",
+//     "name": "Fanny-Manny",
+//     "email": "fanny-manny@me.com",
+//     "phone": "070123456"
+//   };
