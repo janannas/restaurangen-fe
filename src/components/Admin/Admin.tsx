@@ -19,7 +19,7 @@ interface IBookingState {
 
 class Admin extends React.Component< {}, IBookingState > {
 
-  getBookingsUrl = 'http://localhost:8888/Restaurangen/admin/get-bookings.php';
+  getBookingsUrl = 'http://localhost/Restaurangen/admin/get-bookings.php';
 
   constructor(props: any) {
     super(props);
@@ -36,7 +36,7 @@ class Admin extends React.Component< {}, IBookingState > {
 
   }
 
-  getAllBookings() {
+  getAllBookings = () => {
     axios.get(this.getBookingsUrl)
       .then((result: any) => {
         const isArr = Array.isArray(result.data);
@@ -57,8 +57,12 @@ class Admin extends React.Component< {}, IBookingState > {
       });
   }
 
-  deleteBookingWithID() {
-
+  deleteBookingWithID(ID: number) {
+    axios
+    .delete('http://localhost/Restaurangen/admin/delete-booking.php', JSON.stringify({booking_ID : ID}))
+    .then((result: any) => {
+      console.log(result.data);
+    });
   }
 
   render() {
@@ -75,20 +79,21 @@ class Admin extends React.Component< {}, IBookingState > {
           <th>Phone</th>
           <th>Sitting</th>
         </tr>
+        <tbody>
           {this.state.bookingInfo.map((booking: IBookingItem) => (
-              <tr key={booking.booking_ID}>
-                <td>{booking.booking_ID}</td>
-                <td>{booking.costumer_ID}</td>
-                <td>{booking.email}</td>
-                <td>{booking.guests}</td>
-                <td>{booking.name}</td>
-                <td>{booking.phone}</td>
-                <td>{booking.sitting}</td>
-                <td><button>Edit</button></td>
-                <td><button>Delete</button></td>
-              </tr>
-            )
-          )}
+            <tr key={booking.booking_ID}>
+              <td>{booking.booking_ID}</td>
+              <td>{booking.costumer_ID}</td>
+              <td>{booking.email}</td>
+              <td>{booking.guests}</td>
+              <td>{booking.name}</td>
+              <td>{booking.phone}</td>
+              <td>{booking.sitting}</td>
+              <td><button>Edit</button></td>
+              <td><button onClick={this.deleteBookingWithID.bind(this, booking.booking_ID)}>Delete</button></td>
+            </tr>
+          ))}
+          </tbody>
         </table> 
       </div>
     );
