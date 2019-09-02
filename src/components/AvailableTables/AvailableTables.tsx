@@ -15,7 +15,6 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 			<div>Tables work
 				<p>{this.props.Date}</p>
 			</div>
-			
 		); 
 	}
 }
