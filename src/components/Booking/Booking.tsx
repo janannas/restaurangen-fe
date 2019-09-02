@@ -1,4 +1,6 @@
 import * as React from "react"; 
+import Calendar from '../Calendar/Calendar';
+import AvailableTables from '../AvailableTables/AvailableTables';
 
 export interface IBookingProps { 
 }
@@ -11,9 +13,15 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 		super(props);
 	}
 
-	public render() {
-		const {} = this.state;
-    return <></>;
+	render() {
+		// const {} = this.state;
+    return (
+      <div className="Booking">
+          <h1>Booking works</h1>
+					<Calendar />
+					<AvailableTables />
+      </div>
+    );
 	}
 }
 
