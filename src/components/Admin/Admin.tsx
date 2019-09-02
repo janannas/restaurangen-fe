@@ -30,7 +30,7 @@ class Admin extends React.Component< {}, IBookingState > {
     
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     axios.get(this.getBookingsUrl)
       .then((result: any) => {
         const isArr = Array.isArray(result.data);
