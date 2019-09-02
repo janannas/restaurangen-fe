@@ -40,22 +40,15 @@ class Admin extends React.Component< {}, IBookingState > {
     axios.get(this.getBookingsUrl)
       .then((result: any) => {
         const isArr = Array.isArray(result.data);
-        console.log(isArr);
-        console.log(result.lenght);
 
         const storedInfo: IBookingItem[] = [];
 
         if (isArr) {
           this.setState({ bookingInfo: result.data });
-          console.log({ bookingInfo: result.data });
         }
-        else {
-          
-          storedInfo.push(result.data);
-          console.log(storedInfo);
-        
+        else {         
+          storedInfo.push(result.data);    
           this.setState({ bookingInfo: storedInfo });
-          console.log({ bookingInfo: storedInfo });
         }
         
       })
@@ -64,9 +57,11 @@ class Admin extends React.Component< {}, IBookingState > {
       });
   }
 
+  deleteBookingWithID() {
+
+  }
+
   render() {
-  
-    console.log(this.state.bookingInfo);
 
     return (
     <div className="App">
