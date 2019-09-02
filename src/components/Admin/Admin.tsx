@@ -19,7 +19,7 @@ interface IBookingState {
 
 class Admin extends React.Component< {}, IBookingState > {
 
-  getBookingsUrl = 'http://localhost:8888/Restaurangen/admin/get-bookings.php';
+  getBookingsUrl = 'http://localhost/Restaurangen/admin/get-bookings.php';
 
   constructor(props: any) {
     super(props);
