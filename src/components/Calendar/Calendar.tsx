@@ -8,7 +8,7 @@ class Calendar extends React.Component<{}, {}> {
 	public render() {
   
 		return (
-			<div></div>
+			<div>Calendar works</div>
 		); 
 	}
 }

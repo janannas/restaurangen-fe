@@ -8,7 +8,7 @@ class AvailableTables extends React.Component<{}, {}> {
 	public render() {
 
 		return (
-			<div></div>
+			<div>Tables work</div>
 		); 
 	}
 }
