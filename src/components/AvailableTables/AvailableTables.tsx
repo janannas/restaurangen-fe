@@ -15,6 +15,10 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 			<div>Tables work
 				<p>{this.props.Date}</p>
 			</div>
+<<<<<<< HEAD
+=======
+			
+>>>>>>> Add props and states that connects Booking, Calendar and AvailableTables components
 		); 
 	}
 }
