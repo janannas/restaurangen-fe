@@ -1,5 +1,6 @@
 import React from 'react';
 import './Admin.css';
+import {getAllBookings} from '../../utils/api-calls';
 
 const axios = require('axios');
 
@@ -19,8 +20,6 @@ interface IBookingState {
 
 class Admin extends React.Component< {}, IBookingState > {
 
-  getBookingsUrl = 'http://localhost/Restaurangen/admin/get-bookings.php';
-
   constructor(props: any) {
     super(props);
 
@@ -37,8 +36,8 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   getAllBookings = () => {
-    axios.get(this.getBookingsUrl)
-      .then((result: any) => {
+
+      getAllBookings().then((result: any) => {
         const isArr = Array.isArray(result.data);
 
         const storedInfo: IBookingItem[] = [];
@@ -57,12 +56,30 @@ class Admin extends React.Component< {}, IBookingState > {
       });
   }
 
-  deleteBookingWithID(ID: number) {
+  updateBookingWithID(booking: IBookingItem) {
+    console.log(booking);
     axios
-    .delete('http://localhost/Restaurangen/admin/delete-booking.php', JSON.stringify({booking_ID : ID}))
+    .put('http://localhost/Restaurangen/admin/update-booking.php/', JSON.stringify({booking_ID: booking.booking_ID, customer_ID : booking.costumer_ID, guests : booking.guests, sitting : booking.sitting}))
     .then((result: any) => {
-      console.log(result.data);
-    });
+      console.log(result);
+    })
+  }
+
+  async deleteBookingWithID(targetID: number) {
+    console.log(targetID);
+    // axios.request({
+    //   method: "delete",
+    //   url: "http://localhost/Restaurangen/admin/delete-booking.php",
+    //   data: JSON.stringify({
+    //       booking_ID: targetID
+    //     })
+    //   });
+
+     axios
+     .delete('http://localhost/Restaurangen/admin/delete-booking.php', JSON.stringify({"booking_ID" : targetID}))
+     .then((result: any) => {
+       console.log(result.data);
+     });
   }
 
   render() {
@@ -89,7 +106,7 @@ class Admin extends React.Component< {}, IBookingState > {
               <td>{booking.name}</td>
               <td>{booking.phone}</td>
               <td>{booking.sitting}</td>
-              <td><button>Edit</button></td>
+              <td><button onClick={this.updateBookingWithID.bind(this, booking)}>Edit</button></td>
               <td><button onClick={this.deleteBookingWithID.bind(this, booking.booking_ID)}>Delete</button></td>
             </tr>
           ))}

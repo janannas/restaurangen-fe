@@ -8,3 +8,7 @@ export function createBooking(booking: IBooking) {
 export function fetchGDPR() {
   return axios.get("http://localhost/bookings/get-configuration.php");
 }
+
+export function getAllBookings() {
+  return axios.get('http://localhost/Restaurangen/admin/get-bookings.php');
+}
