@@ -50,10 +50,14 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 					return { ...acc, [obj.key]: obj["value"]}
 				}, {});
 
-				console.log(configObj.GDPR);
-				// this.setState({
-				// 	config: configObj.GDPR
-				// })
+				this.setState(prevState => {
+					let config = Object.assign({}, prevState.config);
+					config.tables = configObj.tables;
+					config.sittingOne = configObj.sitting_one;
+					config.sittingTwo = configObj.sitting_two;
+					config.GDPRMessage = configObj.GDPR;
+					return { config };
+				})
 			})
 			.catch(error => {
 				console.log(error);
@@ -68,6 +72,7 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
     return (
       <div className="Booking">
           <h1>Booking works</h1>
+					<p>{this.state.config.sittingTwo}</p>
 					<BookingCalendar handleDate={this.changeDate}/>
 					<AvailableTables date={this.state.date}/>
       </div>

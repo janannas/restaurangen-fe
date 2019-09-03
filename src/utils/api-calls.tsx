@@ -10,14 +10,14 @@ export function fetchConfig() {
 }
 
 export function getAllBookings() {
-  return axios.get('http://localhost/Restaurangen/admin/get-bookings.php');
+  return axios.get('http://localhost/admin/get-bookings.php');
 }
 
 export function deleteBooking() {
-  return axios.delete('http://localhost/Restaurangen/admin/delete-booking.php');
+  return axios.delete('http://localhost/admin/delete-booking.php');
 }
 
 export function updateBooking() {
-  return axios.put('http://localhost/Restaurangen/admin/update-booking.php');
+  return axios.put('http://localhost/admin/update-booking.php');
 
 }
