@@ -1,44 +1,174 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Restaurangen-fe - Style Guide
 
-## Available Scripts
+- Use 2 spaces for indentation.
 
-In the project directory, you can run:
+- Only include one React component per file.
+  - -However, multiple Stateless, or Pure, Components are allowed per file.
 
-### `npm start`
+- Use the filename as the component name.
+  - For example, ReservationCard.jsx should have a reference name of ReservationCard.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Always use double quotes (") for JSX attributes, but single quotes (') for all other JS.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Alignment, follow these alignment styles for JSX syntax. :
 
-### `npm test`
+    ```jsx
+    // bad
+    <Foo superLongParam="bar"
+         anotherSuperLongParam="baz" />
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    // good
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    />
 
-### `npm run build`
+    // if props fit in one line then keep it on the same line
+    <Foo bar="bar" />
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    // children get indented normally
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    >
+      <Quux />
+    </Foo>
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+    // bad
+    {showButton &&
+      <Button />
+    }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    // bad
+    {
+      showButton &&
+        <Button />
+    }
 
-### `npm run eject`
+    // good
+    {showButton && (
+      <Button />
+    )}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    // good
+    {showButton && <Button />}
+    ```  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Always include a single space in your self-closing tag.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+     ```jsx
+    // bad
+    <Foo/>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    // very bad
+    <Foo                 />
 
-## Learn More
+    // bad
+    <Foo
+     />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    // good
+    <Foo />
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Always use camelCase for prop names.
+
+- Avoid using an array index as key prop, prefer a stable ID.
+  > Why? Not using a stable ID is an anti-pattern because it can negatively impact performance - and cause issues with component state.
+
+- Always self-close tags that have no children.
+
+    ```jsx
+    // bad
+    <Foo variant="stuff"></Foo>
+
+    // good
+    <Foo variant="stuff" />
+    ```
+
+- If your component has multi-line properties, close its tag on a new line.
+
+    ```jsx
+    // bad
+    <Foo
+      bar="bar"
+      baz="baz" />
+
+    // good
+    <Foo
+      bar="bar"
+      baz="baz"
+    />
+    ```
+
+- Do not use underscore prefix for internal methods of a React component.
+  > Why? Underscore prefixes are sometimes used as a convention in other languages to denote privacy. But, unlike those languages, there is no native support for privacy in JavaScript,everything is public. Regardless of your intentions, adding underscore prefixes to your properties does not actually make them private, and any property (underscore-prefixed or not) should be treated as being public.
+
+- If you have three or more properties, then put them on their own line both in the instance and in the render function.
+
+    ```jsx
+    // it should look like this:
+    let {
+      imgSrc,
+      title,
+      artist,
+      clas,
+      thumbnail,
+      breakpoint
+    } = this.props;
+
+    <GalleryImage
+      imgSrc="./src/img/vangogh2.jpg"
+      title="Starry Night"
+      artist="Van Gogh"
+      clas="landscape"
+      thumbnail="./src/img/thumb/vangogh2.gif"
+      breakpoint={320}
+    />
+    ```
+
+- Destructure your props and state
+
+    ```jsx
+    // it should look like this:
+    let { breed, color, isGoodBoy } = this.props;
+
+    // or, when possible:
+    // avoid this
+    let Dog = (breed, color, goodOrBad) =>
+    My {props.color} dog is {props.goodOrBad}
+
+    // better
+    let Dog = ({breed, color, goodOrBad}) =>
+    My {color} dog is {goodOrBad}
+    ```
+
+- Interface names are to be written in PascalCase, with a capital I for interface i the beginning: interface IPsacalCase { … }
+
+- Name methods using 'handle' + triggering event, e.g. handleClick
+
+- Bind handler using the ES6 arrow syntax, so inside the callback it has always the right context, ex:
+
+    ```jsx
+    methodName = (myString: string) => {
+    console.log(string);
+    }
+    ```
+
+- When rendering a list of components from an array, do it inline if it makes sense. If the map function is too long or complicated, consider extracting it out into its own method on the component class.
+
+- Ordering for class extends React.Component:
+  1. constructor
+  2. optional static methods
+  3. getChildContext
+  4. componentWillMount
+  5. componentDidMount
+  6. componentWillReceiveProps
+  7. shouldComponentUpdate
+  8. componentWillUpdate
+  9. componentDidUpdate
+  10. componentWillUnmount
+  11. clickHandlers or eventHandlers like onClickSubmit() or onChangeDescription()
+  12. getter methods for render like getSelectReason() or getFooterContent()
+  13. Optional render methods like renderNavigation() or renderProfilePicture()
+  14. render
