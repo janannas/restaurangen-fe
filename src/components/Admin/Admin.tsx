@@ -76,15 +76,17 @@ class Admin extends React.Component< {}, IBookingState > {
     return (
     <div className="App">
         <table>
-        <tr>
-          <th>Booking ID</th>
-          <th>Customer ID</th>
-          <th>Email</th> 
-          <th>Guests</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Sitting</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Customer ID</th>
+            <th>Email</th> 
+            <th>Guests</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Sitting</th>
+          </tr>
+        </thead>
         <tbody>
           {this.state.bookingInfo.map((booking: IBookingItem) => (
             <tr key={booking.booking_ID}>
