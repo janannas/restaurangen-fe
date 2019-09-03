@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 import { fetchConfig, createBooking } from "../../utils/api-calls";
+import { validate } from "../../utils/validation";
 
+import { IFormControls } from "../../interfaces/IFormControls";
 import { IBooking } from "../../interfaces/IBooking";
 
 import { DetailsForm } from "../DetailsForm/DetailsForm";
@@ -10,16 +12,7 @@ import { GDPR } from "../GDPR/GDPR";
 interface IBookingState {
 	GDPRMessage: string;
 	formControls: IFormControls;
-}
-
-interface IFormControls {
-	name: IFormControlContent;
-	email: IFormControlContent;
-	phone: IFormControlContent;
-}
-
-interface IFormControlContent {
-	value: string;
+	error: string;
 }
 
 class Booking extends Component<{}, IBookingState> {
@@ -31,18 +24,34 @@ class Booking extends Component<{}, IBookingState> {
 
 			formControls: {
 				name: {
-					value: ""
+					value: "",
+					valid: false,
+					touched: false,
+					validationRules: {
+						isRequired: true
+					}
 				},
 				email: {
-					value: ""
+					value: "",
+					valid: false,
+					touched: false,
+					validationRules: {
+						isRequired: true
+					}
 				},
 				phone: {
-					value: ""
+					value: "",
+					valid: false,
+					touched: false,
+					validationRules: {
+						isRequired: true
+					}
 				}
-			}
+			},
+
+			error: ""
 		}
 	}
-
 
 	componentDidMount() {
 		fetchConfig()
@@ -77,11 +86,14 @@ class Booking extends Component<{}, IBookingState> {
 		let updatedControl = updatedControls[name];
 
 		updatedControl.value = value;
+		updatedControl.touched = true;
+		updatedControl.valid = validate(value, updatedControl.validationRules);
 
 		this.setState({
 			formControls: updatedControls
 		});
 	}
+
 
 	handleForm = (event: React.SyntheticEvent) => {
 		event.preventDefault();
@@ -128,7 +140,11 @@ class Booking extends Component<{}, IBookingState> {
 					handleForm={this.handleForm}
 					handleKeyPress={this.handleKeyPress}
 					handleChange={this.handleChange}
+
 					nameValue={formControls.name.value}
+					nametouched={formControls.name.touched ? 1 : 0}
+					namevalid={formControls.name.valid ? 1 : 0}
+
 					emailValue={formControls.email.value}
 					phoneValue={formControls.phone.value}
 				/>

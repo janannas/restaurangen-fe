@@ -4,23 +4,24 @@ import { FormTextControl } from "../FormTextControl/FormTextControl";
 interface IProps {
   handleForm: any;
   handleKeyPress: any;
-  handleChange: any;
   nameValue: string;
+  nametouched: any;
+  namevalid: any;
   emailValue: string;
   phoneValue: string
+  handleChange: any;
 }
 
 export const DetailsForm = ({
   handleForm,
-  handleKeyPress,
-  handleChange,
   nameValue,
-  emailValue,
-  phoneValue
+  handleChange,
+  nametouched,
+  namevalid
 }: IProps) => {
 
   return (
-    <form onSubmit={handleForm} onKeyPress={handleKeyPress}>
+    <form onSubmit={handleForm}>
 
       <FormTextControl
         name="name"
@@ -29,15 +30,21 @@ export const DetailsForm = ({
         value={nameValue}
         id="name"
         label="Name: "
+        touched={nametouched}
+        valid={namevalid}
+        error={"Field is required"}
       />
 
-      <FormTextControl
+      {/*  <FormTextControl
         name="email"
         htmlFor="email"
         onChange={handleChange}
         value={emailValue}
         id="email"
         label="Email: "
+        touched=
+        valid=
+        error={"required"}
       />
 
       <FormTextControl
@@ -47,10 +54,15 @@ export const DetailsForm = ({
         value={phoneValue}
         id="phone"
         label="Phone Number: "
-      />
+        touched=
+        valid=
+        error={"required"}
+      /> */}
 
       <button type="submit">Confirm</button>
 
     </form>
   );
+
+
 }
