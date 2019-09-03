@@ -45,21 +45,38 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   updateBookingWithID(booking: IBookingItem) {
-    console.log(booking);
-    axios
-    .put('http://localhost/Restaurangen/admin/update-booking.php/{booking_ID}', booking)
-    .then((result: any) => {
-      console.log(result);
-    })
+    axios({
+      method: 'put',
+      url: 'http://localhost/Restaurangen/admin/update-booking.php/',
+      data: {
+        booking_ID: booking.booking_ID,
+        customer_ID: booking.customer_ID,
+        guests: booking.guests,
+        sitting: booking.sitting
+      }
+    });
+    // console.log(booking);
+    // axios
+    // .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
+    // .then((result: any) => {
+    //   console.log(result);
+    // })
   }
 
   deleteBookingWithID = (targetID: number) => {
-     axios
-     .delete('http://localhost/Restaurangen/admin/delete-booking.php/', JSON.stringify({params: {booking_ID: targetID}}))
-     .then((result: any) => {
-       console.log(result.data);
-       //splice and reset state
-     });
+    axios({
+      method: 'delete',
+      url: 'http://localhost/Restaurangen/admin/delete-booking.php/',
+      data: {
+        booking_ID: targetID
+      }
+    });
+    //  axios
+    //  .delete('http://localhost/Restaurangen/admin/delete-booking.php/', {params: {"booking_ID": targetID}})
+    //  .then((result: any) => {
+    //    console.log(result.data);
+    //    //splice and reset state
+    //  });
   }
 
   render() {
