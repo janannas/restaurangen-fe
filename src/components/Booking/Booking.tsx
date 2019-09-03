@@ -1,30 +1,30 @@
 import * as React from "react"; 
-import Calendar from '../Calendar/Calendar';
+import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 
 export interface IBookingProps { 
 }
 
 export interface IBookingState { 
-	Date: string;
+	date: string;
 }
 
 class Booking extends React.Component<IBookingProps, IBookingState> { 
 	constructor(props: IBookingProps) {
 		super(props);
-		this.state = { Date: "" };
+		this.state = { date: "" };
 	}
 
 	changeDate = (date: string) => {		
-		this.setState({ Date: date });
+		this.setState({ date: date });
 	}
 
 	render() {
     return (
       <div className="Booking">
           <h1>Booking works</h1>
-					<Calendar handleDateClick={this.changeDate}/>
-					<AvailableTables Date={this.state.Date}/>
+					<BookingCalendar handleDate={this.changeDate}/>
+					<AvailableTables date={this.state.date}/>
       </div>
     );
 	}

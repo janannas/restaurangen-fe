@@ -1,7 +1,7 @@
 import * as React from "react"; 
 
 export interface IAvailableTablesProp {
-	Date: string;
+	date: string;
 }
 
 class AvailableTables extends React.Component<IAvailableTablesProp, {}> { 
@@ -13,7 +13,7 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 
 		return (
 			<div>Tables work
-				<p>{this.props.Date}</p>
+				<p>{this.props.date}</p>
 			</div>
 			
 		); 
