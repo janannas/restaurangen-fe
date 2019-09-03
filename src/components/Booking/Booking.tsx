@@ -1,5 +1,5 @@
 import * as React from "react"; 
-import BookingCalendar from '../BookingCalendar/BookingCalendar';
+import BookingCalendar from '../Calendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 import {fetchConfig} from '../../utils/api-calls';
 
