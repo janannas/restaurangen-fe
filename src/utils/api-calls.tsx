@@ -5,7 +5,7 @@ export function createBooking(booking: IBooking) {
   return axios.post("http://localhost/bookings/create-booking.php", JSON.stringify(booking));
 }
 
-export function fetchGDPR() {
+export function fetchConfig() {
   return axios.get("http://localhost/bookings/get-configuration.php");
 }
 
