@@ -1,6 +1,7 @@
 import React from 'react';
 import './Admin.css';
 import {getAllBookings} from '../../utils/api-calls';
+import {deleteBooking} from '../../utils/api-calls';
 import {IBookingItem} from '../../interfaces/IBookingItem';
 
 const axios = require('axios');
@@ -47,7 +48,7 @@ class Admin extends React.Component< {}, IBookingState > {
   updateBookingWithID(booking: IBookingItem) {
     axios({
       method: 'put',
-      url: 'http://localhost/Restaurangen/admin/update-booking.php/',
+      url: 'http://localhost/admin/update-booking.php/',
       data: {
         booking_ID: booking.booking_ID,
         customer_ID: booking.customer_ID,
@@ -64,19 +65,10 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   deleteBookingWithID = (targetID: number) => {
-    axios({
-      method: 'delete',
-      url: 'http://localhost/Restaurangen/admin/delete-booking.php/',
-      data: {
-        booking_ID: targetID
-      }
+   deleteBooking(targetID).then((result: any) => {
+    console.log(result.data);
+    //splice and reset state
     });
-    //  axios
-    //  .delete('http://localhost/Restaurangen/admin/delete-booking.php/', {params: {"booking_ID": targetID}})
-    //  .then((result: any) => {
-    //    console.log(result.data);
-    //    //splice and reset state
-    //  });
   }
 
   render() {
