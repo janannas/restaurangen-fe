@@ -10,7 +10,6 @@ interface IBookingState {
 }
 
 class Admin extends React.Component< {}, IBookingState > {
-
   constructor(props: any) {
     super(props);
 
