@@ -9,6 +9,10 @@ export function fetchConfig() {
   return axios.get("http://localhost/bookings/get-configuration.php");
 }
 
+export function fetchBookedTables() {
+  return axios.get("http://localhost/bookings/get-booked-tables.php");
+}
+
 export function getAllBookings() {
   return axios.get('http://localhost/admin/get-bookings.php');
 }

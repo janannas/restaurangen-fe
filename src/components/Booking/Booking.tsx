@@ -1,7 +1,7 @@
 import * as React from "react"; 
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
-import {fetchConfig} from '../../utils/api-calls';
+import { fetchConfig, fetchBookedTables } from '../../utils/api-calls';
 
 export interface IBookingProps { 
 }
