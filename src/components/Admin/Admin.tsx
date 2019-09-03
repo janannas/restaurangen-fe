@@ -1,18 +1,9 @@
 import React from 'react';
 import './Admin.css';
 import {getAllBookings} from '../../utils/api-calls';
+import {IBookingItem} from '../../interfaces/IBookingItem';
 
 const axios = require('axios');
-
-interface IBookingItem {
-  booking_ID: number,
-  costumer_ID: number,
-  email: string,
-  guests: number,
-  name: string,
-  phone: string,
-  sitting: string
-}
 
 interface IBookingState { 
   bookingInfo: IBookingItem[];
@@ -30,13 +21,10 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   componentDidMount() {
-
     this.getAllBookings();
-
   }
 
   getAllBookings = () => {
-
       getAllBookings().then((result: any) => {
         const isArr = Array.isArray(result.data);
 
@@ -59,26 +47,18 @@ class Admin extends React.Component< {}, IBookingState > {
   updateBookingWithID(booking: IBookingItem) {
     console.log(booking);
     axios
-    .put('http://localhost/Restaurangen/admin/update-booking.php/', JSON.stringify({booking_ID: booking.booking_ID, customer_ID : booking.costumer_ID, guests : booking.guests, sitting : booking.sitting}))
+    .put('http://localhost/Restaurangen/admin/update-booking.php/{booking_ID}', booking)
     .then((result: any) => {
       console.log(result);
     })
   }
 
-  async deleteBookingWithID(targetID: number) {
-    console.log(targetID);
-    // axios.request({
-    //   method: "delete",
-    //   url: "http://localhost/Restaurangen/admin/delete-booking.php",
-    //   data: JSON.stringify({
-    //       booking_ID: targetID
-    //     })
-    //   });
-
+  deleteBookingWithID = (targetID: number) => {
      axios
-     .delete('http://localhost/Restaurangen/admin/delete-booking.php', JSON.stringify({"booking_ID" : targetID}))
+     .delete('http://localhost/Restaurangen/admin/delete-booking.php/', JSON.stringify({params: {booking_ID: targetID}}))
      .then((result: any) => {
        console.log(result.data);
+       //splice and reset state
      });
   }
 
@@ -100,14 +80,14 @@ class Admin extends React.Component< {}, IBookingState > {
           {this.state.bookingInfo.map((booking: IBookingItem) => (
             <tr key={booking.booking_ID}>
               <td>{booking.booking_ID}</td>
-              <td>{booking.costumer_ID}</td>
+              <td>{booking.customer_ID}</td>
               <td>{booking.email}</td>
               <td>{booking.guests}</td>
               <td>{booking.name}</td>
               <td>{booking.phone}</td>
               <td>{booking.sitting}</td>
               <td><button onClick={this.updateBookingWithID.bind(this, booking)}>Edit</button></td>
-              <td><button onClick={this.deleteBookingWithID.bind(this, booking.booking_ID)}>Delete</button></td>
+              <td><button onClick={() => this.deleteBookingWithID(booking.booking_ID)}>Delete</button></td>
             </tr>
           ))}
           </tbody>
