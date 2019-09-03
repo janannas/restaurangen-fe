@@ -1,6 +1,10 @@
 import * as React from "react"; 
 
-class AvailableTables extends React.Component<{}, {}> { 
+export interface IAvailableTablesProp {
+	date: string;
+}
+
+class AvailableTables extends React.Component<IAvailableTablesProp, {}> { 
 	constructor(props: any) {
 		super(props);
 	}
@@ -8,7 +12,9 @@ class AvailableTables extends React.Component<{}, {}> {
 	public render() {
 
 		return (
-			<div></div>
+			<div>Tables work
+				<p>{this.props.date}</p>
+			</div>
 		); 
 	}
 }

@@ -5,8 +5,12 @@ export function createBooking(booking: IBooking) {
   return axios.post("http://localhost/bookings/create-booking.php", JSON.stringify(booking));
 }
 
-export function fetchGDPR() {
+export function fetchConfig() {
   return axios.get("http://localhost/bookings/get-configuration.php");
+}
+
+export function fetchBookedTables() {
+  return axios.get("http://localhost/bookings/get-booked-tables.php");
 }
 
 export function getAllBookings() {
@@ -18,6 +22,6 @@ export function deleteBooking(targetID: number) {
 }
 
 export function updateBooking() {
-  return axios.put('http://localhost/Restaurangen/admin/update-booking.php');
+  return axios.put('http://localhost/admin/update-booking.php');
 
 }
