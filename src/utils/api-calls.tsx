@@ -17,8 +17,8 @@ export function getAllBookings() {
   return axios.get('http://localhost/admin/get-bookings.php');
 }
 
-export function deleteBooking() {
-  return axios.delete('http://localhost/admin/delete-booking.php');
+export function deleteBooking(targetID: number) {
+  return axios.delete('http://localhost/admin/delete-booking.php/', {data: {"booking_ID": targetID}})
 }
 
 export function updateBooking() {
