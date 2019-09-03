@@ -56,7 +56,7 @@ class Admin extends React.Component< {}, IBookingState > {
         sitting: booking.sitting
       }
     });
-    // console.log(booking);
+
     // axios
     // .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
     // .then((result: any) => {
