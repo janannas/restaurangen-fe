@@ -65,10 +65,11 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   deleteBookingWithID = (targetID: number) => {
-   deleteBooking(targetID).then((result: any) => {
-    console.log(result.data);
-    //splice and reset state
-    });
+    if(window.confirm('Are you sure you want to delete this booking?')) {
+      deleteBooking(targetID).then((result: any) => {
+        this.getAllBookings();
+       });
+    }
   }
 
   render() {
