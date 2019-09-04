@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Admin from './Admin';
 import { unmountComponentAtNode } from "react-dom";
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import '../../setupTests';
 
 
@@ -35,6 +35,8 @@ describe('First React component test with Enzyme', () => {
 });
 
 test('should fetch mockBooking', () => {
+  
+
   const mockBooking = [{
     "booking_ID": "10",
     "customer_ID": "111",
@@ -48,6 +50,41 @@ test('should fetch mockBooking', () => {
 
   jest.fn().mockResolvedValue(() => Promise.resolve(response));
 
-  expect(response.booking).toEqual(mockBooking);
+  let props = {};
+  let spy = jest.spyOn(Admin.prototype, 'getBookings');
+  
+  let wrapper = shallow<Admin>(<Admin {...props} />);
+
+  
+  expect(spy).toHaveBeenCalledTimes(1);
 
 });
+
+const mockFunction = jest.fn();
+
+it('should call mockFunction on button click', () => {
+  let props = {};
+  const wrapper = mount(<Admin {...props} />);
+  // unit testing
+  // wrapper.instance().deleteBookingWithID(10);
+
+  // e2e testing
+  let spy = spyOn(Admin.prototype, 'deleteBookingWithID');
+  let button = wrapper.find('button#delete-button');
+  console.log(button.length);
+
+  expect(spy).toHaveBeenCalled();
+  
+  // wrapper.unmount();
+});
+
+// describe('Test delete booking function', () => {
+//   it('calls click event', () => {
+
+//     const mockDelete = jest.spyOn(Admin.prototype, 'deleteMethod');
+//     const component = shallow((<Admin />));
+//     component.find('#delete-button').at(1).simulate('click');
+//     component.update();
+//     expect(mockDelete).toHaveBeenCalled();
+//   });
+// });
