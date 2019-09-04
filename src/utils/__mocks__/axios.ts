@@ -1,5 +1,4 @@
-'use strict';
-module.exports = {
+export default {
   get: () => {
     return Promise.resolve({
       data: [
