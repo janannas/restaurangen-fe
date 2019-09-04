@@ -100,4 +100,5 @@ export function deleteBooking(targetID: number) {
 export function updateBooking() {
   return axios.put('http://localhost/admin/update-booking.php');
 
+
 }
