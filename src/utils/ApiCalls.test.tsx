@@ -25,7 +25,6 @@ describe('ToDoList component', () => {
 
       expect(getSpy).toBeCalled();
     
-      
     })
   });
 });
