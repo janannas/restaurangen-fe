@@ -2,31 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Admin from './Admin';
 import { unmountComponentAtNode } from "react-dom";
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import '../../setupTests';
-
-jest.mock('axios');
-
 
 //Jest testing
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Admin />, div);
   ReactDOM.unmountComponentAtNode(div);
-});
-
-let container: any = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
 });
 
 //Enzyme testing
@@ -60,14 +43,14 @@ test('should fetch mockBooking', () => {
 
 });
 
-it('should check `deleteBookingWithID()`', () => {
-  let props = {};
-  let wrapper = shallow<Admin>(<Admin {...props} />);
-  const instance = wrapper.instance(); // you assign your instance of the wrapper
-  jest.spyOn(instance, 'deleteBooking'); // You spy on the randomFunction
-  instance.deleteBookingWithID();
-  expect(instance.deleteBookingWithID).toHaveBeenCalledTimes(1); // You check if the condition you want to match is correct.
-});
+// it('should check `deleteBookingWithID()`', () => {
+//   let props = {};
+//   let wrapper = shallow<Admin>(<Admin {...props} />);
+//   const instance = wrapper.instance(); // you assign your instance of the wrapper
+//   jest.spyOn(instance, 'deleteBooking'); // You spy on the randomFunction
+//   instance.deleteBookingWithID();
+//   expect(instance.deleteBookingWithID).toHaveBeenCalledTimes(1); // You check if the condition you want to match is correct.
+// });
 
 // it('should remove an item', () => {
 //   const app = shallow<Admin>(<Admin />);
@@ -97,9 +80,6 @@ it('should check `deleteBookingWithID()`', () => {
 //   expect(app.instance().state.bookingInfo[0]).toBe(mockBookingToDelete);
 
 // });
-
-
-
 
 // const mockFunction = jest.fn();
 
