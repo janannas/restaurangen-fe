@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Nav from './components/Navigation/Nav';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -10,10 +11,10 @@ import Admin from './components/Admin/Admin';
 import Booking from './components/Booking/Booking';
 
 
-class App extends React.Component< {}, {}> {
-  
+class App extends React.Component<{}, {}> {
+
   render() {
-  
+
     return (
       <div className="App">
         <Router>
@@ -26,6 +27,7 @@ class App extends React.Component< {}, {}> {
               <Route path="/admin" component={Admin} />
             </Switch>
           </Router>
+
         <Footer />
       </div>
     );
