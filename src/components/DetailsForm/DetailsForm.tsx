@@ -6,17 +6,26 @@ import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
 
+interface IProps {
+  changeHandler: any;
+}
+
 interface IState {
   formControls: IFormControls;
   error: string;
 }
 
+<<<<<<< HEAD
 interface IDetailsFormProps {
 	handleSubmit(details: IDetails) : void;	
 }
 
 export class DetailsForm extends Component<IDetailsFormProps, IState> {
   constructor(props: IDetailsFormProps) {
+=======
+export class DetailsForm extends Component<IProps, IState> {
+  constructor(props: IProps) {
+>>>>>>> 1776db0387266a7bcd04761763f1e362637c3f72
     super(props);
 
     this.state = {
@@ -81,6 +90,20 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
       formControls: updatedControls
     });
   }
+
+  handleKeyPress = () => {
+    // TODO: Detect if enter was pressed
+  }
+
+  handleForm = (event: any) => {
+    event.preventDefault();
+    const { name, email, phone } = this.state.formControls;
+    console.log(name.value);
+
+    this.props.changeHandler(name.value);
+  }
+
+
 
   render() {
     const { name, email, phone } = this.state.formControls;

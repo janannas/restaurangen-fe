@@ -83,6 +83,12 @@ class Booking extends Component<{}, IBookingState> {
 			})
 	}
 
+	changeHandler = (newUserName: string) => {
+		this.setState({ userName: newUserName });
+
+		console.log(this.state.userName);
+	}
+
 	public render() {
 		const { GDPRMessage } = this.state;
 
