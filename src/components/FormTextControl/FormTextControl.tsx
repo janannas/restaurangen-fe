@@ -3,9 +3,8 @@ import React from 'react';
 interface IProps {
   htmlFor: string;
   label: string;
-  // attr touched & valid, does not accept boolean values, this is a work around
-  touched: number;
-  valid: number;
+  touched: boolean;
+  valid: boolean;
   error: string;
   name: string;
   value: string;

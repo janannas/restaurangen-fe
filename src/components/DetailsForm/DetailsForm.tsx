@@ -88,8 +88,8 @@ export class DetailsForm extends Component<{}, IState> {
           value={name.value}
           id="name"
           label="Name: "
-          touched={name.touched ? 1 : 0}
-          valid={name.valid ? 1 : 0}
+          touched={name.touched}
+          valid={name.valid}
           error={"Field is required"}
         />
 
@@ -100,8 +100,8 @@ export class DetailsForm extends Component<{}, IState> {
           value={email.value}
           id="email"
           label="Email: "
-          touched={email.touched ? 1 : 0}
-          valid={email.valid ? 1 : 0}
+          touched={email.touched}
+          valid={email.valid}
           error={"Please enter a valid email-address"}
         />
 
@@ -112,8 +112,8 @@ export class DetailsForm extends Component<{}, IState> {
           value={phone.value}
           id="phone"
           label="Phone Number: "
-          touched={phone.touched ? 1 : 0}
-          valid={phone.valid ? 1 : 0}
+          touched={phone.touched}
+          valid={phone.valid}
           error={"Please enter only digits"}
         /> */}
 
