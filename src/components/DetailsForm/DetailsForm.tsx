@@ -9,6 +9,7 @@ interface IDetailsFormProps {
 }
 
 interface IDetailsFormState {
+  formIsValid: boolean;
   formControls: {
     name: {
       value: string;
@@ -46,6 +47,8 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     super(props);
 
     this.state = {
+      formIsValid: false, //track the overall form validity
+
       formControls: {
         name: {
           value: "",
@@ -92,6 +95,29 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     this.props.handleSubmit({ name: name.value });
   }
 
+  validateForm = () => {
+    // const name: keyof IDetailsFormState["formControls"] = event.target.name;
+
+    const updatedControls = {
+      ...this.state.formControls
+    };
+
+    // temp object to set state
+    let formIsValid: boolean = true;
+    let inputIdentifier: keyof IDetailsFormState["formControls"];
+
+    // Checking that all controls are valid
+    for (inputIdentifier in updatedControls) {
+      formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+    }
+
+    this.setState({
+      formIsValid: formIsValid
+    });
+
+    return formIsValid;
+  }
+
   validateControl = (event: any) => {
     const name: keyof IDetailsFormState["formControls"] = event.target.name;
 
@@ -121,12 +147,16 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
 
     updatedControl.value = value;
 
+    let formIsValid: boolean = false;
+
     // validate again, otherwise will only validate on blur
     if (updatedControl.touched) {
       updatedControl.valid = validate(value, updatedControl.validationRules);
+      formIsValid = this.validateForm();
     }
 
     this.setState({
+      formIsValid: formIsValid,
       formControls: updatedControls
     });
   }
@@ -176,7 +206,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           error={"Please enter minimum 5 digits"}
         />
 
-        <button type="submit">Confirm</button>
+        <button type="submit" disabled={!this.state.formIsValid}>Confirm</button>
 
       </form>
     );
