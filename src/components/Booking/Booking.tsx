@@ -7,8 +7,14 @@ import { IBooking } from "../../interfaces/IBooking";
 import { DetailsForm } from "../DetailsForm/DetailsForm";
 import { GDPR } from "../GDPR/GDPR";
 
+export interface IDetails {
+	name: string;
+}
+
 interface IBookingState {
 	GDPRMessage: string;
+
+	details: IDetails;
 }
 
 class Booking extends Component<{}, IBookingState> {
@@ -17,7 +23,19 @@ class Booking extends Component<{}, IBookingState> {
 
 		this.state = {
 			GDPRMessage: "",
+			details: {
+				name: ''
+			}
 		}
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit(newDetails: IDetails) {
+		console.log("Setting state in Booking: ", newDetails);
+		this.setState({
+			details: newDetails
+		});
 	}
 
 	componentDidMount() {
@@ -72,7 +90,7 @@ class Booking extends Component<{}, IBookingState> {
 			<>
 				<button onClick={this.prepareBooking}>Send</button>
 
-				<DetailsForm />
+				<DetailsForm handleSubmit={this.handleSubmit} />
 
 				<GDPR msg={GDPRMessage} />
 			</>

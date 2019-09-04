@@ -4,14 +4,19 @@ import { IFormControls } from '../../interfaces/IFormControls';
 
 import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
+import { IDetails } from '../Booking/Booking';
 
 interface IState {
   formControls: IFormControls;
   error: string;
 }
 
-export class DetailsForm extends Component<{}, IState> {
-  constructor(props: {}) {
+interface IDetailsFormProps {
+	handleSubmit(details: IDetails) : void;	
+}
+
+export class DetailsForm extends Component<IDetailsFormProps, IState> {
+  constructor(props: IDetailsFormProps) {
     super(props);
 
     this.state = {
@@ -52,8 +57,10 @@ export class DetailsForm extends Component<{}, IState> {
 
   handleForm = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const { name, email, phone } = this.state.formControls;
-    console.log(name, email, phone);
+    const { name } = this.state.formControls;
+		console.log(name);
+		
+		this.props.handleSubmit({ name: name.value });
   }
 
   handleChange = (event: any): void => {
@@ -79,7 +86,7 @@ export class DetailsForm extends Component<{}, IState> {
     const { name, email, phone } = this.state.formControls;
 
     return (
-      <form onSubmit={this.handleForm} onKeyPress={this.handleKeyPress}>
+      <form onSubmit={(e) => this.handleForm(e)} onKeyPress={this.handleKeyPress}>
 
         <FormTextControl
           name="name"
