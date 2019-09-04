@@ -1,21 +1,47 @@
-import React, { Component } from 'react';
-
-import { IFormControls } from '../../interfaces/IFormControls';
+import React from 'react';
 
 import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
 
-interface IState {
-  formControls: IFormControls;
+interface IDetailsFormProps {
+  handleSubmit(details: IDetails): void;
+}
+
+interface IDetailsFormState {
+  formControls: {
+    name: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      validationRules: {
+        isRequired: boolean;
+      };
+    };
+    email: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      validationRules: {
+        isRequired: boolean;
+        isEmail: boolean;
+      };
+    };
+    phone: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      validationRules: {
+        isRequired: boolean;
+        isNumber: boolean;
+        minLength: number;
+      };
+    };
+  };
   error: string;
 }
 
-interface IDetailsFormProps {
-	handleSubmit(details: IDetails) : void;	
-}
-
-export class DetailsForm extends Component<IDetailsFormProps, IState> {
+export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsFormState> {
   constructor(props: IDetailsFormProps) {
     super(props);
 
@@ -34,7 +60,8 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
           valid: false,
           touched: false,
           validationRules: {
-            isRequired: true
+            isRequired: true,
+            isEmail: true
           }
         },
         phone: {
@@ -42,7 +69,9 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
           valid: false,
           touched: false,
           validationRules: {
-            isRequired: true
+            isRequired: true,
+            isNumber: true,
+            minLength: 5
           }
         }
       },
@@ -58,13 +87,30 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
   handleForm = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const { name } = this.state.formControls;
-		console.log(name);
-		
-		this.props.handleSubmit({ name: name.value });
+    console.log(name);
+
+    this.props.handleSubmit({ name: name.value });
+  }
+
+  validateControl = (event: any) => {
+    const name: keyof IDetailsFormState["formControls"] = event.target.name;
+
+    const updatedControls = {
+      ...this.state.formControls
+    };
+
+    let updatedControl = updatedControls[name];
+
+    updatedControl.touched = true;
+    updatedControl.valid = validate(updatedControl.value, updatedControl.validationRules);
+
+    this.setState({
+      formControls: updatedControls
+    });
   }
 
   handleChange = (event: any): void => {
-    const name: keyof IFormControls = event.target.name;
+    const name: keyof IDetailsFormState["formControls"] = event.target.name;
     const value = event.target.value;
 
     const updatedControls = {
@@ -74,8 +120,11 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
     let updatedControl = updatedControls[name];
 
     updatedControl.value = value;
-    updatedControl.touched = true;
-    updatedControl.valid = validate(value, updatedControl.validationRules);
+
+    // validate again, otherwise will only validate on blur
+    if (updatedControl.touched) {
+      updatedControl.valid = validate(value, updatedControl.validationRules);
+    }
 
     this.setState({
       formControls: updatedControls
@@ -92,6 +141,7 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
           name="name"
           htmlFor="name"
           onChange={this.handleChange}
+          onBlur={this.validateControl}
           value={name.value}
           id="name"
           label="Name: "
@@ -100,15 +150,16 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
           error={"Field is required"}
         />
 
-        {/* <FormTextControl
+        <FormTextControl
           name="email"
           htmlFor="email"
           onChange={this.handleChange}
+          onBlur={this.validateControl}
           value={email.value}
           id="email"
           label="Email: "
-          touched={email.touched}
-          valid={email.valid}
+          touched={email.touched ? 1 : 0}
+          valid={email.valid ? 1 : 0}
           error={"Please enter a valid email-address"}
         />
 
@@ -116,13 +167,14 @@ export class DetailsForm extends Component<IDetailsFormProps, IState> {
           name="phone"
           htmlFor="phone"
           onChange={this.handleChange}
+          onBlur={this.validateControl}
           value={phone.value}
           id="phone"
           label="Phone Number: "
-          touched={phone.touched}
-          valid={phone.valid}
-          error={"Please enter only digits"}
-        /> */}
+          touched={phone.touched ? 1 : 0}
+          valid={phone.valid ? 1 : 0}
+          error={"Please enter minimum 5 digits"}
+        />
 
         <button type="submit">Confirm</button>
 

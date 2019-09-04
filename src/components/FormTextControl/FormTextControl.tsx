@@ -10,6 +10,7 @@ interface IProps {
   value: string;
   id: string;
   onChange: any;
+  onBlur: any;
 }
 
 export const FormTextControl = (props: IProps) => {
