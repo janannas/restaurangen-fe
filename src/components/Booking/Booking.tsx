@@ -1,7 +1,8 @@
 import * as React from "react"; 
+import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
-import { fetchConfig, fetchBookedTables } from '../../utils/api-calls';
+
 
 export interface IBookingProps { 
 }
@@ -42,7 +43,7 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 	}
 
 	componentDidMount() {
-		fetchConfig()
+		new ApiCalls().fetchConfig()
 			.then((result: any) => {
 				const data = result.data;
 
@@ -68,7 +69,7 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 
 	changeDate = (date: string) => {		
 		this.setState({ date: date });
-		fetchBookedTables(date);
+		new ApiCalls().fetchBookedTables(date);
 		// .then((result: any) => {
 		// 	const data = result.data;
 
