@@ -50,13 +50,15 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 					return { ...acc, [obj.key]: obj["value"]}
 				}, {});
 
-				this.setState(prevState => {
-					let config = Object.assign({}, prevState.config);
-					config.tables = configObj.tables;
-					config.sittingOne = configObj.sitting_one;
-					config.sittingTwo = configObj.sitting_two;
-					config.GDPRMessage = configObj.GDPR;
-					return { config };
+				let tempObj = { ...this.state.config };
+
+				tempObj.tables = configObj.tables;
+				tempObj.sittingOne = configObj.sitting_one;
+				tempObj.sittingTwo = configObj.sitting_two;
+				tempObj.GDPRMessage = configObj.GDPR;
+
+				this.setState({
+					config: tempObj
 				})
 			})
 			.catch(error => {
@@ -66,6 +68,17 @@ class Booking extends React.Component<IBookingProps, IBookingState> {
 
 	changeDate = (date: string) => {		
 		this.setState({ date: date });
+		fetchBookedTables(date);
+		// .then((result: any) => {
+		// 	const data = result.data;
+
+		// 	console.log(data)
+
+		// })
+		// .catch(error => {
+		// 	console.log(error);
+		// })
+
 	}
 
 	render() {
