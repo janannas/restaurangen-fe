@@ -1,7 +1,6 @@
 import React from 'react';
 import './Admin.css';
-import {getAllBookings} from '../../utils/api-calls';
-import {deleteBooking} from '../../utils/api-calls';
+import ApiCalls from '../../utils/ApiCalls';
 import {IBookingItem} from '../../interfaces/IBookingItem';
 
 const axios = require('axios');
@@ -21,10 +20,11 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   componentDidMount() {
-    this.getAllBookings();
+    this.getBookings();
   }
 
-  getAllBookings = () => {
+  public getBookings() {
+    new ApiCalls().
       getAllBookings().then((result: any) => {
         const isArr = Array.isArray(result.data);
 
@@ -63,10 +63,14 @@ class Admin extends React.Component< {}, IBookingState > {
     // })
   }
 
-  deleteBookingWithID = (targetID: number) => {
+  deleteMethod() {
+    console.log("delete");
+  }
+
+  deleteBookingWithID(targetID: number) {
     if(window.confirm('Are you sure you want to delete this booking?')) {
-      deleteBooking(targetID).then((result: any) => {
-        this.getAllBookings();
+      new ApiCalls().deleteBooking(targetID).then((result: any) => {
+        this.getBookings();
        });
     }
   }
@@ -98,7 +102,7 @@ class Admin extends React.Component< {}, IBookingState > {
               <td>{booking.phone}</td>
               <td>{booking.sitting}</td>
               <td><button onClick={this.updateBookingWithID.bind(this, booking)}>Edit</button></td>
-              <td><button onClick={() => this.deleteBookingWithID(booking.booking_ID)}>Delete</button></td>
+              <td><button id="delete-button" onClick={() => this.deleteBookingWithID(booking.booking_ID)}>Delete</button></td>
             </tr>
           ))}
           </tbody>
