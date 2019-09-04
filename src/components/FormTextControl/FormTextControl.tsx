@@ -3,8 +3,8 @@ import React from 'react';
 interface IProps {
   htmlFor: string;
   label: string;
-  touched: boolean;
-  valid: boolean;
+  touched: boolean | number;
+  valid: boolean | number;
   error: string;
   name: string;
   value: string;

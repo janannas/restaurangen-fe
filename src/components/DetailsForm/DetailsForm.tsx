@@ -88,8 +88,8 @@ export class DetailsForm extends Component<{}, IState> {
           value={name.value}
           id="name"
           label="Name: "
-          touched={name.touched}
-          valid={name.valid}
+          touched={name.touched ? 1 : 0}
+          valid={name.valid ? 1 : 0}
           error={"Field is required"}
         />
 
