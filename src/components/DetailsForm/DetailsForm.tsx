@@ -5,13 +5,17 @@ import { IFormControls } from '../../interfaces/IFormControls';
 import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
 
+interface IProps {
+  changeHandler: any;
+}
+
 interface IState {
   formControls: IFormControls;
   error: string;
 }
 
-export class DetailsForm extends Component<{}, IState> {
-  constructor(props: {}) {
+export class DetailsForm extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
 
     this.state = {
@@ -46,16 +50,6 @@ export class DetailsForm extends Component<{}, IState> {
     }
   }
 
-  handleKeyPress = () => {
-    // TODO: Detect if enter was pressed
-  }
-
-  handleForm = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    const { name, email, phone } = this.state.formControls;
-    console.log(name, email, phone);
-  }
-
   handleChange = (event: any): void => {
     const name: keyof IFormControls = event.target.name;
     const value = event.target.value;
@@ -75,11 +69,25 @@ export class DetailsForm extends Component<{}, IState> {
     });
   }
 
+  handleKeyPress = () => {
+    // TODO: Detect if enter was pressed
+  }
+
+  handleForm = (event: any) => {
+    event.preventDefault();
+    const { name, email, phone } = this.state.formControls;
+    console.log(name.value);
+
+    this.props.changeHandler(name.value);
+  }
+
+
+
   render() {
     const { name, email, phone } = this.state.formControls;
 
     return (
-      <form onSubmit={this.handleForm} onKeyPress={this.handleKeyPress}>
+      <form onSubmit={(e) => this.handleForm(e)} onKeyPress={this.handleKeyPress}>
 
         <FormTextControl
           name="name"

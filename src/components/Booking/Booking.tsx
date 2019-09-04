@@ -9,6 +9,7 @@ import { GDPR } from "../GDPR/GDPR";
 
 interface IBookingState {
 	GDPRMessage: string;
+	userName: string;
 }
 
 class Booking extends Component<{}, IBookingState> {
@@ -17,6 +18,8 @@ class Booking extends Component<{}, IBookingState> {
 
 		this.state = {
 			GDPRMessage: "",
+
+			userName: ""
 		}
 	}
 
@@ -65,6 +68,12 @@ class Booking extends Component<{}, IBookingState> {
 			})
 	}
 
+	changeHandler = (newUserName: string) => {
+		this.setState({ userName: newUserName });
+
+		console.log(this.state.userName);
+	}
+
 	public render() {
 		const { GDPRMessage } = this.state;
 
@@ -72,7 +81,7 @@ class Booking extends Component<{}, IBookingState> {
 			<>
 				<button onClick={this.prepareBooking}>Send</button>
 
-				<DetailsForm />
+				<DetailsForm changeHandler={this.changeHandler} />
 
 				<GDPR msg={GDPRMessage} />
 			</>
