@@ -1,6 +1,8 @@
-import React, { Component } from "react";
 
-import { fetchConfig, createBooking } from "../../utils/api-calls";
+import * as React from "react"; 
+import ApiCalls from '../../utils/ApiCalls';
+import BookingCalendar from '../BookingCalendar/BookingCalendar';
+import AvailableTables from '../AvailableTables/AvailableTables';
 
 import { IBooking } from "../../interfaces/IBooking";
 
@@ -12,17 +14,28 @@ export interface IDetails {
 }
 
 interface IBookingState {
-	GDPRMessage: string;
-
+	date: string;
+	config: {
+		tables: string;
+		sittingOne: string;
+		sittingTwo: string;
+		GDPRMessage: string;
+	}
 	details: IDetails;
 }
 
-class Booking extends Component<{}, IBookingState> {
+class Booking extends React.Component<{}, IBookingState> {
 	constructor(props: {}) {
 		super(props);
 
 		this.state = {
-			GDPRMessage: "",
+			date: "",
+			config: {
+				tables: "",
+				sittingOne: "",
+				sittingTwo: "",
+				GDPRMessage: "",
+			},
 			details: {
 				name: ''
 			}
@@ -39,28 +52,29 @@ class Booking extends Component<{}, IBookingState> {
 	}
 
 	componentDidMount() {
-		fetchConfig()
+		new ApiCalls().fetchConfig()
 			.then((result: any) => {
 				const data = result.data;
 
 				let configObj = data.reduce((acc: any, obj: any) => {
-					return { ...acc, [obj.key]: obj["value"] }
+
+					return { ...acc, [obj.key]: obj["value"]}
 				}, {});
 
-				// TODO: remove
-				console.log(configObj.GDPR);
-
-				this.setState({
-					GDPRMessage: configObj.GDPR
+				this.setState(prevState => {
+					let config = Object.assign({}, prevState.config);
+					config.tables = configObj.tables;
+					config.sittingOne = configObj.sitting_one;
+					config.sittingTwo = configObj.sitting_two;
+					config.GDPRMessage = configObj.GDPR;
+					return { config };
 				})
-
 			})
 			.catch(error => {
 				console.log(error);
 			})
 	}
 
-	// TODO: Add to separate function together with prepareBooking
 	bookingObj = (): IBooking => {
 		return {
 			name: "Johan",
@@ -74,7 +88,7 @@ class Booking extends Component<{}, IBookingState> {
 	prepareBooking = (): void => {
 		const obj = this.bookingObj();
 
-		createBooking(obj)
+		new ApiCalls().createBooking(obj)
 			.then((result: any) => {
 				console.log(result.data);
 			})
@@ -83,18 +97,25 @@ class Booking extends Component<{}, IBookingState> {
 			})
 	}
 
-	public render() {
-		const { GDPRMessage } = this.state;
+	changeDate = (date: string) => {		
+		this.setState({ date: date });
+	}
 
-		return (
-			<>
-				<button onClick={this.prepareBooking}>Send</button>
+	render() {
+		const { GDPRMessage } = this.state.config;
 
-				<DetailsForm handleSubmit={this.handleSubmit} />
+    return (
+      <div className="Booking">
+          <h1>Booking works</h1>
+					<p>{this.state.config.sittingTwo}</p>
+					<BookingCalendar handleDate={this.changeDate}/>
+					<AvailableTables date={this.state.date}/>
+					<button onClick={this.prepareBooking}>Send</button>
+					<DetailsForm handleSubmit={this.handleSubmit} />
 
-				<GDPR msg={GDPRMessage} />
-			</>
-		);
+					<GDPR msg={GDPRMessage} />
+      </div>
+    );
 	}
 }
 
