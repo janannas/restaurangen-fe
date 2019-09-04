@@ -1,19 +1,26 @@
 import React from 'react';
 
 interface IProps {
-  name: string;
   htmlFor: string;
+  label: string;
+  // attr touched & valid, does not accept boolean values, this is a work around
+  touched: number;
+  valid: number;
+  error: string;
+  name: string;
   value: string;
   id: string;
-  label: string;
-  touched: boolean;
-  valid: boolean;
-  error: string;
   onChange: any;
 }
 
 export const FormTextControl = (props: IProps) => {
-  const { htmlFor, label, touched, valid, error } = props;
+  const {
+    htmlFor,
+    label,
+    touched,
+    valid,
+    error
+  } = props;
 
   return (
     <>

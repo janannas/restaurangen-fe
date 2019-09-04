@@ -1,68 +1,126 @@
-import React from 'react';
-import { FormTextControl } from "../FormTextControl/FormTextControl";
+import React, { Component } from 'react';
 
-interface IProps {
-  handleForm: any;
-  handleKeyPress: any;
-  nameValue: string;
-  nametouched: any;
-  namevalid: any;
-  emailValue: string;
-  phoneValue: string
-  handleChange: any;
+import { IFormControls } from '../../interfaces/IFormControls';
+
+import { FormTextControl } from "../FormTextControl/FormTextControl";
+import { validate } from '../../utils/validation';
+
+interface IState {
+  formControls: IFormControls;
+  error: string;
 }
 
-export const DetailsForm = ({
-  handleForm,
-  nameValue,
-  handleChange,
-  nametouched,
-  namevalid
-}: IProps) => {
+export class DetailsForm extends Component<{}, IState> {
+  constructor(props: {}) {
+    super(props);
 
-  return (
-    <form onSubmit={handleForm}>
+    this.state = {
+      formControls: {
+        name: {
+          value: "",
+          valid: false,
+          touched: false,
+          validationRules: {
+            isRequired: true
+          }
+        },
+        email: {
+          value: "",
+          valid: false,
+          touched: false,
+          validationRules: {
+            isRequired: true
+          }
+        },
+        phone: {
+          value: "",
+          valid: false,
+          touched: false,
+          validationRules: {
+            isRequired: true
+          }
+        }
+      },
 
-      <FormTextControl
-        name="name"
-        htmlFor="name"
-        onChange={handleChange}
-        value={nameValue}
-        id="name"
-        label="Name: "
-        touched={nametouched}
-        valid={namevalid}
-        error={"Field is required"}
-      />
+      error: ""
+    }
+  }
 
-      {/*  <FormTextControl
-        name="email"
-        htmlFor="email"
-        onChange={handleChange}
-        value={emailValue}
-        id="email"
-        label="Email: "
-        touched=
-        valid=
-        error={"required"}
-      />
+  handleKeyPress = () => {
+    // TODO: Detect if enter was pressed
+  }
 
-      <FormTextControl
-        name="phone"
-        htmlFor="phone"
-        onChange={handleChange}
-        value={phoneValue}
-        id="phone"
-        label="Phone Number: "
-        touched=
-        valid=
-        error={"required"}
-      /> */}
+  handleForm = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    const { name, email, phone } = this.state.formControls;
+    console.log(name, email, phone);
+  }
 
-      <button type="submit">Confirm</button>
+  handleChange = (event: any): void => {
+    const name: keyof IFormControls = event.target.name;
+    const value = event.target.value;
 
-    </form>
-  );
+    const updatedControls = {
+      ...this.state.formControls
+    };
 
+    let updatedControl = updatedControls[name];
+
+    updatedControl.value = value;
+    updatedControl.touched = true;
+    updatedControl.valid = validate(value, updatedControl.validationRules);
+
+    this.setState({
+      formControls: updatedControls
+    });
+  }
+
+  render() {
+    const { name, email, phone } = this.state.formControls;
+
+    return (
+      <form onSubmit={this.handleForm} onKeyPress={this.handleKeyPress}>
+
+        <FormTextControl
+          name="name"
+          htmlFor="name"
+          onChange={this.handleChange}
+          value={name.value}
+          id="name"
+          label="Name: "
+          touched={name.touched ? 1 : 0}
+          valid={name.valid ? 1 : 0}
+          error={"Field is required"}
+        />
+
+        {/* <FormTextControl
+          name="email"
+          htmlFor="email"
+          onChange={this.handleChange}
+          value={email.value}
+          id="email"
+          label="Email: "
+          touched={email.touched ? 1 : 0}
+          valid={email.valid ? 1 : 0}
+          error={"Please enter a valid email-address"}
+        />
+
+        <FormTextControl
+          name="phone"
+          htmlFor="phone"
+          onChange={this.handleChange}
+          value={phone.value}
+          id="phone"
+          label="Phone Number: "
+          touched={phone.touched ? 1 : 0}
+          valid={phone.valid ? 1 : 0}
+          error={"Please enter only digits"}
+        /> */}
+
+        <button type="submit">Confirm</button>
+
+      </form>
+    );
+  }
 
 }

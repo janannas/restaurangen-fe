@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 import { fetchConfig, createBooking } from "../../utils/api-calls";
-import { validate } from "../../utils/validation";
 
-import { IFormControls } from "../../interfaces/IFormControls";
 import { IBooking } from "../../interfaces/IBooking";
 
 import { DetailsForm } from "../DetailsForm/DetailsForm";
@@ -11,8 +9,6 @@ import { GDPR } from "../GDPR/GDPR";
 
 interface IBookingState {
 	GDPRMessage: string;
-	formControls: IFormControls;
-	error: string;
 }
 
 class Booking extends Component<{}, IBookingState> {
@@ -21,35 +17,6 @@ class Booking extends Component<{}, IBookingState> {
 
 		this.state = {
 			GDPRMessage: "",
-
-			formControls: {
-				name: {
-					value: "",
-					valid: false,
-					touched: false,
-					validationRules: {
-						isRequired: true
-					}
-				},
-				email: {
-					value: "",
-					valid: false,
-					touched: false,
-					validationRules: {
-						isRequired: true
-					}
-				},
-				phone: {
-					value: "",
-					valid: false,
-					touched: false,
-					validationRules: {
-						isRequired: true
-					}
-				}
-			},
-
-			error: ""
 		}
 	}
 
@@ -75,43 +42,12 @@ class Booking extends Component<{}, IBookingState> {
 			})
 	}
 
-	handleChange = (event: any): void => {
-		const name: keyof IFormControls = event.target.name;
-		const value = event.target.value;
-
-		const updatedControls = {
-			...this.state.formControls
-		};
-
-		let updatedControl = updatedControls[name];
-
-		updatedControl.value = value;
-		updatedControl.touched = true;
-		updatedControl.valid = validate(value, updatedControl.validationRules);
-
-		this.setState({
-			formControls: updatedControls
-		});
-	}
-
-
-	handleForm = (event: React.SyntheticEvent) => {
-		event.preventDefault();
-		const { name, email, phone } = this.state.formControls;
-		console.log(name, email, phone);
-	}
-
-	handleKeyPress = () => {
-		// TODO: Detect if enter was pressed
-	}
-
+	// TODO: Add to separate function together with prepareBooking
 	bookingObj = (): IBooking => {
-		const { name, email, phone } = this.state.formControls;
-
 		return {
-			name: name.value,
-			email: email.value,
-			phone: phone.value,
+			name: "Johan",
+			email: "johan@gmail.com",
+			phone: "0123456789",
 			guests: "7",
 			sitting: "2013-08-30 19:05:00"
 		};
@@ -130,24 +66,13 @@ class Booking extends Component<{}, IBookingState> {
 	}
 
 	public render() {
-		const { GDPRMessage, formControls } = this.state;
+		const { GDPRMessage } = this.state;
 
 		return (
 			<>
 				<button onClick={this.prepareBooking}>Send</button>
 
-				<DetailsForm
-					handleForm={this.handleForm}
-					handleKeyPress={this.handleKeyPress}
-					handleChange={this.handleChange}
-
-					nameValue={formControls.name.value}
-					nametouched={formControls.name.touched ? 1 : 0}
-					namevalid={formControls.name.valid ? 1 : 0}
-
-					emailValue={formControls.email.value}
-					phoneValue={formControls.phone.value}
-				/>
+				<DetailsForm />
 
 				<GDPR msg={GDPRMessage} />
 			</>
