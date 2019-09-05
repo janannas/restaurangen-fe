@@ -12,14 +12,11 @@ class Nav extends React.Component< {}, {}> {
             <h2>Logo</h2>
         </Link>
           <ul className="nav-links">
-            <Link to='/about'>
-                <li>About</li>
-            </Link>
 						<Link to='/booking'>
                 <li>Booking</li>
             </Link>
-            <Link to='/shop'>
-                <li>Shop</li>
+            <Link to='/contact'>
+                <li>Contact Us</li>
             </Link>
             <Link to='/admin'>
                 <li>Admin</li>
