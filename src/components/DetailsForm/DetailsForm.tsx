@@ -83,7 +83,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     // TODO: Detect if enter was pressed
   }
 
-  handleForm = (event: React.SyntheticEvent) => {
+  onFormSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const { name } = this.state.formControls;
     console.log(name);
@@ -165,7 +165,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     const { name, email, phone } = this.state.formControls;
 
     return (
-      <form onSubmit={(e) => this.handleForm(e)} onKeyPress={this.handleKeyPress}>
+      <form onSubmit={(e) => this.onFormSubmit(e)} onKeyPress={this.handleKeyPress}>
 
         <FormTextControl
           name="name"
