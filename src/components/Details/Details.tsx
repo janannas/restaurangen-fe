@@ -1,5 +1,5 @@
 import React from 'react';
-import './Accordion.css' ;
+import './Details.css' ;
 import { NavLink } from 'react-router-dom';
 import { IBookingItem } from '../../interfaces/IBookingItem';
 import ApiCalls from '../../utils/ApiCalls';
@@ -21,7 +21,7 @@ export interface IAccordionProps {
 	}
 }
 
-class Accordion extends React.Component< IAccordionProps, IAccordionState> {
+class Details extends React.Component< IAccordionProps, IAccordionState> {
   constructor(props: any) {
     super(props);
 
@@ -90,7 +90,6 @@ class Accordion extends React.Component< IAccordionProps, IAccordionState> {
     if(window.confirm('Are you sure you want to delete this booking?')) {
       new ApiCalls().deleteBooking(targetID).then((result: any) => {
 				this.props.history.push("/admin");
-				
       });
     }
   }
@@ -105,7 +104,6 @@ class Accordion extends React.Component< IAccordionProps, IAccordionState> {
     // }
   
   render() {
-  
     return (
       <div className="accordion">
 				<h1>Hello</h1>
@@ -127,4 +125,4 @@ class Accordion extends React.Component< IAccordionProps, IAccordionState> {
   }
 }
 
-export default Accordion;
+export default Details;

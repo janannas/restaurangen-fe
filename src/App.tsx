@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer';
 import Admin from './components/Admin/Admin';
 import Booking from './components/Booking/Booking';
 import Contact from './components/Contact/Contact';
-import Accordion from './components/Accordion/Accordion';
+import Details from './components/Details/Details';
 
 
 class App extends React.Component<{}, {}> {
@@ -24,7 +24,7 @@ class App extends React.Component<{}, {}> {
 							<Route path="/booking" component={Booking} />
               <Route path="/contact" component={Contact} />
               <Route path="/admin" exact component={Admin} />
-              <Route path="/Accordion/:id" component={Accordion}/>
+              <Route path="/Accordion/:id" component={Details}/>
             </Switch>
           </Router>
 
