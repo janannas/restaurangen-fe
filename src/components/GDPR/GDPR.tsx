@@ -30,16 +30,16 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
         validationRules: {
           isChecked: true
         },
-        error: "Checkbox is required"
+        error: "Agreeing is required"
       }
     }
   }
 
-  validateControl = (event: any) => {
+  validateControl = (checkBoxValue: boolean) => {
     let updatedControl = { ...this.state.formControl };
 
     updatedControl.touched = true;
-    updatedControl.valid = validate(event.target.checked, updatedControl.validationRules);
+    updatedControl.valid = validate(checkBoxValue, updatedControl.validationRules);
 
     this.setState({ formControl: updatedControl });
   }
@@ -56,7 +56,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
 
     this.props.handleGDPRChange(value);
 
-    this.validateControl(event);
+    this.validateControl(checkBoxChecked);
   }
 
   render() {
@@ -67,13 +67,16 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
     return (
       <>
         <div>
-          <input
-            type="checkbox"
-            name="GDPRCheckBox"
-            id="GDPRCheckBox"
-            checked={isGDPRChecked}
-            onChange={this.handleChange}
-          />
+          <label htmlFor="GDPRCheckBox">
+            <input
+              type="checkbox"
+              name="GDPRCheckBox"
+              id="GDPRCheckBox"
+              checked={isGDPRChecked}
+              onChange={this.handleChange}
+            />
+            Click here to agree
+          </label>
         </div>
 
         <div style={{ height: "20px" }}>
