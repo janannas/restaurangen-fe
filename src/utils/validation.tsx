@@ -4,19 +4,19 @@ export const validate = (value: string, rules: any): boolean => {
   for (const rule in rules) {
     switch (rule) {
       case "isRequired":
-        isValid = requiredValidator(value);
+        isValid = isValid && requiredValidator(value);
         break;
 
       case "isNumber":
-        isValid = numberValidator(value);
+        isValid = isValid && numberValidator(value);
         break;
 
       case "isEmail":
-        isValid = emailValidator(value);
+        isValid = isValid && emailValidator(value);
         break;
 
       case "minLength":
-        isValid = minLengthValidator(value, rules[rule]);
+        isValid = isValid && minLengthValidator(value, rules[rule]);
         break;
 
       default:
@@ -32,7 +32,7 @@ const requiredValidator = (value: string): boolean => {
 }
 
 const numberValidator = (value: string): boolean => {
-  return /^\d+$/.test(value);
+  return !/[a-z]/i.test(value);
 }
 
 const emailValidator = (value: string): boolean => {

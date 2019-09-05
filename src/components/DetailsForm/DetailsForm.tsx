@@ -24,7 +24,6 @@ interface IDetailsFormState {
       valid: boolean;
       touched: boolean;
       validationRules: {
-        isRequired: boolean;
         isEmail: boolean;
       };
     };
@@ -33,9 +32,8 @@ interface IDetailsFormState {
       valid: boolean;
       touched: boolean;
       validationRules: {
-        isRequired: boolean;
         isNumber: boolean;
-        minLength: number;
+        minLength: 3;
       };
     };
   };
@@ -63,7 +61,6 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           valid: false,
           touched: false,
           validationRules: {
-            isRequired: true,
             isEmail: true
           }
         },
@@ -72,9 +69,8 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           valid: false,
           touched: false,
           validationRules: {
-            isRequired: true,
             isNumber: true,
-            minLength: 5
+            minLength: 3
           }
         }
       },
@@ -96,8 +92,6 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
   }
 
   validateForm = () => {
-    // const name: keyof IDetailsFormState["formControls"] = event.target.name;
-
     const updatedControls = {
       ...this.state.formControls
     };
@@ -135,6 +129,11 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     });
   }
 
+  triggerAllValidation = (event: any) => {
+    this.validateControl(event);
+    this.validateForm();
+  }
+
   handleChange = (event: any): void => {
     const name: keyof IDetailsFormState["formControls"] = event.target.name;
     const value = event.target.value;
@@ -147,13 +146,14 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
 
     updatedControl.value = value;
 
-    let formIsValid: boolean = false;
-
-    // validate again, otherwise will only validate on blur
+    // Don't want to validate on every keyStroke but still validate 
+    // as soon as formControl as valid, not only onBlur
     if (updatedControl.touched) {
       updatedControl.valid = validate(value, updatedControl.validationRules);
-      formIsValid = this.validateForm();
     }
+
+    // Submit button gets activated soon as form i valid
+    let formIsValid: boolean = this.validateForm();
 
     this.setState({
       formIsValid: formIsValid,
@@ -171,7 +171,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           name="name"
           htmlFor="name"
           onChange={this.handleChange}
-          onBlur={this.validateControl}
+          onBlur={this.triggerAllValidation}
           value={name.value}
           id="name"
           label="Name: "
@@ -184,7 +184,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           name="email"
           htmlFor="email"
           onChange={this.handleChange}
-          onBlur={this.validateControl}
+          onBlur={this.triggerAllValidation}
           value={email.value}
           id="email"
           label="Email: "
@@ -197,13 +197,13 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
           name="phone"
           htmlFor="phone"
           onChange={this.handleChange}
-          onBlur={this.validateControl}
+          onBlur={this.triggerAllValidation}
           value={phone.value}
           id="phone"
           label="Phone Number: "
           touched={phone.touched ? 1 : 0}
           valid={phone.valid ? 1 : 0}
-          error={"Please enter minimum 5 digits"}
+          error={"Please enter at least three digits"}
         />
 
         <button type="submit" disabled={!this.state.formIsValid}>Confirm</button>
