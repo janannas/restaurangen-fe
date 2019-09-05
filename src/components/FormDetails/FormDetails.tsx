@@ -2,14 +2,19 @@ import React from 'react';
 
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
+
 import { FormTextControl } from "../FormTextControl/FormTextControl";
+import { GDPR } from "../GDPR/GDPR";
 
 interface IFormDetailsProps {
   handleDetailSubmit(details: IDetails): void;
+  GDPRMessage: string;
 }
 
 interface IFormDetailsState {
   formIsValid: boolean;
+  isGDPRChecked: boolean;
+
   formControls: {
     name: {
       value: string;
@@ -46,6 +51,7 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
 
     this.state = {
       formIsValid: false, //track the overall form validity
+      isGDPRChecked: false,
 
       formControls: {
         name: {
@@ -101,6 +107,10 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
       email: email.value,
       phone: phone.value
     });
+  }
+
+  handleGDPRChange = (GDPRValue: boolean) => {
+    this.setState({ isGDPRChecked: GDPRValue })
   }
 
   validateForm = () => {
@@ -174,6 +184,8 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
 
   render() {
     const { name, email, phone } = this.state.formControls;
+    const { formIsValid, isGDPRChecked } = this.state;
+    const { GDPRMessage } = this.props;
 
     return (
       <form onSubmit={(e) => this.onFormSubmit(e)} onKeyPress={this.handleKeyPress}>
@@ -217,7 +229,9 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
           error={"Please enter at least three digits"}
         />
 
-        <button type="submit" disabled={!this.state.formIsValid}>Confirm</button>
+        <GDPR GDPRMessage={GDPRMessage} handleGDPRChange={this.handleGDPRChange} />
+
+        <button type="submit" disabled={!formIsValid || !isGDPRChecked}>Confirm</button>
 
       </form>
     );
