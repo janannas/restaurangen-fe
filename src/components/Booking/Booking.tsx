@@ -6,7 +6,7 @@ import AvailableTables from '../AvailableTables/AvailableTables';
 
 import { IBooking } from "../../interfaces/IBooking";
 
-import { DetailsForm } from "../DetailsForm/DetailsForm";
+import { FormDetails } from "../FormDetails/FormDetails";
 import { GDPR } from "../GDPR/GDPR";
 
 export interface IDetails {
@@ -114,7 +114,7 @@ class Booking extends React.Component<{}, IBookingState> {
 				<BookingCalendar handleDate={this.changeDate} />
 				<AvailableTables date={this.state.date} />
 				<button onClick={this.prepareBooking}>Send</button>
-				<DetailsForm handleDetailSubmit={this.handleDetailSubmit} />
+				<FormDetails handleDetailSubmit={this.handleDetailSubmit} />
 
 				<GDPR msg={GDPRMessage} />
 			</div>

@@ -4,11 +4,11 @@ import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
 
-interface IDetailsFormProps {
+interface IFormDetailsProps {
   handleDetailSubmit(details: IDetails): void;
 }
 
-interface IDetailsFormState {
+interface IFormDetailsState {
   formIsValid: boolean;
   formControls: {
     name: {
@@ -40,8 +40,8 @@ interface IDetailsFormState {
   error: string;
 }
 
-export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsFormState> {
-  constructor(props: IDetailsFormProps) {
+export class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> {
+  constructor(props: IFormDetailsProps) {
     super(props);
 
     this.state = {
@@ -110,7 +110,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
 
     // temp object to set state
     let formIsValid: boolean = true;
-    let inputIdentifier: keyof IDetailsFormState["formControls"];
+    let inputIdentifier: keyof IFormDetailsState["formControls"];
 
     // Checking that all controls are valid
     for (inputIdentifier in updatedControls) {
@@ -125,7 +125,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
   }
 
   validateControl = (event: any) => {
-    const name: keyof IDetailsFormState["formControls"] = event.target.name;
+    const name: keyof IFormDetailsState["formControls"] = event.target.name;
 
     const updatedControls = {
       ...this.state.formControls
@@ -147,7 +147,7 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
   }
 
   handleChange = (event: any): void => {
-    const name: keyof IDetailsFormState["formControls"] = event.target.name;
+    const name: keyof IFormDetailsState["formControls"] = event.target.name;
     const value = event.target.value;
 
     const updatedControls = {
