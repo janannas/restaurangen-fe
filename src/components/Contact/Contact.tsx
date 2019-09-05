@@ -1,15 +1,15 @@
 import React from 'react';
 
-class Shop extends React.Component< {}, {}> {
+class Contact extends React.Component< {}, {}> {
   
   render() {
   
     return (
-      <div className="Shop">
+      <div className="Contact">
           <h1>Shop Page</h1>
       </div>
     );
   }
 }
 
-export default Shop;
+export default Contact;
