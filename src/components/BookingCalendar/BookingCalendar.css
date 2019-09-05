@@ -1,14 +1,14 @@
-/* .react-calendar {
-	margin: 0 auto;
+* {
+	box-sizing: border-box;
 }
 
 ul {
 	list-style-type: none;
 }
 
-.calendar {
+.react-calendar {
 	margin: 0 auto;
-	max-width: 40rem;
+	/* max-width: 40rem; */
 }
 
 .month {
@@ -68,4 +68,4 @@ ul {
   margin-bottom: 5px;
   font-size:12px;
   color: #777;
-} */
+}

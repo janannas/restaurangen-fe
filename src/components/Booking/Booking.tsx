@@ -22,7 +22,11 @@ export interface IBookedTable {
 }
 
 interface IBookingState {
-	date: string;
+	dateTime: {
+		date: string;
+		time: string;
+	}
+	guests: number;
 	config: {
 		tables: number;
 		sittingOne: string;
@@ -31,6 +35,8 @@ interface IBookingState {
 	}
 	details: IDetails;
 	bookedTables: IBookedTable[];
+
+	freeSeats: number;
 }
 
 class Booking extends React.Component<{}, IBookingState> {
@@ -38,7 +44,11 @@ class Booking extends React.Component<{}, IBookingState> {
 		super(props);
 
 		this.state = {
-			date: "",
+			dateTime: {
+				date: "",
+				time: ""
+			},
+			guests: 0,
 			config: {
 				tables: 0,
 				sittingOne: "",
@@ -48,7 +58,8 @@ class Booking extends React.Component<{}, IBookingState> {
 			details: {
 				name: ''
 			},
-			bookedTables: []
+			bookedTables: [],
+			freeSeats: 0
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,8 +81,6 @@ class Booking extends React.Component<{}, IBookingState> {
 
 					return { ...acc, [obj.key]: obj["value"]}
 				}, {});
-
-				console.log(configObj);
 
 				let tempObj = { ...this.state.config };
 
@@ -111,8 +120,17 @@ class Booking extends React.Component<{}, IBookingState> {
 			})
 	}
 
-	changeDate = (date: string) => {		
-		this.setState({ date: date });
+	changeDate = (date: string) => {	
+		var dateTimeObj = {
+				date: date,
+				time: '00:00' 
+			}
+
+		this.setState({ 
+			dateTime: dateTimeObj,
+			guests: 0
+		});
+
 		new ApiCalls().fetchBookedTables(date)
 		.then((result: any) => {
 			const data = result.data;
@@ -128,72 +146,61 @@ class Booking extends React.Component<{}, IBookingState> {
 					bookedTables: data
 				});
 			}
-			this.calculateFreeSeats();
 		})
 		.catch(error => {
 			console.log(error);
 		});
 	}
 
-	calculateFreeSeats = () => {	
-		let tablesSittingOne = this.state.config.tables;
-		let tablesSittingTwo = this.state.config.tables;
+	calculateFreeSeats = (time: string) => {
+		var dateTimeObj = {
+			date: this.state.dateTime.date,
+			time: time
+		}
+		
+		this.setState({ 
+			dateTime: dateTimeObj
+		});
 
-		let seatsSittingOne = 0;
-		let seatsSittingTwo = 0;
+		let numberOfTables = this.state.config.tables;
 
-		const { sittingOne } = this.state.config;
-		const { sittingTwo } = this.state.config;
-		//köra en loop istället o ta bort ett bord för varje 6pers intervall och sedan räkna ut lediga platser per tid
-		// console.log(6%6);
-		// console.log(seatsSittingTwo);
-		// console.log('calculating...');
 		for(let i = 0; i < this.state.bookedTables.length; i++){
 			let formattedBookedTime = moment(this.state.bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
-			if(sittingOne === formattedBookedTime) {
-				console.log('sitting one');
-				console.log(this.state.bookedTables[i].guests);
-				console.log('taken tables');
-				console.log(Math.ceil(this.state.bookedTables[i].guests/6));
-				tablesSittingOne -= Math.ceil(this.state.bookedTables[i].guests/6);
-			}
-			else if(sittingTwo === formattedBookedTime) {
-				console.log('sitting two');
-				console.log(this.state.bookedTables[i].guests);
-				console.log('taken tables');
-				console.log(Math.ceil(this.state.bookedTables[i].guests/6));
-				tablesSittingTwo -= Math.ceil(this.state.bookedTables[i].guests/6);
+			if(time === formattedBookedTime) {
+				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests/6);
 			}
 		}
-		console.log('free tables sitting one');
-		console.log(tablesSittingOne);
-		console.log('free tables sitting two');
-		console.log(tablesSittingTwo);
+		var seatsThisSitting = numberOfTables * 6;
+	
+		this.setState({
+			freeSeats: seatsThisSitting
+		});
+	}
 
-		seatsSittingOne = tablesSittingOne * 6;
-		seatsSittingTwo = tablesSittingTwo * 6;
+	handleSeatsClick = (guests:number) => {	
+		this.setState({ guests: guests });
+	}
 
-		console.log('free seats sitting one');
-		console.log(seatsSittingOne);
-		console.log('free seats sitting two');
-		console.log(seatsSittingTwo);
-		
+	test = () => {	
+		return console.log('test');
 	}
 
 	render() {
 		const { GDPRMessage } = this.state.config;
-		// console.log('booking state');
-		// console.log(this.state.bookings);
-		// console.log('modulo');
-		//med delat med, upp till 1 = 1 bord, upp till 2 = 2 bord
-		//runda upp till närmaste heltal === antalet bord som behövs
-		console.log(Math.ceil(11/6));
-
+		console.log(this.state.dateTime.date);
+		console.log(this.state.dateTime.time);
+		console.log(this.state.guests);
     return (
       <div className="Booking">
 				<h1>Booking works</h1>
 				<BookingCalendar handleDate={this.changeDate}/>
-				<AvailableTables date={this.state.date} config={this.state.config}/>
+				<AvailableTables 
+					dateTime={this.state.dateTime} 
+					config={this.state.config} 
+					handleTimeClick={this.calculateFreeSeats} 
+					handleSeatsClick={this.handleSeatsClick}
+					freeSeats={this.state.freeSeats}
+				/>
 				<button onClick={this.prepareBooking}>Send</button>
 				<DetailsForm handleSubmit={this.handleSubmit} />
 

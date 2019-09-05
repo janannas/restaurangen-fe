@@ -31,7 +31,6 @@ class BookingCalendar extends React.Component<ICalendarProp, ICalendarState> {
 
 	onChange = (value: Date | Date[]) => {
 		this.setState({ value });
-
 		this.handleDate(moment(value).format('YYYY-MM-DD'));	
   };
 
