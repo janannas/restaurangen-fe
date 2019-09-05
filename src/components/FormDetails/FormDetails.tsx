@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { FormTextControl } from "../FormTextControl/FormTextControl";
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
+import { FormTextControl } from "../FormTextControl/FormTextControl";
 
 interface IFormDetailsProps {
   handleDetailSubmit(details: IDetails): void;
@@ -158,8 +158,7 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
 
     updatedControl.value = value;
 
-    // Don't want to validate on every keyStroke but still validate 
-    // as soon as formControl as valid, not only onBlur
+    // Don't want to validate the first time user touches input-field
     if (updatedControl.touched) {
       updatedControl.valid = validate(value, updatedControl.validationRules);
     }
