@@ -68,16 +68,17 @@ class Details extends React.Component< IAccordionProps, IAccordionState> {
   }
 
   updateBooking(booking: IBookingItem) {
-  //   axios({
-  //     method: 'put',
-  //     url: 'http://localhost/admin/update-booking.php/',
-  //     data: {
-  //     booking_ID: booking.booking_ID,
-  //     customer_ID: booking.customer_ID,
-  //     guests: booking.guests,
-  //     sitting: booking.sitting
-  //   }
-  // });
+		console.log(booking);
+     axios({
+       method: 'put',
+       url: 'http://localhost/admin/update-booking.php/',
+       data: {
+       booking_ID: booking.booking_ID,
+       customer_ID: booking.customer_ID,
+       guests: 6,
+       sitting: booking.sitting
+      }
+	  });
     
         // axios
         // .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
@@ -93,34 +94,24 @@ class Details extends React.Component< IAccordionProps, IAccordionState> {
       });
     }
   }
-
-    // toggle = (on: boolean) => {
-    //     console.log("Accordion");
-    //     //this.props.toggle(on);
-    //     this.setState({
-    //         on: on
-    //     })
-    //     console.log(this.state.on);
-    // }
   
   render() {
     return (
-      <div className="accordion">
-				<h1>Hello</h1>
-					{this.state.booking.map((item) => (
-						<div>
-							<button onClick={this.updateBooking.bind(this, item)}>Edit</button>
-							<button id="delete-button" onClick={() => this.deleteBookingWithID(item.booking_ID)}>Delete</button>
-							<p>{item.customer_ID}</p>
-							<p>{item.booking_ID}</p>
-							<p>{item.email}</p>
-							<p>{item.guests}</p>
-							<p>{item.name}</p>
-							<p>{item.phone}</p>
-							<p>{item.sitting}</p>
-						</div>
-					))}
-      </div>
+    <div className="accordion">
+			{this.state.booking.map((item) => (
+				<div>
+					<input type="text" value={item.customer_ID} />
+					<input type="text" value={item.booking_ID}/>
+					<input type="text" value={item.email}/>
+					<input type="text" value={item.guests}/>
+					<input type="text" value={item.name}/>
+					<input type="text" value={item.phone}/>
+					<input type="text" value={item.sitting}/>
+					<button onClick={this.updateBooking.bind(this, item)}>Edit</button>
+					<button id="delete-button" onClick={() => this.deleteBookingWithID(item.booking_ID)}>Delete</button>
+				</div>
+		))}
+    </div>
 		);
   }
 }
