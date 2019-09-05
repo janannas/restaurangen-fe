@@ -5,7 +5,7 @@ import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
 
 interface IDetailsFormProps {
-  handleSubmit(details: IDetails): void;
+  handleDetailSubmit(details: IDetails): void;
 }
 
 interface IDetailsFormState {
@@ -89,10 +89,18 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
 
   onFormSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const { name } = this.state.formControls;
-    console.log(name);
 
-    this.props.handleSubmit({ name: name.value });
+    const {
+      name,
+      email,
+      phone
+    } = this.state.formControls;
+
+    this.props.handleDetailSubmit({
+      name: name.value,
+      email: email.value,
+      phone: phone.value
+    });
   }
 
   validateForm = () => {
