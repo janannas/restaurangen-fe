@@ -9,6 +9,11 @@ import Admin from './components/Admin/Admin';
 import Booking from './components/Booking/Booking';
 import Contact from './components/Contact/Contact';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fab);
+
 
 class App extends React.Component<{}, {}> {
 

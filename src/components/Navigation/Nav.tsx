@@ -8,8 +8,13 @@ class Nav extends React.Component< {}, {}> {
   
     return (
       <nav className="nav-style">
-        <Link to='/'>
-            <h2>Logo</h2>
+        <Link className="nav-logo" to='/'>
+            <img className="nav-crab-logo"
+                src="https://svgsilh.com/svg/2028176-9d8560.svg" 
+                alt="crab logo"
+                height="70px"
+                width="auto" />
+            <h2>La Casa Del Mar</h2>
         </Link>
           <ul className="nav-links">
 						<Link to='/booking'>
