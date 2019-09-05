@@ -35,7 +35,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
     }
   }
 
-  validateInput = (event: any) => {
+  validateControl = (event: any) => {
     let updatedControl = { ...this.state.formControl };
 
     updatedControl.touched = true;
@@ -44,7 +44,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
     this.setState({ formControl: updatedControl });
   }
 
-  handleInputChange = (event: any): void => {
+  handleChange = (event: any): void => {
     const checkBoxChecked = event.target.checked;
     let value: boolean;
 
@@ -56,7 +56,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
 
     this.props.handleGDPRChange(value);
 
-    this.validateInput(event);
+    this.validateControl(event);
   }
 
   render() {
@@ -72,7 +72,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
             name="GDPRCheckBox"
             id="GDPRCheckBox"
             checked={isGDPRChecked}
-            onChange={this.handleInputChange}
+            onChange={this.handleChange}
           />
         </div>
 
