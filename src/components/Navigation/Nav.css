@@ -2,16 +2,30 @@ nav {
     display: flex;
     justify-content: space-around;
     align-content: center;
-    min-height: 10vh;
-    background: rgb(29, 38, 41);
+    min-height: 20vh;
+    background: rgb(1, 50, 64);
 }
-
+.nav-logo {
+    padding: 20px 0 0 0;
+    text-align: center;
+}
+.nav-logo h2{
+    color: rgb(157, 133, 96);
+    padding: 0 0 50px 0;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
 .nav-style a {
-    color: whitesmoke;
+    color: rgb(226, 228, 223);
     text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5em;
 }
-
+.nav-style a:hover {
+    color: rgb(157, 133, 96);
+}
 .nav-links {
+    padding: 50px 0;
     width: 40%;
     list-style: none;
     text-decoration: none;
