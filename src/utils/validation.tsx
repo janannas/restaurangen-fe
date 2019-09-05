@@ -1,4 +1,4 @@
-export const validate = (value: string, rules: any): boolean => {
+export const validate = (value: any, rules: any): boolean => {
   let isValid: boolean = true;
 
   for (const rule in rules) {
@@ -17,6 +17,10 @@ export const validate = (value: string, rules: any): boolean => {
 
       case "minLength":
         isValid = isValid && minLengthValidator(value, rules[rule]);
+        break;
+
+      case "isChecked":
+        isValid = isValid && isCheckedValidator(value);
         break;
 
       default:
@@ -45,3 +49,6 @@ const minLengthValidator = (value: string, minLength: number): boolean => {
   return value.length >= minLength;
 }
 
+const isCheckedValidator = (value: boolean): boolean => {
+  return value;
+}
