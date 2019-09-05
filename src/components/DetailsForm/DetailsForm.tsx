@@ -79,8 +79,12 @@ export class DetailsForm extends React.Component<IDetailsFormProps, IDetailsForm
     }
   }
 
-  handleKeyPress = () => {
-    // TODO: Detect if enter was pressed
+  handleKeyPress = (event: React.KeyboardEvent): void => {
+    if (event.nativeEvent.keyCode === 13) {
+      if (this.state.formIsValid) {
+        this.onFormSubmit(event);
+      }
+    }
   }
 
   onFormSubmit = (event: React.SyntheticEvent) => {
