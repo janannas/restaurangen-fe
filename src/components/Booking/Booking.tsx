@@ -197,10 +197,6 @@ class Booking extends React.Component<{}, IBookingState> {
 		this.setState({ guests: guests });
 	}
 
-	test = () => {
-		return console.log('test');
-	}
-
 	render() {
 		const { bookingSuccessful } = this.state;
 		const { GDPRMessage } = this.state.config;
