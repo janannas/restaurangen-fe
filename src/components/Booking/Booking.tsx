@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
@@ -16,7 +15,6 @@ export interface IDetails {
 	email: string;
 	phone: string;
 }
-
 
 export interface IBookedTable {
 	guests: number;
@@ -198,10 +196,6 @@ class Booking extends React.Component<{}, IBookingState> {
 	render() {
 		const { GDPRMessage } = this.state.config;
 		
-		console.log(this.state.dateTime.date);
-		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
-		console.log(dateTime);
-		console.log(this.state.guests);
     return (
       <div className="Booking">
 				<h1>Booking works</h1>
