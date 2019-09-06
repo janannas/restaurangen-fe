@@ -1,5 +1,5 @@
 .Contact {
-    height: 60vh;
+    height: 100vh;
 }
 .contact-heading {
     text-align: center;
@@ -43,7 +43,9 @@
     margin-bottom: 8px;
     border: 1px solid rgb(1, 50, 64);
 }
-
+.text_input {
+    height: 5vh;
+}
 .text-area {
     height: 20vh;
     border: 1px solid rgb(1, 50, 64);
@@ -110,8 +112,8 @@
 }
 
 @media screen and (min-width: 768px) {
-    .contact_details {
-        float: left;
+    .Contact {
+        height: 80vh;
     }
 }
 
