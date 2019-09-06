@@ -7,6 +7,7 @@ import AvailableTables from '../AvailableTables/AvailableTables';
 import { IBooking } from "../../interfaces/IBooking";
 
 import { FormDetails } from "../FormDetails/FormDetails";
+import { triggerAsyncId } from "async_hooks";
 
 const moment = require('moment');
 
@@ -101,26 +102,32 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	bookingObj = (): IBooking => {
 		const { name, email, phone } = this.state.details;
+		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
 			name: name,
 			email: email,
 			phone: phone,
-			guests: "7",
-			sitting: "2013-08-30 19:05:00"
+			guests: this.state.guests,
+			sitting: dateTime
 		};
 	}
 
 	prepareBooking = (): void => {
-		const obj = this.bookingObj();
+		if(this.state.guests !== 0){
+			const obj = this.bookingObj();
 
-		new ApiCalls().createBooking(obj)
+			new ApiCalls().createBooking(obj)
 			.then((result: any) => {
 				console.log(result.data);
 			})
 			.catch(error => {
 				console.log(error);
 			})
+		}
+		else {
+			alert('Please choose number of guests');
+		}
 	}
 
 	changeDate = (date: string) => {	
@@ -192,7 +199,8 @@ class Booking extends React.Component<{}, IBookingState> {
 		const { GDPRMessage } = this.state.config;
 		
 		console.log(this.state.dateTime.date);
-		console.log(this.state.dateTime.time);
+		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
+		console.log(dateTime);
 		console.log(this.state.guests);
     return (
       <div className="Booking">

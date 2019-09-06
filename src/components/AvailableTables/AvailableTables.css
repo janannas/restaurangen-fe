@@ -1,5 +1,9 @@
-.sitting_wrap {
+* {
 	margin: 0 auto;
+	text-align: center;
+}
+
+.sitting_wrap {
 	border: 1px solid black;
 	max-width: 10rem;
 	margin-bottom: 1rem;

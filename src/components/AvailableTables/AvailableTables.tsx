@@ -27,15 +27,8 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 	handleTimeClick = (time: string) => {
 		this.props.handleTimeClick(time);
 	}
-
-	// handleSeatsClick = (guests: number) => {
-	// 	console.log('hej');
-	// 	this.props.handleSeatsClick(guests);
-	// }
-
 	
 	handleSeatsClick = (event:any) => {
-		// console.log(event.target.value);
 		let guests = event.target.value;
 		this.props.handleSeatsClick(guests);
 	}
