@@ -27,91 +27,121 @@ class Details extends React.Component< IAccordionProps, IAccordionState> {
 
     this.state = {
 			booking: []
-			
 		}
 
 		this.getBooking();
-	}
-
-	componentDidMount() {
-		console.log(this.props.history);
-		
 	}
 	
 	public getBooking() {
     new ApiCalls()
     .getAllBookings().then((result: any) => {
-			const data = result.data;
-			const isArr = Array.isArray(result.data);
 			var tempArray = [];
 			var mapArray: any = [];
 
-			if(data === ""){
-					tempArray = [];
-			}
-			else if(isArr) {
-				tempArray = data;
-				tempArray.map((booking: IBookingItem) => {
-					if(booking.booking_ID == this.props.match.params.id) {
-						mapArray.push(booking);
-					}
-				});
-			}
+			tempArray = result.data;
+			tempArray.map((booking: IBookingItem) => {
+				if(booking.booking_ID == this.props.match.params.id) {
+					mapArray.push(booking);
+				}
+			});
+
 			this.setState({
 				booking: mapArray
 			});
+
+			console.log(this.state);
 	})
 	.catch(error => {
 			console.log(error);
 	});
+	}
 
-  }
-
-  updateBooking(booking: IBookingItem) {
-		console.log(booking);
-     axios({
-       method: 'put',
-       url: 'http://localhost/admin/update-booking.php/',
-       data: {
-       booking_ID: booking.booking_ID,
-       customer_ID: booking.customer_ID,
-       guests: 6,
-       sitting: booking.sitting
-      }
-	  });
-    
-        // axios
-        // .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
-        // .then((result: any) => {
-        //   console.log(result);
-        // })
+  updateBooking(booking: IBookingItem) {  
+    axios
+    .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
+    .then((result: any) => {
+    console.log(result);
+      })
     }
     
-  deleteBookingWithID(targetID: number) {
+  deleteBookingWithID = (targetID: any) => {
     if(window.confirm('Are you sure you want to delete this booking?')) {
       new ApiCalls().deleteBooking(targetID).then((result: any) => {
 				this.props.history.push("/admin");
       });
     }
-  }
+	}
+
+	handleInputChange = (event: any) =>{
+			const target = event.target;
+			const value = target.value;
+
+			console.log(event.target.value);
+
+			let bookingObject = this.state.booking;
+			console.log(bookingObject);
+			bookingObject[0].customer_ID = event.target.value;
+
+			this.setState({
+				booking: bookingObject
+			})
+
+			// let bookingObj = {
+			// 	booking_ID: booking.booking_ID,
+    	// 	customer_ID: booking.customer_ID,
+    	// 	email: booking.email,
+    	// 	guests: booking.guests,
+    	// 	name: booking.name,
+    	// 	phone: booking.phone,
+    	// 	sitting: booking.sitting
+			// }
+	
+			// this.setState({
+			// 	booking: 
+			// });
+	}
+	
+	handleSubmit = (event: any, item: IBookingItem) => {
+		let object = {
+			booking_ID: item.booking_ID,
+			customer_ID: item.customer_ID,
+			email: item.email,
+			guests: item.guests,
+			name: item.name,
+			phone: item.phone,
+			sitting: item.sitting
+		}
+
+		console.log(object);
+
+		// this.setState({
+		// 	booking: object
+		// });
+
+	 	alert(`${this.state.booking}`);
+	 	event.preventDefault();
+	}
   
   render() {
     return (
-    <div className="accordion">
-			{this.state.booking.map((item) => (
-				<div>
-					<input type="text" value={item.customer_ID} />
-					<input type="text" value={item.booking_ID}/>
-					<input type="text" value={item.email}/>
-					<input type="text" value={item.guests}/>
-					<input type="text" value={item.name}/>
-					<input type="text" value={item.phone}/>
-					<input type="text" value={item.sitting}/>
-					<button onClick={this.updateBooking.bind(this, item)}>Edit</button>
-					<button id="delete-button" onClick={() => this.deleteBookingWithID(item.booking_ID)}>Delete</button>
-				</div>
-		))}
-    </div>
+			<div>
+				{this.state.booking.map((item) => (
+				<form onSubmit={(e) => this.handleSubmit(e, item)} className="update-form">
+					<div>
+						<input type="text" value={item.customer_ID} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.booking_ID} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.email} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.guests} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.name} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.phone} onChange={(e) => this.handleInputChange(e)} />
+						<input type="text" value={item.sitting} onChange={(e) => this.handleInputChange(e)} />
+						<button onClick={this.updateBooking.bind(this, item)}>Edit</button>
+						<button id="delete-button" onClick={() =>this.deleteBookingWithID(item.booking_ID)}>Delete</button>
+						<button type="submit">Submit</button>
+					</div>
+			</form>
+			))}
+			</div>
 		);
   }
 }
