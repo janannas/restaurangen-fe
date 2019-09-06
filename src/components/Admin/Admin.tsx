@@ -4,7 +4,7 @@ import ApiCalls from '../../utils/ApiCalls';
 import { IBookingItem } from '../../interfaces/IBookingItem';
 import { Link } from 'react-router-dom';
 
-const axios = require('axios');
+//const axios = require('axios');
 
 export interface IBookingState { 
   bookingInfo: IBookingItem[];
@@ -19,7 +19,7 @@ class Admin extends React.Component< {}, IBookingState > {
       bookingInfo: [],
       on: false
     }
-    
+
   }
 
   componentDidMount() {
