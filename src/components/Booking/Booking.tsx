@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
@@ -7,6 +6,9 @@ import AvailableTables from '../AvailableTables/AvailableTables';
 import { IBooking } from "../../interfaces/IBooking";
 
 import { FormDetails } from "../FormDetails/FormDetails";
+import { triggerAsyncId } from "async_hooks";
+
+const moment = require('moment');
 
 export interface IDetails {
 	name: string;
@@ -14,15 +16,27 @@ export interface IDetails {
 	phone: string;
 }
 
+export interface IBookedTable {
+	guests: number;
+	sitting: string;
+}
+
 interface IBookingState {
-	date: string;
+	dateTime: {
+		date: string;
+		time: string;
+	}
+	guests: number;
 	config: {
-		tables: string;
+		tables: number;
 		sittingOne: string;
 		sittingTwo: string;
 		GDPRMessage: string;
 	}
 	details: IDetails;
+	bookedTables: IBookedTable[];
+
+	freeSeats: number;
 }
 
 class Booking extends React.Component<{}, IBookingState> {
@@ -30,25 +44,33 @@ class Booking extends React.Component<{}, IBookingState> {
 		super(props);
 
 		this.state = {
-			date: "",
+			dateTime: {
+				date: "",
+				time: ""
+			},
+			guests: 0,
 			config: {
-				tables: "",
+				tables: 0,
 				sittingOne: "",
 				sittingTwo: "",
 				GDPRMessage: "",
 			},
 			details: {
-				name: "",
+				name: '',
 				email: "",
 				phone: ""
-			}
+			},
+			bookedTables: [],
+			freeSeats: 0
 		}
 	}
 
-	handleDetailSubmit = (newDetails: IDetails) => {
-		this.setState({
+	handleDetailSubmit = async (newDetails: IDetails) => {
+		await this.setState({
 			details: newDetails
 		});
+
+		this.prepareBooking();
 	}
 
 	componentDidMount() {
@@ -61,13 +83,15 @@ class Booking extends React.Component<{}, IBookingState> {
 					return { ...acc, [obj.key]: obj["value"] }
 				}, {});
 
-				this.setState(prevState => {
-					let config = Object.assign({}, prevState.config);
-					config.tables = configObj.tables;
-					config.sittingOne = configObj.sitting_one;
-					config.sittingTwo = configObj.sitting_two;
-					config.GDPRMessage = configObj.GDPR;
-					return { config };
+				let tempObj = { ...this.state.config };
+
+				tempObj.tables = configObj.tables;
+				tempObj.sittingOne = configObj.sitting_one;
+				tempObj.sittingTwo = configObj.sitting_two;
+				tempObj.GDPRMessage = configObj.GDPR;
+
+				this.setState({
+					config: tempObj
 				})
 			})
 			.catch(error => {
@@ -77,46 +101,118 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	bookingObj = (): IBooking => {
 		const { name, email, phone } = this.state.details;
+		console.log(this.state.details);
+		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
 			name: name,
 			email: email,
 			phone: phone,
-			guests: "7",
-			sitting: "2013-08-30 19:05:00"
+			guests: this.state.guests,
+			sitting: dateTime
 		};
 	}
 
 	prepareBooking = (): void => {
-		const obj = this.bookingObj();
+		console.log(this.state.details);
+		if(this.state.guests !== 0){
+			const obj = this.bookingObj();
 
-		new ApiCalls().createBooking(obj)
+			new ApiCalls().createBooking(obj)
 			.then((result: any) => {
 				console.log(result.data);
 			})
 			.catch(error => {
 				console.log(error);
 			})
+		}
+		else {
+			alert('Please choose number of guests');
+		}
 	}
 
-	changeDate = (date: string) => {
-		this.setState({ date: date });
+	changeDate = (date: string) => {	
+		var dateTimeObj = {
+				date: date,
+				time: '00:00' 
+			}
+
+		this.setState({ 
+			dateTime: dateTimeObj,
+			guests: 0
+		});
+
+		new ApiCalls().fetchBookedTables(date)
+		.then((result: any) => {
+			const data = result.data;
+			const isArr = Array.isArray(result.data);
+
+			if(data === ""){
+				this.setState({
+					bookedTables: []
+				});
+			}
+			else if(isArr) {
+				this.setState({
+					bookedTables: data
+				});
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+
+	calculateFreeSeats = (time: string) => {
+		var dateTimeObj = {
+			date: this.state.dateTime.date,
+			time: time
+		}
+		
+		this.setState({ 
+			dateTime: dateTimeObj
+		});
+
+		let numberOfTables = this.state.config.tables;
+
+		for(let i = 0; i < this.state.bookedTables.length; i++){
+			let formattedBookedTime = moment(this.state.bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
+			if(time === formattedBookedTime) {
+				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests/6);
+			}
+		}
+		var seatsThisSitting = numberOfTables * 6;
+	
+		this.setState({
+			freeSeats: seatsThisSitting
+		});
+	}
+
+	handleSeatsClick = (guests:number) => {	
+		this.setState({ guests: guests });
+	}
+
+	test = () => {	
+		return console.log('test');
 	}
 
 	render() {
 		const { GDPRMessage } = this.state.config;
-
-		return (
-			<div className="Booking">
+		
+    return (
+      <div className="Booking">
 				<h1>Booking works</h1>
-				<p>{this.state.config.sittingTwo}</p>
-				<BookingCalendar handleDate={this.changeDate} />
-				<AvailableTables date={this.state.date} />
-
-				<button onClick={this.prepareBooking}>Send</button>
+				<BookingCalendar handleDate={this.changeDate}/>
+				<AvailableTables 
+					dateTime={this.state.dateTime} 
+					config={this.state.config} 
+					handleTimeClick={this.calculateFreeSeats} 
+					handleSeatsClick={this.handleSeatsClick}
+					freeSeats={this.state.freeSeats}
+				/>
 				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
-			</div>
-		);
+      </div>
+    );
 	}
 }
 
