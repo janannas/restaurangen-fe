@@ -1,7 +1,8 @@
 import * as React from "react"; 
 import './BookingCalendar.css';
-import * as moment from 'moment';
 import Calendar from 'react-calendar';
+
+const moment = require('moment');
 
 export interface ICalendarProp {
 	handleDate(date:string):any;
@@ -18,14 +19,18 @@ class BookingCalendar extends React.Component<ICalendarProp, ICalendarState> {
 		this.state = { value: new Date() }
 	}
 
+	componentDidMount() {
+		let today = moment().format('YYYY-MM-DD')
+
+		this.handleDate(today);
+	}
+
 	handleDate = (date: string) => {
 		this.props.handleDate(date);
 	}
 
 	onChange = (value: Date | Date[]) => {
 		this.setState({ value });
-
-		const moment = require('moment');
 		this.handleDate(moment(value).format('YYYY-MM-DD'));	
   };
 

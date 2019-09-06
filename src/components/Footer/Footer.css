@@ -3,11 +3,12 @@
     height: 100vh;
     text-align: center;
     border: 10px solid rgb(157, 133, 96);
+    
 }
 .footer-text {
     color: rgb(1, 50, 64);
-    padding: 20px 0;
-    height: 50vh;
+    padding: 10px 0;
+    height: 50%;
 }
 .footer-logo {
     color: rgb(1, 50, 64);
@@ -23,5 +24,25 @@
     line-height: 10px;
 }
 .map-container {
-    height: 50vh;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1024px) {
+    .Footer {
+        height: 80vh;
+    }
+    .footer-text {
+        height: 100%;
+        width: 50%;
+        padding: 100px 0;
+    }
+    .map-container {
+        height: 100%;
+        width: 50%;
+        padding: 0;
+        margin: 0;
+    }
 }

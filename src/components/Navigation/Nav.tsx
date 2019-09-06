@@ -7,8 +7,8 @@ class Nav extends React.Component< {}, {}> {
   render() {
   
     return (
-      <nav className="nav-style">
-        <Link className="nav-logo" to='/'>
+      <nav className="nav-style row">
+        <Link className="nav-logo col-12 col-lg-6" to='/'>
             <img className="nav-crab-logo"
                 src="https://svgsilh.com/svg/2028176-9d8560.svg" 
                 alt="crab logo"
@@ -16,7 +16,7 @@ class Nav extends React.Component< {}, {}> {
                 width="auto" />
             <h2>La Casa Del Mar</h2>
         </Link>
-          <ul className="nav-links">
+          <ul className="nav-links col-12 col-lg-6">
 						<Link to='/booking'>
                 <li>Booking</li>
             </Link>

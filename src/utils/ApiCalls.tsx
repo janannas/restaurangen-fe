@@ -11,8 +11,14 @@ class ApiCalls {
     return axios.get("http://localhost/bookings/get-configuration.php");
   }
 
-  fetchBookedTables() {
-    return axios.get("http://localhost/bookings/get-booked-tables.php");
+  fetchBookedTables(date: string) {		
+		return axios.post('http://localhost/bookings/get-booked-tables.php/', {
+			date: date
+		}, {
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+			}
+		});
   }
 
   getAllBookings() {

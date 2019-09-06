@@ -6,9 +6,9 @@ ul {
 	list-style-type: none;
 }
 
-.calendar {
+.react-calendar {
 	margin: 0 auto;
-	max-width: 40rem;
+	/* max-width: 40rem; */
 }
 
 .month {
