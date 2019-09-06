@@ -18,7 +18,7 @@ class Contact extends React.Component< {}, {}> {
       </div>
 
       <section className="row contact_form">
-          <div className="col-12 col-md-4 col-lg-4 contact_details">
+          <div className="col-12 col-lg-4 contact_details">
               <div className="socila_icons_wrapper">
                   <div className="icon_frame">
                       <a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
@@ -40,7 +40,7 @@ class Contact extends React.Component< {}, {}> {
 
           </div>
 
-          <div className="col-12 col-md-8 col-md-8">
+          <div className="col-12 col-lg-8">
               <form action="mailto:help@barleycatering.com" className="contact_card">
 
                   <div className="name_line">
