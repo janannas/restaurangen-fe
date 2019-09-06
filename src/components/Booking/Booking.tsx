@@ -1,18 +1,19 @@
 
-import * as React from "react"; 
+import * as React from "react";
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 
 import { IBooking } from "../../interfaces/IBooking";
 
-import { DetailsForm } from "../DetailsForm/DetailsForm";
-import { GDPR } from "../GDPR/GDPR";
+import { FormDetails } from "../FormDetails/FormDetails";
 
 const moment = require('moment');
 
 export interface IDetails {
 	name: string;
+	email: string;
+	phone: string;
 }
 
 
@@ -56,17 +57,17 @@ class Booking extends React.Component<{}, IBookingState> {
 				GDPRMessage: "",
 			},
 			details: {
-				name: ''
+				name: '',
+				email: "",
+				phone: ""
 			},
 			bookedTables: [],
 			freeSeats: 0
+			
 		}
-
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(newDetails: IDetails) {
-		console.log("Setting state in Booking: ", newDetails);
+	handleDetailSubmit = (newDetails: IDetails) => {
 		this.setState({
 			details: newDetails
 		});
@@ -79,7 +80,7 @@ class Booking extends React.Component<{}, IBookingState> {
 
 				let configObj = data.reduce((acc: any, obj: any) => {
 
-					return { ...acc, [obj.key]: obj["value"]}
+					return { ...acc, [obj.key]: obj["value"] }
 				}, {});
 
 				let tempObj = { ...this.state.config };
@@ -99,10 +100,12 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	bookingObj = (): IBooking => {
+		const { name, email, phone } = this.state.details;
+
 		return {
-			name: "Johan",
-			email: "johan@gmail.com",
-			phone: "0123456789",
+			name: name,
+			email: email,
+			phone: phone,
 			guests: "7",
 			sitting: "2013-08-30 19:05:00"
 		};
@@ -187,6 +190,7 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	render() {
 		const { GDPRMessage } = this.state.config;
+		
 		console.log(this.state.dateTime.date);
 		console.log(this.state.dateTime.time);
 		console.log(this.state.guests);
@@ -202,9 +206,8 @@ class Booking extends React.Component<{}, IBookingState> {
 					freeSeats={this.state.freeSeats}
 				/>
 				<button onClick={this.prepareBooking}>Send</button>
-				<DetailsForm handleSubmit={this.handleSubmit} />
-
-				<GDPR msg={GDPRMessage} />
+				<button onClick={this.prepareBooking}>Send</button>
+				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
       </div>
     );
 	}

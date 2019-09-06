@@ -1,0 +1,142 @@
+.Contact {
+    height: 60vh;
+}
+.contact-heading {
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Cinzel', serif;
+}
+.contact_form {
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact_card {
+    padding: 0.5em;
+    margin: 0 1em 1em 1em;
+    max-height: 35rem;
+}
+
+.name_line {
+    display: flex;
+}
+
+#fname,
+#lname {
+    width: 50%;
+    margin-bottom: 8px;
+    border: 1px solid rgb(1, 50, 64);
+}
+
+#fname {
+    margin-right: 4px;
+}
+
+#lname {
+    margin-left: 4px;
+}
+
+#telephone,
+#subject {
+    width: 100%;
+    margin-bottom: 8px;
+    border: 1px solid rgb(1, 50, 64);
+}
+
+.text-area {
+    height: 20vh;
+    border: 1px solid rgb(1, 50, 64);
+}
+
+.contact_button {
+    width: 120px;
+    height: 40px;
+    border: 1px solid rgb(1, 50, 64);
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    padding: 0.4em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact_button:hover {
+    background-color: rgb(1, 50, 64);
+    color: white;
+}
+
+.contact_details {
+    padding: 0 2em 2em 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.contact_details p {
+    font-weight: bold;
+    color: rgb(1, 50, 64);
+    font-family: 'Lato', sans-serif;
+}
+
+.socila_icons_wrapper {
+    display: flex;
+    padding-bottom: 1em;
+}
+.icon_frame {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(1, 50, 64);
+    margin-right: 0.3em;
+    text-align: center;
+}
+
+.icon_frame:hover {
+    background-color: rgb(1, 50, 64);
+}
+
+.social-icon {
+    font-size: 2.5em;
+    color: white;
+    align-self: center;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+
+}
+
+@media screen and (min-width: 768px) {
+    .contact_details {
+        float: left;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .Contact {
+        width: 80vw;
+    }
+    .contact_form {
+        padding: 0 5em;
+    }
+    .contact_card {
+        padding: 0 8em;
+    }
+    .icon_frame {
+        background-color: rgb(234, 194, 182);
+    }
+}
+
+/* colors:
+dark blue: rgb(1, 50, 64)
+minty gray: rgb(226, 228, 223)
+golden brown: rgb(157, 133, 96)
+peachy pink rgb(234, 194, 182) 
+
+fonts:
+Rubrik/Logo: font-family: 'Cinzel', serif;
+Text: font-family: 'Lato', sans-serif;
+*/

@@ -1,8 +1,27 @@
-footer {
-    background-color: black;
-    height: 7em;
+.Footer {
+    background-color: rgb(226, 228, 223);
+    height: 100vh;
+    text-align: center;
+    border: 10px solid rgb(157, 133, 96);
 }
-
-footer h1 {
-    color: white;
+.footer-text {
+    color: rgb(1, 50, 64);
+    padding: 20px 0;
+    height: 50vh;
+}
+.footer-logo {
+    color: rgb(1, 50, 64);
+    padding: 10px 0;
+}
+.footer-text h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+.footer-text p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    line-height: 10px;
+}
+.map-container {
+    height: 50vh;
 }
