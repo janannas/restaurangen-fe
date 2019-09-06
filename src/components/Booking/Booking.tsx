@@ -62,14 +62,15 @@ class Booking extends React.Component<{}, IBookingState> {
 			},
 			bookedTables: [],
 			freeSeats: 0
-			
 		}
 	}
 
-	handleDetailSubmit = (newDetails: IDetails) => {
-		this.setState({
+	handleDetailSubmit = async (newDetails: IDetails) => {
+		await this.setState({
 			details: newDetails
 		});
+
+		this.prepareBooking();
 	}
 
 	componentDidMount() {
@@ -100,6 +101,7 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	bookingObj = (): IBooking => {
 		const { name, email, phone } = this.state.details;
+		console.log(this.state.details);
 		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
@@ -112,6 +114,7 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	prepareBooking = (): void => {
+		console.log(this.state.details);
 		if(this.state.guests !== 0){
 			const obj = this.bookingObj();
 
@@ -207,8 +210,6 @@ class Booking extends React.Component<{}, IBookingState> {
 					handleSeatsClick={this.handleSeatsClick}
 					freeSeats={this.state.freeSeats}
 				/>
-				<button onClick={this.prepareBooking}>Send</button>
-				<button onClick={this.prepareBooking}>Send</button>
 				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
       </div>
     );
