@@ -1,6 +1,5 @@
 import React from 'react';
 import './Details.css' ;
-import { NavLink } from 'react-router-dom';
 import { IBookingItem } from '../../interfaces/IBookingItem';
 import ApiCalls from '../../utils/ApiCalls';
 import { IUpdateBooking } from '../../interfaces/IUpdateBooking';
@@ -55,7 +54,7 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 
 			tempArray = result.data;
 			tempArray.map((booking: IBookingItem) => {
-				if(booking.booking_ID == this.props.match.params.id) {
+				if(booking.booking_ID === this.props.match.params.id) {
 					mapArray = booking;
 				}
 			});
