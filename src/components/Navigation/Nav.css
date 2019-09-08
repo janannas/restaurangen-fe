@@ -2,7 +2,6 @@ nav {
     display: flex;
     justify-content: space-around;
     align-content: center;
-    min-height: 20vh;
     background: rgb(1, 50, 64);   
 }
 nav.row {
@@ -39,9 +38,27 @@ nav.row {
     align-content: center;
 }
 @media screen and (min-width: 768px) {
+    .nav-crab-logo {
+        height: 200px;
+    }
+    .nav-style a {
+        font-size: 2em;
+    }
+    .nav-links {
+        padding: 20px 0;
+    }
 }
 @media screen and (min-width: 1024px) {
     .nav-logo h2{
         padding: 0 0 50px 0;
+    }
+    .nav-crab-logo {
+        height: 80px;
+    }
+    .nav-links {
+        padding: 70px 0;
+    }
+    .nav-style a {
+        font-size: 1.5em;
     }
 }
