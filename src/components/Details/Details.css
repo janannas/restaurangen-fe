@@ -1,0 +1,12 @@
+form {
+    width: 90%;
+    max-width: 800px;
+}
+
+input {
+    margin: .1em .5em;
+}
+
+button {
+    margin: .5em;
+}
