@@ -3,7 +3,7 @@ import React from 'react';
 import { validate } from '../../utils/validation';
 import { IDetails } from '../Booking/Booking';
 
-import { FormTextControl } from "../FormTextControl/FormTextControl";
+import FormTextControl from "../FormTextControl/FormTextControl";
 import { GDPR } from "../GDPR/GDPR";
 
 interface IFormDetailsProps {
@@ -45,7 +45,7 @@ interface IFormDetailsState {
   error: string;
 }
 
-export class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> {
+class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> {
   constructor(props: IFormDetailsProps) {
     super(props);
 
@@ -238,3 +238,5 @@ export class FormDetails extends React.Component<IFormDetailsProps, IFormDetails
   }
 
 }
+
+export default FormDetails;

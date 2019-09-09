@@ -3,7 +3,7 @@ import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 import { IBooking } from "../../interfaces/IBooking";
-import { FormDetails } from "../FormDetails/FormDetails";
+import FormDetails from "../FormDetails/FormDetails";
 
 const moment = require('moment');
 
@@ -202,6 +202,8 @@ class Booking extends React.Component<{}, IBookingState> {
 			// FIXME: add modal here
 			return <h1>Thanks for booking</h1>
 		}
+
+		// OBS! -If h1 is removed/changed update test.tsx too
 		return (
 			<div className="Booking">
 				<h1>Booking works</h1>
