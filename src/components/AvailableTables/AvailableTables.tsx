@@ -15,11 +15,7 @@ export interface IAvailableTablesProp {
 	handleSeatsClick(guests: number): any;
 }
 
-export interface IAvailableTablesState {
-	// sitting: string;
-}
-
-class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTablesState> { 
+class AvailableTables extends React.Component<IAvailableTablesProp, {}> { 
 	constructor(props: any) {
 		super(props);
 	}
