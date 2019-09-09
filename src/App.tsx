@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Admin from './components/Admin/Admin';
 import Booking from './components/Booking/Booking';
 import Contact from './components/Contact/Contact';
+import Details from './components/Details/Details';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -27,7 +28,8 @@ class App extends React.Component<{}, {}> {
               <Route path="/" exact component={Home} />
 							<Route path="/booking" component={Booking} />
               <Route path="/contact" component={Contact} />
-              <Route path="/admin" component={Admin} />
+              <Route path="/admin" exact component={Admin} />
+              <Route path="/Accordion/:id" component={Details}/>
             </Switch>
           </Router>
 

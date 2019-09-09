@@ -2,9 +2,7 @@ import * as React from "react";
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
-
 import { IBooking } from "../../interfaces/IBooking";
-
 import { FormDetails } from "../FormDetails/FormDetails";
 
 const moment = require('moment');
@@ -21,6 +19,7 @@ export interface IBookedTable {
 }
 
 interface IBookingState {
+	bookingSuccessful: boolean;
 	dateTime: {
 		date: string;
 		time: string;
@@ -43,6 +42,7 @@ class Booking extends React.Component<{}, IBookingState> {
 		super(props);
 
 		this.state = {
+			bookingSuccessful: false,
 			dateTime: {
 				date: "",
 				time: ""
@@ -100,7 +100,6 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	bookingObj = (): IBooking => {
 		const { name, email, phone } = this.state.details;
-		console.log(this.state.details);
 		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
@@ -113,53 +112,57 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	prepareBooking = (): void => {
-		console.log(this.state.details);
-		if(this.state.guests !== 0){
+		if (this.state.guests !== 0) {
 			const obj = this.bookingObj();
 
+			// TODO: remove
+			console.log(obj);
+
 			new ApiCalls().createBooking(obj)
-			.then((result: any) => {
-				console.log(result.data);
-			})
-			.catch(error => {
-				console.log(error);
-			})
+				.then((result: any) => {
+					console.log(result.data);
+
+					this.setState({ bookingSuccessful: true });
+				})
+				.catch(error => {
+					console.log(error);
+				})
 		}
 		else {
 			alert('Please choose number of guests');
 		}
 	}
 
-	changeDate = (date: string) => {	
+	changeDate = (date: string) => {
 		var dateTimeObj = {
-				date: date,
-				time: '00:00' 
-			}
+			date: date,
+			time: '00:00'
+		}
 
-		this.setState({ 
+		this.setState({
 			dateTime: dateTimeObj,
 			guests: 0
 		});
 
 		new ApiCalls().fetchBookedTables(date)
-		.then((result: any) => {
-			const data = result.data;
-			const isArr = Array.isArray(result.data);
+			.then((result: any) => {
+				const data = result.data;
+				const isArr = Array.isArray(result.data);
 
-			if(data === ""){
-				this.setState({
-					bookedTables: []
-				});
-			}
-			else if(isArr) {
-				this.setState({
-					bookedTables: data
-				});
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
+				if (data === "") {
+					this.setState({
+						bookedTables: []
+					});
+				}
+				else if (isArr) {
+					this.setState({
+						bookedTables: data
+					});
+				}
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 
 	calculateFreeSeats = (time: string) => {
@@ -167,51 +170,52 @@ class Booking extends React.Component<{}, IBookingState> {
 			date: this.state.dateTime.date,
 			time: time
 		}
-		
-		this.setState({ 
+
+		this.setState({
 			dateTime: dateTimeObj
 		});
 
 		let numberOfTables = this.state.config.tables;
 
-		for(let i = 0; i < this.state.bookedTables.length; i++){
+		for (let i = 0; i < this.state.bookedTables.length; i++) {
 			let formattedBookedTime = moment(this.state.bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
-			if(time === formattedBookedTime) {
-				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests/6);
+			if (time === formattedBookedTime) {
+				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests / 6);
 			}
 		}
 		var seatsThisSitting = numberOfTables * 6;
-	
+
 		this.setState({
 			freeSeats: seatsThisSitting
 		});
 	}
 
-	handleSeatsClick = (guests:number) => {	
+	handleSeatsClick = (guests: number) => {
 		this.setState({ guests: guests });
 	}
 
-	test = () => {	
-		return console.log('test');
-	}
-
 	render() {
+		const { bookingSuccessful } = this.state;
 		const { GDPRMessage } = this.state.config;
-		
-    return (
-      <div className="Booking">
+
+		if (bookingSuccessful) {
+			// FIXME: add modal here
+			return <h1>Thanks for booking</h1>
+		}
+		return (
+			<div className="Booking">
 				<h1>Booking works</h1>
-				<BookingCalendar handleDate={this.changeDate}/>
-				<AvailableTables 
-					dateTime={this.state.dateTime} 
-					config={this.state.config} 
-					handleTimeClick={this.calculateFreeSeats} 
+				<BookingCalendar handleDate={this.changeDate} />
+				<AvailableTables
+					dateTime={this.state.dateTime}
+					config={this.state.config}
+					handleTimeClick={this.calculateFreeSeats}
 					handleSeatsClick={this.handleSeatsClick}
 					freeSeats={this.state.freeSeats}
 				/>
 				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
-      </div>
-    );
+			</div>
+		);
 	}
 }
 

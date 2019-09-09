@@ -1,12 +1,14 @@
 import React from 'react';
 import './Admin.css';
 import ApiCalls from '../../utils/ApiCalls';
-import {IBookingItem} from '../../interfaces/IBookingItem';
+import { IBookingItem } from '../../interfaces/IBookingItem';
+import { Link } from 'react-router-dom';
 
-const axios = require('axios');
+//const axios = require('axios');
 
-interface IBookingState { 
+export interface IBookingState { 
   bookingInfo: IBookingItem[];
+  on: boolean;
 }
 
 class Admin extends React.Component< {}, IBookingState > {
@@ -14,9 +16,10 @@ class Admin extends React.Component< {}, IBookingState > {
     super(props);
 
     this.state = {
-      bookingInfo: []
+      bookingInfo: [],
+      on: false
     }
-    
+
   }
 
   componentDidMount() {
@@ -24,8 +27,8 @@ class Admin extends React.Component< {}, IBookingState > {
   }
 
   public getBookings() {
-    new ApiCalls().
-      getAllBookings().then((result: any) => {
+    new ApiCalls()
+    .getAllBookings().then((result: any) => {
         const isArr = Array.isArray(result.data);
 
         const storedInfo: IBookingItem[] = [];
@@ -44,72 +47,42 @@ class Admin extends React.Component< {}, IBookingState > {
       });
   }
 
-  updateBookingWithID(booking: IBookingItem) {
-    axios({
-      method: 'put',
-      url: 'http://localhost/admin/update-booking.php/',
-      data: {
-        booking_ID: booking.booking_ID,
-        customer_ID: booking.customer_ID,
-        guests: booking.guests,
-        sitting: booking.sitting
-      }
-    });
-
-    // axios
-    // .put('http://localhost/Restaurangen/admin/update-booking.php/{booking.booking_ID}', booking)
-    // .then((result: any) => {
-    //   console.log(result);
-    // })
-  }
-
-  deleteMethod() {
-    console.log("delete");
-  }
-
-  deleteBookingWithID(targetID: number) {
-    if(window.confirm('Are you sure you want to delete this booking?')) {
-      new ApiCalls().deleteBooking(targetID).then((result: any) => {
-        this.getBookings();
-       });
-    }
+  toggle = () => {
+    var bool = !this.state.on;
+    this.setState({
+      on: bool
+    })
   }
 
   render() {
 
     return (
     <div className="App">
-        <table>
-        <thead>
-          <tr>
-            <th>Booking ID</th>
-            <th>Customer ID</th>
-            <th>Email</th> 
-            <th>Guests</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Sitting</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.bookingInfo.map((booking: IBookingItem) => (
-            <tr key={booking.booking_ID}>
-              <td>{booking.booking_ID}</td>
-              <td>{booking.customer_ID}</td>
-              <td>{booking.email}</td>
-              <td>{booking.guests}</td>
-              <td>{booking.name}</td>
-              <td>{booking.phone}</td>
-              <td>{booking.sitting}</td>
-              <td><button onClick={this.updateBookingWithID.bind(this, booking)}>Edit</button></td>
-              <td><button id="delete-button" onClick={() => this.deleteBookingWithID(booking.booking_ID)}>Delete</button></td>
-            </tr>
-          ))}
-          </tbody>
-        </table> 
-      </div>
-    );
+      <div className="accordion">
+        <div className="accordion-title">
+          <span> Booking ID </span><span> | </span>
+          <span> Name </span><span> | </span>
+          <span> Nr of guests </span><span> | </span>
+          <span> Sitting </span><span> | </span>
+        </div>
 
+      <div className="accordion-body">
+        {this.state.bookingInfo.map((booking: IBookingItem) => (
+          <div className="accordion-header" key={booking.booking_ID}>
+            <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">See Project</button></Link>
+            <span>{booking.booking_ID}</span>
+            <span>{booking.name}</span>
+            <span>{booking.guests}</span>
+            <span>{booking.sitting}</span>
+            {/* <button onClick={this.toggle}>Show/hide</button> */}
+          </div>
+        ))}
+      </div>
+
+
+      </div>
+    </div>
+    );
   }
 
 }
