@@ -161,6 +161,7 @@ class Booking extends React.Component<{}, IBookingState> {
 						bookedTables: data
 					});
 				}
+				console.log(this.state.bookedTables);
 			})
 			.catch(error => {
 				console.log(error);
@@ -197,6 +198,7 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	render() {
+		console.log(this.state.guests);
 		const { bookingSuccessful } = this.state;
 		const { GDPRMessage } = this.state.config;
 
@@ -215,6 +217,7 @@ class Booking extends React.Component<{}, IBookingState> {
 					handleTimeClick={this.calculateFreeSeats}
 					handleSeatsClick={this.handleSeatsClick}
 					freeSeats={this.state.freeSeats}
+					guests={this.state.guests}
 				/>
 				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
 			</div>
