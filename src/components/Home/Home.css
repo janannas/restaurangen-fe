@@ -190,4 +190,8 @@ h2 {
     .img-four-text p {
         font-size: 1.5em;
     }
+    .booking-text:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
