@@ -121,13 +121,14 @@
 @media screen and (min-width: 1024px) {
     .Contact {
         height: 70vh;
-        width: 90vw;
+        width: 80vw;
     }
     .contact-form {
-        padding: 0 5em;
+        padding: 0 5em 0 10em;
+        margin: 0 auto;
     }
     .contact-card {
-        padding: 0 8em;
+        padding: 0 5em;
     }
     .icon-frame {
         background-color: rgb(234, 194, 182);
