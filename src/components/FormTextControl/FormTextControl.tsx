@@ -13,7 +13,7 @@ interface IProps {
   onBlur: any;
 }
 
-export const FormTextControl = (props: IProps) => {
+const FormTextControl = (props: IProps) => {
   const {
     htmlFor,
     label,
@@ -36,3 +36,4 @@ export const FormTextControl = (props: IProps) => {
   )
 }
 
+export default FormTextControl;
