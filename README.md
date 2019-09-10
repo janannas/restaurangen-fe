@@ -172,3 +172,5 @@
   12. getter methods for render like getSelectReason() or getFooterContent()
   13. Optional render methods like renderNavigation() or renderProfilePicture()
   14. render
+
+- When naming your classes, be as sepcific as possible and follow template "component name - class" to avoid overwriting eachother Example: className="contact-social-icon" or className="booking-form-input" etc 
