@@ -2,10 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 import FormDetails from '../FormDetails/FormDetails';
 
-let props: any = {};
-let FormDetailsInstance: any;
-
 describe('FormDetails component', () => {
+  let props: any = {};
+  let FormDetailsInstance: any;
+
   beforeEach(() => {
     FormDetailsInstance = mount<FormDetails>(
       <FormDetails {...props} />
@@ -28,5 +28,4 @@ describe('FormDetails component', () => {
       expect(FormDetailsInstance.state().formControls.name["value"]).toEqual(newValue);
     });
   });
-
-});
+}); 

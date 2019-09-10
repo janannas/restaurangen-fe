@@ -17,8 +17,8 @@ export default {
   post: (url: string, data: any) => {
     return Promise.resolve({
       data: {
-        "name": "Jeppe",
-        "email": "jeppe93@gmail.com",
+        "name": "Janne",
+        "email": "janne93@gmail.com",
         "phone": "0123456789",
         "guests": 5,
         "sitting": "2018-06-01 00:35:07"
