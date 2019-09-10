@@ -4,6 +4,7 @@ import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 import { IBooking } from "../../interfaces/IBooking";
 import { FormDetails } from "../FormDetails/FormDetails";
+import BookingConfirmation from "../BookingConfirmation/BookingConfirmation";
 
 const moment = require('moment');
 
@@ -199,8 +200,7 @@ class Booking extends React.Component<{}, IBookingState> {
 		const { GDPRMessage } = this.state.config;
 
 		if (bookingSuccessful) {
-			// FIXME: add modal here
-			return <h1>Thanks for booking</h1>
+			return <BookingConfirmation name={this.state.details.name} />;
 		}
 		return (
 			<div className="Booking">

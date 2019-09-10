@@ -1,6 +1,10 @@
 import * as React from "react"; 
 
-class BookingConfirmation extends React.Component<{}, {}> { 
+export interface IBookingConfirmationProp {
+	name: string;
+}
+
+class BookingConfirmation extends React.Component<IBookingConfirmationProp, {}> { 
 	constructor(props: any) {
 		super(props);
 
@@ -10,6 +14,8 @@ class BookingConfirmation extends React.Component<{}, {}> {
 
 		return (
 			<div>
+				<h1>Thanks for your order {this.props.name}!</h1>
+				<p>Please check your email for further information</p>
 			</div>
 		); 
 	}
