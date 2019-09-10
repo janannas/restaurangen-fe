@@ -1,6 +1,8 @@
 * {
 	margin: 0 auto;
-	text-align: center;
+	/* the text-align center affects other elements (mainly footer) */
+	/* Please find another way to center elements on booking page */
+	/* text-align: center; */
 }
 
 .sitting_wrap {
