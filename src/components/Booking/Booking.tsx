@@ -3,7 +3,7 @@ import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
 import { IBooking } from "../../interfaces/IBooking";
-import { FormDetails } from "../FormDetails/FormDetails";
+import FormDetails from "../FormDetails/FormDetails";
 import BookingConfirmation from "../BookingConfirmation/BookingConfirmation";
 
 
