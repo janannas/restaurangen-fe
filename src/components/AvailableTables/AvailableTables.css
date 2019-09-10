@@ -1,9 +1,9 @@
+/* this is affecting other components
+
 * {
 	margin: 0 auto;
-	/* the text-align center affects other elements (mainly footer) */
-	/* Please find another way to center elements on booking page */
-	/* text-align: center; */
-}
+	text-align: center;
+} */
 
 .sitting_wrap {
 	border: 1px solid black;
