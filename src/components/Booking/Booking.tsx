@@ -6,6 +6,7 @@ import { IBooking } from "../../interfaces/IBooking";
 import { FormDetails } from "../FormDetails/FormDetails";
 import BookingConfirmation from "../BookingConfirmation/BookingConfirmation";
 
+
 const moment = require('moment');
 
 export interface IDetails {
@@ -202,6 +203,8 @@ class Booking extends React.Component<{}, IBookingState> {
 		if (bookingSuccessful) {
 			return <BookingConfirmation name={this.state.details.name} />;
 		}
+
+		// OBS! -If h1 is removed/changed update test.tsx too
 		return (
 			<div className="Booking">
 				<h1>Booking works</h1>

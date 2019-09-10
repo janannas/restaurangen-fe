@@ -1,0 +1,197 @@
+.hero-image {
+    background-image: url("../../assets/Images/restaurant.jpg");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+/* Intro text*/
+.intro-text {
+    padding: 0.5em;
+    margin: 0;
+    background-color: rgb(226, 228, 223, 0.5);
+    color: rgb(1, 50, 64);
+}
+h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    padding: 0.5em;
+}
+.primary-intro-paragraph {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+}
+.text-highlight {
+    font-family: 'Cinzel', serif;
+}
+.intro-text-two {
+    padding: 0.5em;
+    margin: 0;
+    background-color: rgb(157, 133, 96, 0.5);
+    color: rgb(1, 50, 64);
+}
+
+/*intro_text ends*/
+
+/*Picture breaks*/
+
+.break-point-img-one {
+    background-image: url("../../assets/Images/food.jpg");
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.break-point-img-two {
+    background-image: url("../../assets/Images/food-wine.jpg");
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.break-point-img-three {
+    background-color: rgb(157, 133, 96);
+    background-image: url("https://svgsilh.com/svg/1502472-013240.svg");
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.img-four-box {
+    width: 320px;
+    height: 200px;
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.img-four-text {
+    padding: 1em;
+    
+}
+.img-four-text p {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8em;
+}
+.img-four-text a {
+    text-decoration: none;
+}
+.home-booking-link {
+    transform: rotateY(180deg);
+    height: 50px;
+}
+.booking-text {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: rgb(157, 133, 96);
+}
+.intro-text-three {
+    padding: 0.5em;
+    margin: 0;
+    background-color: rgb(234, 194, 182, 0.5);
+    color: rgb(1, 50, 64);
+}
+.primary-intro-paragraph {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+}
+.menu-hr {
+    border-top: 2px solid rgb(157, 133, 96, 0.8); 
+    margin-bottom: 2.5em;
+}
+.primary-intro-menu {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    padding: 0;
+}
+.primary-intro-menu li {
+    margin-bottom: 2.5em;
+}
+
+@media screen and (min-width: 768px) {
+    .intro-text, .intro-text-two, .intro-text-three {
+        padding: 1em 4em;
+    }
+    h2 {
+        font-size: 2.2em;
+        padding: 1em;
+    }
+    .primary-intro-paragraph {
+        font-size: 1.5em;
+    }  
+    .break-point-img-one {
+        height: 350px;
+    }
+    .break-point-img-two {
+        height: 350px;
+    }
+    .break-point-img-three {
+        height: 300px;
+    }
+    .img-four-box {
+        width: 600px;
+        height: 250px;
+    }
+    .img-four-text {
+        padding: 1em 3em;
+    }
+    .img-four-text p {
+        font-size: 1.2em;
+    }
+}
+@media screen and (min-width: 1024px) {
+    /* .Home {
+        width: 80vw;
+        margin: 10px auto;
+    } */
+    .intro-text, .intro-text-two, .intro-text-three {
+        padding: 1em 20em;
+    }
+    h2 {
+        font-size: 2.5em;
+        padding-bottom: 1em;
+    }
+    .primary-intro-paragraph {
+        font-size: 1.5em;
+    }
+    .break-point-img-one {
+        height: 450px;
+    }
+    .break-point-img_two {
+        height: 450px;
+    }
+    .break-point-img-three {
+        height: 450px;
+    }
+    .img-four-box {
+        width: 900px;
+        height: 350px;
+    }
+    .img-four-text {
+        padding: 2em 5em;
+    }
+    .img-four-text h4 {
+        padding-bottom: 0.5em;
+        font-size: 1.5rem;
+    }
+    .img-four-text p {
+        font-size: 1rem;
+    }
+    .home-booking-link {
+        height: 100px;
+    }
+    .img-four-text p {
+        font-size: 1.5em;
+    }
+    .booking-text:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
