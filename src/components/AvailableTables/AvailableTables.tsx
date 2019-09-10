@@ -11,35 +11,37 @@ export interface IAvailableTablesProp {
 		sittingTwo: string;
 	}
 	freeSeats: number;
+	guests: number;
 	handleTimeClick(time: string): any;
 	handleSeatsClick(guests: number): any;
 }
 
 export interface IAvailableTablesState {
-	selectedSeats: number;
+	// selectedSeats: number;
 }
 
 class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTablesState> { 
 	constructor(props: any) {
 		super(props);
 
-		this.state = {
-			selectedSeats: 0
-		}
+		// this.state = {
+		// 	selectedSeats: 0
+		// }
 	}
 
 	handleTimeClick = async (time: string) => {
 		this.props.handleTimeClick(time);
-		await this.setState({
-			selectedSeats: 0
-		});
+		// await this.setState({
+		// 	selectedSeats: 0
+		// });
 	}
 	
 	handleSeatsClick = async (event:any) => {
+		event.preventDefault();
 		let guests = event.target.value;
-		await this.setState({
-			selectedSeats: event.target.value
-		});
+		// await this.setState({
+		// 	selectedSeats: event.target.value
+		// });
 		this.props.handleSeatsClick(guests);
 	}
 
@@ -69,7 +71,7 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 			}
 			selectNumberOfGuests = (
 				<select 
-					value={this.state.selectedSeats}
+					value={this.props.guests}
 					name='guests' onChange={(e) => this.handleSeatsClick(e)}>{ numberOfGuests }</select>
 			);
 		}
