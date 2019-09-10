@@ -161,6 +161,7 @@ class Booking extends React.Component<{}, IBookingState> {
 						bookedTables: data
 					});
 				}
+				console.log(this.state.bookedTables);
 			})
 			.catch(error => {
 				console.log(error);

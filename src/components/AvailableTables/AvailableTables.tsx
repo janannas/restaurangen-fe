@@ -28,18 +28,18 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 		}
 	}
 
-	handleTimeClick = (time: string) => {
+	handleTimeClick = async (time: string) => {
 		this.props.handleTimeClick(time);
-		this.setState({
+		await this.setState({
 			selectedSeats: 0
-		})
+		});
 	}
 	
-	handleSeatsClick = (event:any) => {
+	handleSeatsClick = async (event:any) => {
 		let guests = event.target.value;
-		this.setState({
+		await this.setState({
 			selectedSeats: event.target.value
-		})
+		});
 		this.props.handleSeatsClick(guests);
 	}
 
@@ -70,7 +70,6 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 			selectNumberOfGuests = (
 				<select 
 					value={this.state.selectedSeats}
-					placeholder='Number of guests'
 					name='guests' onChange={(e) => this.handleSeatsClick(e)}>{ numberOfGuests }</select>
 			);
 		}
