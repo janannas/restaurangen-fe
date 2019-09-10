@@ -60,7 +60,7 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 		}
 		else {
 			numberOfGuests.push(
-				<option value={this.state.selectedSeats} key={'guests_'+0}>{this.state.selectedSeats}</option>
+				<option value='0' key={'guests_'+0}>0</option>
 				);
 			for(let i = 0; i < this.props.freeSeats; i++){
 				numberOfGuests.push(
