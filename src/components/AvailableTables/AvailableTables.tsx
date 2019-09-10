@@ -16,32 +16,18 @@ export interface IAvailableTablesProp {
 	handleSeatsClick(guests: number): any;
 }
 
-export interface IAvailableTablesState {
-	// selectedSeats: number;
-}
-
-class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTablesState> { 
+class AvailableTables extends React.Component<IAvailableTablesProp, {}> { 
 	constructor(props: any) {
 		super(props);
-
-		// this.state = {
-		// 	selectedSeats: 0
-		// }
 	}
 
 	handleTimeClick = async (time: string) => {
 		this.props.handleTimeClick(time);
-		// await this.setState({
-		// 	selectedSeats: 0
-		// });
 	}
 	
 	handleSeatsClick = async (event:any) => {
 		event.preventDefault();
 		let guests = event.target.value;
-		// await this.setState({
-		// 	selectedSeats: event.target.value
-		// });
 		this.props.handleSeatsClick(guests);
 	}
 
