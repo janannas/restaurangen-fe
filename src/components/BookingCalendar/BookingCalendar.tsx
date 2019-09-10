@@ -41,8 +41,8 @@ class BookingCalendar extends React.Component<ICalendarProp, ICalendarState> {
 			<div className = "calendar">
 				<Calendar onChange = 
 					{this.onChange}
-					showWeekNumbers
 					value={value}
+					minDate={moment().toDate()}
 				/>
 			</div>
 		); 

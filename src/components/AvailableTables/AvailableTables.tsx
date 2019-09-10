@@ -16,20 +16,30 @@ export interface IAvailableTablesProp {
 }
 
 export interface IAvailableTablesState {
-	// sitting: string;
+	selectedSeats: number;
 }
 
 class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTablesState> { 
 	constructor(props: any) {
 		super(props);
+
+		this.state = {
+			selectedSeats: 0
+		}
 	}
 
 	handleTimeClick = (time: string) => {
 		this.props.handleTimeClick(time);
+		this.setState({
+			selectedSeats: 0
+		})
 	}
 	
 	handleSeatsClick = (event:any) => {
 		let guests = event.target.value;
+		this.setState({
+			selectedSeats: event.target.value
+		})
 		this.props.handleSeatsClick(guests);
 	}
 
@@ -49,13 +59,19 @@ class AvailableTables extends React.Component<IAvailableTablesProp, IAvailableTa
 			);
 		}
 		else {
+			numberOfGuests.push(
+				<option value={this.state.selectedSeats} key={'guests_'+0}>{this.state.selectedSeats}</option>
+				);
 			for(let i = 0; i < this.props.freeSeats; i++){
 				numberOfGuests.push(
 					<option value={i+1} key={'guests_'+(i+1)}>{i+1}</option>
 				);
 			}
 			selectNumberOfGuests = (
-				<select name='guests' onChange={(e) => this.handleSeatsClick(e)}>{ numberOfGuests }</select>
+				<select 
+					value={this.state.selectedSeats}
+					placeholder='Number of guests'
+					name='guests' onChange={(e) => this.handleSeatsClick(e)}>{ numberOfGuests }</select>
 			);
 		}
 
