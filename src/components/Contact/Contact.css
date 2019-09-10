@@ -5,20 +5,21 @@
     text-align: center;
     padding: 20px 0;
     font-family: 'Cinzel', serif;
+    margin: 0 auto;
 }
-.contact_form {
+.contact-form {
     margin: 0 auto;
     align-items: center;
     justify-content: center;
 }
 
-.contact_card {
+.contact-card {
     padding: 0.5em;
     margin: 0 1em 1em 1em;
     max-height: 35rem;
 }
 
-.name_line {
+.name-line {
     display: flex;
 }
 
@@ -43,7 +44,7 @@
     margin-bottom: 8px;
     border: 1px solid rgb(1, 50, 64);
 }
-.text_input {
+.text-input {
     height: 5vh;
 }
 .text-area {
@@ -51,7 +52,7 @@
     border: 1px solid rgb(1, 50, 64);
 }
 
-.contact_button {
+.contact-button {
     width: 120px;
     height: 40px;
     border: 1px solid rgb(1, 50, 64);
@@ -69,27 +70,27 @@
     justify-content: center;
 }
 
-.contact_button:hover {
+.contact-button:hover {
     background-color: rgb(1, 50, 64);
     color: white;
 }
 
-.contact_details {
+.contact-details {
     padding: 0 2em 2em 2em;
     flex-wrap: wrap;
     justify-content: center;
 }
-.contact_details p {
+.contact-details p {
     font-weight: bold;
     color: rgb(1, 50, 64);
     font-family: 'Lato', sans-serif;
 }
 
-.socila_icons_wrapper {
+.social-icons-wrapper {
     display: flex;
     padding-bottom: 1em;
 }
-.icon_frame {
+.icon-frame {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -98,7 +99,7 @@
     text-align: center;
 }
 
-.icon_frame:hover {
+.icon-frame:hover {
     background-color: rgb(1, 50, 64);
 }
 
@@ -122,13 +123,13 @@
         height: 70vh;
         width: 90vw;
     }
-    .contact_form {
+    .contact-form {
         padding: 0 5em;
     }
-    .contact_card {
+    .contact-card {
         padding: 0 8em;
     }
-    .icon_frame {
+    .icon-frame {
         background-color: rgb(234, 194, 182);
     }
 }
@@ -143,3 +144,4 @@ fonts:
 Rubrik/Logo: font-family: 'Cinzel', serif;
 Text: font-family: 'Lato', sans-serif;
 */
+

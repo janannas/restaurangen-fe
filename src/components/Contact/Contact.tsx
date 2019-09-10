@@ -13,20 +13,20 @@ class Contact extends React.Component< {}, {}> {
     return (
     <main className="Contact container-fluid">
 
-      <div className="contact-heading">
-          <h2>CONTACT US</h2>
+      <div className="row contact-heading">
+          <h2 className="col-12">CONTACT US</h2>
       </div>
 
-      <section className="row contact_form">
-          <div className="col-12 col-lg-4 contact_details">
-              <div className="socila_icons_wrapper">
-                  <div className="icon_frame">
+      <section className="row contact-form">
+          <div className="col-12 col-lg-4 contact-details">
+              <div className="social-icons-wrapper">
+                  <div className="icon-frame">
                       <a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
                   </div>
-                  <div className="icon_frame">
+                  <div className="icon-frame">
                       <a href="https://www.instagram.com" aria-label="Find us on instagram"><FontAwesomeIcon className="social-icon" icon={['fab', 'instagram']} /></a>
                   </div>
-                  <div className="icon_frame">
+                  <div className="icon-frame">
                       <a href="https://www.twitter.com" aria-label="Find us on twitter"><FontAwesomeIcon className="social-icon" icon={['fab', 'twitter']} /></a>
                   </div>
               </div>
@@ -41,23 +41,23 @@ class Contact extends React.Component< {}, {}> {
           </div>
 
           <div className="col-12 col-lg-8">
-              <form action="mailto:help@barleycatering.com" className="contact_card">
+              <form action="mailto:bookings@lacasadelmar.com" className="contact-card">
 
-                  <div className="name_line">
+                  <div className="name-line">
                       <label htmlFor="fname"></label>
-                      <input type="text" id="fname" name="firstname" className="text_input" placeholder=" First Name" />
+                      <input type="text" id="fname" name="firstname" className="text-input" placeholder=" First Name" />
 
                       <label htmlFor="lname"></label>
-                      <input type="text" id="lname" name="lastname" className="text_input" placeholder=" Last Name" />
+                      <input type="text" id="lname" name="lastname" className="text-input" placeholder=" Last Name" />
                   </div>
 
                   <label htmlFor="telephone"></label>
-                  <input type="text" id="telephone" name="telephone" placeholder=" Telephone Number" className="text_input" />
+                  <input type="text" id="telephone" name="telephone" placeholder=" Telephone Number" className="text-input" />
 
                   <label htmlFor="subject"></label>
                   <textarea id="subject" name="subject" placeholder=" Your message" className="text-area"></textarea>
 
-                  <input name="mail_to" type="submit" className="contact_button" value="SUBMIT" />
+                  <input name="mail-to" type="submit" className="contact-button" value="SUBMIT" />
 
               </form>
 

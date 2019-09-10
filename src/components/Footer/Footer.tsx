@@ -16,7 +16,7 @@ class Footer extends React.Component< {}, {}> {
         <img className="footer-logo"
             src="https://svgsilh.com/svg/2028176-013240.svg" 
             alt="crab logo"
-            height="200px"
+            height="150px"
             width="auto" />
           <h1>La Casa Del Mar</h1>
           <p>...</p>
