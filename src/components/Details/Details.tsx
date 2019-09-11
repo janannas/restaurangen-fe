@@ -273,21 +273,33 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
   render() {
     return (
 			<div className="details-wrapper">
+
 				<h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
+				<p className="mb-4 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
 				
-				<p className="mb-1 text-center">If you want to delete this booking, click the "delete" button below</p>
-				<p className="mb-4 text-center">If you want to edit this booking, make your changes and click the "save changes" button</p>
-				
-				<form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2">
-          <label htmlFor="customer_ID">Customer ID: </label>
-          <input disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
-          <label htmlFor="booking_ID">Booking ID: </label>
-          <input disabled id="booking_ID" value={this.state.booking.booking_ID}></input>
-          <label htmlFor="sitting">Sitting: </label>
-          <input disabled id="sitting" value={this.state.booking.sitting}></input>
-          <label htmlFor="guests">Number fo guests: </label>
-          <input disabled id="guests" value={this.state.booking.guests}></input>
-          
+				<form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
+          <div className="row">
+          <div className="d-flex flex-column col-12 col-md-6">
+            <label htmlFor="customer_ID">Customer ID: </label>
+            <input className="form-control" disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
+          </div>
+
+          <div className="d-flex flex-column col-12 col-md-6">
+           <label htmlFor="booking_ID">Booking ID: </label>
+            <input className="form-control" disabled id="booking_ID" value={this.state.booking.booking_ID}></input>
+          </div>
+
+          <div className="d-flex flex-column col-12 col-md-6">
+              <label htmlFor="sitting">Sitting: </label>
+          <input className="form-control" disabled id="sitting" value={this.state.booking.sitting}></input>
+          </div>
+
+          <div className="d-flex flex-column col-12 col-md-6">
+            <label htmlFor="guests">Number fo guests: </label>
+            <input className="form-control" disabled id="guests" value={this.state.booking.guests}></input>
+          </div>    
+
+          </div>
 
           <FormTextControl
             name="name"
@@ -328,7 +340,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
             error={"Please enter at least three digits"}
           />
 
-          <button type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
+          <button className="submit-form-button btn" type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
 				</form>
 			</div>
 		);
