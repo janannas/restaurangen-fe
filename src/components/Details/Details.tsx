@@ -279,26 +279,25 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 				
 				<form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
           <div className="row">
-          <div className="d-flex flex-column col-12 col-md-6">
-            <label htmlFor="customer_ID">Customer ID: </label>
-            <input className="form-control" disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
-          </div>
+            <div className="d-flex flex-column col-12 col-md-6">
+              <label htmlFor="customer_ID">Customer ID: </label>
+              <input className="form-control" disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
+            </div>
 
-          <div className="d-flex flex-column col-12 col-md-6">
-           <label htmlFor="booking_ID">Booking ID: </label>
-            <input className="form-control" disabled id="booking_ID" value={this.state.booking.booking_ID}></input>
-          </div>
+            <div className="d-flex flex-column col-12 col-md-6">
+              <label htmlFor="booking_ID">Booking ID: </label>
+              <input className="form-control" disabled id="booking_ID" value={this.state.booking.booking_ID}></input>
+            </div>
 
-          <div className="d-flex flex-column col-12 col-md-6">
+            <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="sitting">Sitting: </label>
-          <input className="form-control" disabled id="sitting" value={this.state.booking.sitting}></input>
-          </div>
+              <input className="form-control" disabled id="sitting" value={this.state.booking.sitting}></input>
+            </div>
 
-          <div className="d-flex flex-column col-12 col-md-6">
-            <label htmlFor="guests">Number fo guests: </label>
-            <input className="form-control" disabled id="guests" value={this.state.booking.guests}></input>
-          </div>    
-
+            <div className="d-flex flex-column col-12 col-md-6">
+              <label htmlFor="guests">Number fo guests: </label>
+              <input className="form-control" disabled id="guests" value={this.state.booking.guests}></input>
+            </div>    
           </div>
 
           <FormTextControl
