@@ -23,13 +23,13 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 		super(props);
 		
 		this.state = {
-				booking_ID: 0,
-				customer_ID: 0,
-				email:'',
-				guests: 0,
-				name: '',
-				phone: '',
-				sitting: ''
+			booking_ID: 0,
+			customer_ID: 0,
+			email:'',
+			guests: 0,
+			name: '',
+			phone: '',
+			sitting: ''
 		};
   
 	}
@@ -83,14 +83,14 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 	}
 
 	handleInputChange = async (event: any) =>{
-			const target = event.target;
-			const value = target.value;
+		const target = event.target;
+		const value = target.value;
 
-			await this.setState({
-				[target.name]: value
-			} as any);
+		await this.setState({
+			[target.name]: value
+		} as any);
 
-			console.log(this.state);
+		console.log(this.state);
 	}
 
 	updateCustomer = (customerToUpdate: IUpdateCustomer) => {
@@ -147,40 +147,41 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 				
 				<form onSubmit={(e) => this.handleSubmit(e)} className="update-form">
 					<div className="form-row">
-						<div className="form-group d-flex flex-column col-12 col-md-6">
+						<div className="form-group d-flex flex-column col-12 col-md-4">
 							<label htmlFor="customerID">Customer ID</label>
-							<input readOnly value={this.state.customer_ID} id="customerID" />
+							<input disabled value={this.state.customer_ID} id="customerID" />
 						</div>
 
-						<div className="form-group d-flex flex-column col-12 col-md-6">
+						<div className="form-group d-flex flex-column col-12 col-md-4">
 							<label htmlFor="bookingID">Booking ID</label>
-							<input readOnly value={this.state.booking_ID} id="bookingID"/>
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="email">Email</label>
-							<input type="text" name="email" id="email" value={this.state.email} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="guests">Number of guests</label>
-							<input type="text" name="guests" id="guests" value={this.state.guests} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-4">
-							<label htmlFor="name">Name</label>
-							<input type="text" name="name" id="name" value={this.state.name} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-4">
-							<label htmlFor="phone">Phone number</label>
-							<input type="text" name="phone" id="phone" value={this.state.phone} onChange={(e) => this.handleInputChange(e)} />
+							<input disabled value={this.state.booking_ID} id="bookingID"/>
 						</div>
 
 						<div className="form-group d-flex flex-column col-12 col-md-4">
 							<label htmlFor="sitting">Sitting</label>
-							<input type="text" name="sitting" id="sitting" value={this.state.sitting} onChange={(e) => this.handleInputChange(e)} />
+							<input disabled value={this.state.sitting} onChange={(e) => this.handleInputChange(e)} />
 						</div>
+
+						<div className="form-group d-flex flex-column col-12 col-md-6">
+							<label htmlFor="email">Email</label>
+							<input type="email" required name="email" id="email" value={this.state.email} onChange={(e) => this.handleInputChange(e)} />
+						</div>
+
+						<div className="form-group d-flex flex-column col-12 col-md-6">
+							<label htmlFor="guests">Number of guests</label>
+							<input type="number" required name="guests" id="guests" value={this.state.guests} onChange={(e) => this.handleInputChange(e)} />
+						</div>
+
+						<div className="form-group d-flex flex-column col-12 col-md-6">
+							<label htmlFor="name">Name</label>
+							<input type="text" required name="name" id="name" value={this.state.name} onChange={(e) => this.handleInputChange(e)} />
+						</div>
+
+						<div className="form-group d-flex flex-column col-12 col-md-6">
+							<label htmlFor="phone">Phone number</label>
+							<input type="tel" required name="phone" id="phone" value={this.state.phone} onChange={(e) => this.handleInputChange(e)} />
+						</div>
+
 
 						<div className="form-group col-12">
 							<button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(this.state.booking_ID)}>Delete booking</button>
