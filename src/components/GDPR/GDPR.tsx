@@ -66,12 +66,8 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
 
     return (
       <>
-        <div className="container w-80 GDPR-message">
-          <p>{GDPRMessage}</p>
-        </div>
-
-        <div className="text-center w-100">
-          <label htmlFor="GDPRCheckBox" className="GDPR-label">
+        <div>
+          <label htmlFor="GDPRCheckBox">
             <input
               type="checkbox"
               name="GDPRCheckBox"
@@ -81,12 +77,13 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
             />
             Click here to agree
           </label>
-
-
-          <div className="form-control-error">
-            {touched && !valid ? <small>{error}</small> : null}
-          </div>
         </div>
+
+        <div style={{ height: "20px" }}>
+          {touched && !valid ? <small>{error}</small> : null}
+        </div>
+
+        <p>{GDPRMessage}</p>
       </>
     );
   }

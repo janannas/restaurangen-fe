@@ -188,7 +188,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
     const { GDPRMessage } = this.props;
 
     return (
-      <form className="form-details w-100 justify-content-center" onSubmit={(e) => this.onFormSubmit(e)} onKeyPress={this.handleKeyPress}>
+      <form onSubmit={(e) => this.onFormSubmit(e)} onKeyPress={this.handleKeyPress}>
 
         <FormTextControl
           name="name"
@@ -231,7 +231,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
 
         <GDPR GDPRMessage={GDPRMessage} handleGDPRChange={this.handleGDPRChange} />
 
-        <button type="submit" className="submit-form-button btn" disabled={!formIsValid || !isGDPRChecked}>BOOK NOW</button>
+        <button type="submit" disabled={!formIsValid || !isGDPRChecked}>Confirm</button>
 
       </form>
     );

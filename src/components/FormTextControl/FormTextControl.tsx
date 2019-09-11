@@ -26,11 +26,11 @@ const FormTextControl = (props: IProps) => {
     <>
       <div>
         <label htmlFor={htmlFor}>{label}</label>
-        <input className="form-control" {...props} />
+        <input {...props} />
       </div>
 
-      <div className="form-control-error">
-        {touched && !valid ? <small role="alert">{error}</small> : null}
+      <div style={{ height: "20px" }}>
+        {touched && !valid ? <small>{error}</small> : null}
       </div>
     </>
   )

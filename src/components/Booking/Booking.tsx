@@ -1,5 +1,4 @@
 import * as React from "react";
-import './Booking.css';
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
@@ -162,6 +161,7 @@ class Booking extends React.Component<{}, IBookingState> {
 						bookedTables: data
 					});
 				}
+				console.log(this.state.bookedTables);
 			})
 			.catch(error => {
 				console.log(error);
@@ -198,6 +198,7 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	render() {
+		console.log(this.state.guests);
 		const { bookingSuccessful } = this.state;
 		const { GDPRMessage } = this.state.config;
 
@@ -207,7 +208,7 @@ class Booking extends React.Component<{}, IBookingState> {
 
 		// OBS! -If h1 is removed/changed update test.tsx too
 		return (
-			<div className="booking">
+			<div className="Booking">
 				<h1>Booking works</h1>
 				<div className="booking-form container">
 					<div className="row">
@@ -219,6 +220,7 @@ class Booking extends React.Component<{}, IBookingState> {
 								handleTimeClick={this.calculateFreeSeats}
 								handleSeatsClick={this.handleSeatsClick}
 								freeSeats={this.state.freeSeats}
+                guests={this.state.guests}
 							/>
 							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
 						</div>
