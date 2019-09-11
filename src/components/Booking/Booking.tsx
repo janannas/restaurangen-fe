@@ -1,4 +1,5 @@
 import * as React from "react";
+import './Booking.css';
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
@@ -206,17 +207,28 @@ class Booking extends React.Component<{}, IBookingState> {
 
 		// OBS! -If h1 is removed/changed update test.tsx too
 		return (
-			<div className="Booking">
+			<div className="booking">
 				<h1>Booking works</h1>
-				<BookingCalendar handleDate={this.changeDate} />
-				<AvailableTables
-					dateTime={this.state.dateTime}
-					config={this.state.config}
-					handleTimeClick={this.calculateFreeSeats}
-					handleSeatsClick={this.handleSeatsClick}
-					freeSeats={this.state.freeSeats}
-				/>
-				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+
+				<div className="booking-form container">
+
+					<div className="row">
+						<div className="col-md-12">
+
+							<BookingCalendar handleDate={this.changeDate} />
+							<AvailableTables
+								dateTime={this.state.dateTime}
+								config={this.state.config}
+								handleTimeClick={this.calculateFreeSeats}
+								handleSeatsClick={this.handleSeatsClick}
+								freeSeats={this.state.freeSeats}
+							/>
+							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+
+						</div>
+					</div>
+
+				</div>
 			</div>
 		);
 	}
