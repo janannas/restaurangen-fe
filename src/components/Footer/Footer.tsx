@@ -1,4 +1,5 @@
 import React from 'react';
+import '../BaseCss/Base.css';
 import './Footer.css' ;
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
@@ -18,7 +19,7 @@ class Footer extends React.Component< {}, {}> {
             alt="crab logo"
             height="150px"
             width="auto" />
-          <h1>La Casa Del Mar</h1>
+          <h2>La Casa Del Mar</h2>
           <p>...</p>
           <p>Tulegatan 41, Vasastan, 144 88 Stockholm</p>
           <p>Tel: +46 070123 44 88</p>

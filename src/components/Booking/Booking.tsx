@@ -1,4 +1,5 @@
 import * as React from "react";
+import './Booking.css';
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
@@ -210,16 +211,22 @@ class Booking extends React.Component<{}, IBookingState> {
 		return (
 			<div className="Booking">
 				<h1>Booking works</h1>
-				<BookingCalendar handleDate={this.changeDate} />
-				<AvailableTables
-					dateTime={this.state.dateTime}
-					config={this.state.config}
-					handleTimeClick={this.calculateFreeSeats}
-					handleSeatsClick={this.handleSeatsClick}
-					freeSeats={this.state.freeSeats}
-					guests={this.state.guests}
-				/>
-				<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+				<div className="booking-form container">
+					<div className="row">
+						<div className="col-md-12">
+							<BookingCalendar handleDate={this.changeDate} />
+							<AvailableTables
+								dateTime={this.state.dateTime}
+								config={this.state.config}
+								handleTimeClick={this.calculateFreeSeats}
+								handleSeatsClick={this.handleSeatsClick}
+								freeSeats={this.state.freeSeats}
+                guests={this.state.guests}
+							/>
+							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

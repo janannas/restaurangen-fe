@@ -1,0 +1,36 @@
+.form-details {
+  /* border: solid 1px red; */
+  margin: auto 0;
+}
+
+.submit-form-button {
+  background-color: #013240;
+  border: 1px solid #013240;
+  color: #E2EEDF;
+}
+
+.submit-form-button:hover {
+  background-color: #E2EEDF;
+  border: 1px solid #013240;
+  color: #013240;
+}
+
+.btn:disabled:hover {
+  background-color: #013240;
+  border: 1px solid #013240;
+  color: #E2EEDF;
+}
+
+.form-control-error {
+  color: red;
+  height: 1rem;
+  margin-bottom: 1rem;
+}
+
+.GDPR-message {
+  border-left: 4px #EAC2B6 solid;
+}
+
+.GDPR-label {
+  margin: 0;
+}
