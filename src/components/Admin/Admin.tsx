@@ -47,40 +47,31 @@ class Admin extends React.Component< {}, IBookingState > {
       });
   }
 
-  toggle = () => {
-    var bool = !this.state.on;
-    this.setState({
-      on: bool
-    })
-  }
-
   render() {
 
     return (
     <div className="App">
-      <div className="accordion">
-        <div className="accordion-title">
-          <span> Booking ID </span><span> | </span>
-          <span> Name </span><span> | </span>
-          <span> Nr of guests </span><span> | </span>
-          <span> Sitting </span><span> | </span>
+      <div>
+        <div className="booking-info-wrapper">
+          <span className="booking-info-span"> Booking ID </span><span> | </span>
+          <span className="booking-info-span"> Name </span><span> | </span>
+          <span className="booking-info-span"> Nr of guests </span><span> | </span>
+          <span className="booking-info-span"> Sitting </span><span> | </span>
         </div>
 
-      <div className="accordion-body">
-        {this.state.bookingInfo.map((booking: IBookingItem) => (
-          <div className="accordion-header" key={booking.booking_ID}>
-            <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">See Project</button></Link>
-            <span>{booking.booking_ID}</span>
-            <span>{booking.name}</span>
-            <span>{booking.guests}</span>
-            <span>{booking.sitting}</span>
-            {/* <button onClick={this.toggle}>Show/hide</button> */}
+        <div>
+          {this.state.bookingInfo.map((booking: IBookingItem) => (
+          <div key={booking.booking_ID}>
+            <span className="booking-info-span">{booking.booking_ID}</span>
+            <span className="booking-info-span">{booking.name}</span>
+            <span className="booking-info-span">{booking.guests}</span>
+            <span className="booking-info-span">{booking.sitting}</span>
+            <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">Handle booking</button></Link>
           </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-
-      </div>
     </div>
     );
   }

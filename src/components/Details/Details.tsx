@@ -139,13 +139,13 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
   
   render() {
     return (
-			<div>
-				<h2 className="m-4">Handling booking with id: {this.state.booking_ID}</h2>
+			<div className="details-wrapper">
+				<h3 className="m-4 text-center">Handling booking with id: {this.state.booking_ID}</h3>
 				
-				<p className="mb-1">If you want to delete this booking, click the "delete button below"</p>
-				<p className="mb-4">If you want to edit this booking, make your changes and click the "save changes" button</p>
+				<p className="mb-1 text-center">If you want to delete this booking, click the "delete" button below</p>
+				<p className="mb-4 text-center">If you want to edit this booking, make your changes and click the "save changes" button</p>
 				
-				<form onSubmit={(e) => this.handleSubmit(e)} className="update-form">
+				<form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2">
 					<div className="form-row">
 						<div className="form-group d-flex flex-column col-12 col-md-4">
 							<label htmlFor="customerID">Customer ID</label>
@@ -185,7 +185,7 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 
 						<div className="form-group col-12">
 							<button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(this.state.booking_ID)}>Delete booking</button>
-							<button className="btn btn-outline-secondary" type="submit">Save Changes</button>
+							<button className="btn btn-outline-secondary ml-2" type="submit">Save Changes</button>
 						</div>
 
 					</div>

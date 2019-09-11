@@ -1,12 +1,16 @@
-form {
-    width: 90%;
-    max-width: 800px;
+.details-wrapper {
+  max-width: 800px;
 }
 
-input {
-    /* margin: .1em .5em; */
+.details-wrapper, .details-form {
+  margin: 0 auto;
 }
 
-button {
-    margin: .5em;
+.details-form {
+  width: 90%;
+  max-width: 600px;
+}
+
+.details-form-input {
+  margin: .1em .5em; 
 }
