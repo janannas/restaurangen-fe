@@ -124,7 +124,8 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 			tempArray.map((booking: IBookingItem) => {
 				if(booking.booking_ID === this.props.match.params.id) {
 					mapArray = booking;
-				}
+        }
+        return mapArray;
 			});
 
 			this.setState({
@@ -137,7 +138,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
         formControls: {
           name: {
             value: mapArray.name,
-            valid: true,
+            valid: false,
             touched: false,
             validationRules: {
               isRequired: true
@@ -145,7 +146,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           },
           email: {
             value: mapArray.email,
-            valid: true,
+            valid: false,
             touched: false,
             validationRules: {
               isEmail: true
@@ -153,7 +154,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           },
           phone: {
             value: mapArray.phone,
-            valid: true,
+            valid: false,
             touched: false,
             validationRules: {
               isNumber: true,
@@ -164,21 +165,15 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 
       });
       
-      this.validateForm();
+    this.validateForm();
 
-	})
-	.catch(error => {
-		console.log(error);
-	});
+	  })
+	  .catch(error => {
+		  console.log(error);
+  	});
 	}
 
 	handleInputChange = async (event: any) =>{
-		// const target = event.target;
-		// const value = target.value;
-
-		// await this.setState({
-		// 	[target.name]: value
-    // } as any);
     
     const name: keyof IDetailsState["formControls"] = event.target.name;
     const value = event.target.value;
@@ -213,14 +208,6 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 				this.props.history.push("/admin");
 			})
 	}
-
-	// updateBooking = (bookingToUpdate: IUpdateBooking) => {
-	// 	axios
-  //   	.put('http://localhost/admin/update-booking.php/', bookingToUpdate)
-  //   	.then(() => {
-	// 			this.props.history.push("/admin");
-	// 		})
-  // }
 
   validateForm = () => {
     const updatedControls = {
@@ -268,7 +255,6 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 	handleSubmit = (event: any) => {
 	 	event.preventDefault();
 
-	 	//var bookingToUpdate: IUpdateBooking;
 	 	var customerToUpdate: IUpdateCustomer;
 
 	 	customerToUpdate = {
@@ -276,19 +262,10 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 	 		name: this.state.formControls.name.value,
 	 		email: this.state.formControls.email.value,
 	 		phone: this.state.formControls.phone.value
-     }
-     console.log(this.state.booking.customer_ID);
-
-	 	// bookingToUpdate = {
-	  // 	booking_ID: this.state.booking.booking_ID,
-	 	//   customer_ID: this.state.booking.customer_ID,
-	 	//   guests: this.state.booking.guests,
-	  // 	sitting: this.state.booking.sitting
-	 	// }
+    }
 
 	 	if(window.confirm('Are you sure you want to save this update?')) {
 	 		this.updateCustomer(customerToUpdate);
-	 		// this.updateBooking(bookingToUpdate);
 	 	}
 		
 	}
@@ -312,93 +289,46 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           <input disabled id="guests" value={this.state.booking.guests}></input>
           
 
-        <FormTextControl
-          name="name"
-          htmlFor="name"
-          onChange={this.handleInputChange}
-          onBlur={this.triggerAllValidation}
-          value={this.state.formControls.name.value}
-          id="name"
-          label="Name: "
-          touched={this.state.formControls.name.touched ? 1 : 0}
-          valid={this.state.formControls.name.valid ? 1 : 0}
-          error={"Field is required"}
-        />
+          <FormTextControl
+            name="name"
+            htmlFor="name"
+            onChange={this.handleInputChange}
+            onBlur={this.triggerAllValidation}
+            value={this.state.formControls.name.value}
+            id="name"
+            label="Name: "
+            touched={this.state.formControls.name.touched ? 1 : 0}
+            valid={this.state.formControls.name.valid ? 1 : 0}
+            error={"Field is required"}
+          />
 
-        <FormTextControl
-          name="email"
-          htmlFor="email"
-          onChange={this.handleInputChange}
-          onBlur={this.triggerAllValidation}
-          value={this.state.formControls.email.value}
-          id="email"
-          label="Email: "
-          touched={this.state.formControls.email.touched ? 1 : 0}
-          valid={this.state.formControls.email.valid ? 1 : 0}
-          error={"Please enter a valid email-address"}
-        />
+          <FormTextControl
+            name="email"
+            htmlFor="email"
+            onChange={this.handleInputChange}
+            onBlur={this.triggerAllValidation}
+            value={this.state.formControls.email.value}
+            id="email"
+            label="Email: "
+            touched={this.state.formControls.email.touched ? 1 : 0}
+            valid={this.state.formControls.email.valid ? 1 : 0}
+            error={"Please enter a valid email-address"}
+          />
 
-        <FormTextControl
-          name="phone"
-          htmlFor="phone"
-          onChange={this.handleInputChange}
-          onBlur={this.triggerAllValidation}
-          value={this.state.formControls.phone.value}
-          id="phone"
-          label="Phone Number: "
-          touched={this.state.formControls.phone.touched ? 1 : 0}
-          valid={this.state.formControls.phone.valid ? 1 : 0}
-          error={"Please enter at least three digits"}
-        />
+          <FormTextControl
+            name="phone"
+            htmlFor="phone"
+            onChange={this.handleInputChange}
+            onBlur={this.triggerAllValidation}
+            value={this.state.formControls.phone.value}
+            id="phone"
+            label="Phone Number: "
+            touched={this.state.formControls.phone.touched ? 1 : 0}
+            valid={this.state.formControls.phone.valid ? 1 : 0}
+            error={"Please enter at least three digits"}
+          />
 
-        <button type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
-
-
-
-
-					{/* <div className="form-row">
-						<div className="form-group d-flex flex-column col-12 col-md-4">
-							<label htmlFor="customerID">Customer ID</label>
-							<input disabled value={this.state.customer_ID} id="customerID" />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-4">
-							<label htmlFor="bookingID">Booking ID</label>
-							<input disabled value={this.state.booking_ID} id="bookingID"/>
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-4">
-							<label htmlFor="sitting">Sitting</label>
-							<input disabled value={this.state.sitting} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="email">Email</label>
-							<input type="email" required name="email" id="email" value={this.state.email} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="guests">Number of guests</label>
-							<input type="number" required name="guests" id="guests" value={this.state.guests} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="name">Name</label>
-							<input type="text" required name="name" id="name" value={this.state.name} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-						<div className="form-group d-flex flex-column col-12 col-md-6">
-							<label htmlFor="phone">Phone number</label>
-							<input type="tel" required name="phone" id="phone" value={this.state.phone} onChange={(e) => this.handleInputChange(e)} />
-						</div>
-
-
-						<div className="form-group col-12">
-							<button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(this.state.booking_ID)}>Delete booking</button>
-							<button className="btn btn-outline-secondary ml-2" type="submit">Save Changes</button>
-						</div>
-
-					</div> */}
+          <button type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
 				</form>
 			</div>
 		);
