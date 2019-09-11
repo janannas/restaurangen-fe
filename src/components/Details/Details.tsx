@@ -137,7 +137,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
         formControls: {
           name: {
             value: mapArray.name,
-            valid: false,
+            valid: true,
             touched: false,
             validationRules: {
               isRequired: true
@@ -145,7 +145,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           },
           email: {
             value: mapArray.email,
-            valid: false,
+            valid: true,
             touched: false,
             validationRules: {
               isEmail: true
@@ -153,7 +153,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           },
           phone: {
             value: mapArray.phone,
-            valid: false,
+            valid: true,
             touched: false,
             validationRules: {
               isNumber: true,
@@ -162,7 +162,10 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           }
         },
 
-			});
+      });
+      
+      this.validateForm();
+
 	})
 	.catch(error => {
 		console.log(error);
