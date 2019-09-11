@@ -1,5 +1,5 @@
 .Contact {
-    height: 100vh;
+    height: auto;
 }
 .contact-heading {
     text-align: center;
@@ -114,20 +114,17 @@
 
 @media screen and (min-width: 768px) {
     .Contact {
-        height: 80vh;
+        width: 80%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    .Contact {
-        height: 70vh;
-        width: 90vw;
-    }
     .contact-form {
-        padding: 0 5em;
+        padding: 0 5em 0 10em;
+        margin: 0 auto;
     }
     .contact-card {
-        padding: 0 8em;
+        padding: 0 5em;
     }
     .icon-frame {
         background-color: rgb(234, 194, 182);
