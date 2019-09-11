@@ -30,8 +30,7 @@ class Admin extends React.Component< IAdminProps, IBookingState > {
   componentDidMount() {
     this.getBookings();
   }
-
-      
+    
   deleteBookingWithID = (targetID: any) => {
     if(window.confirm('Are you sure you want to delete this booking?')) {
       new ApiCalls().deleteBooking(targetID).then((result: any) => {
