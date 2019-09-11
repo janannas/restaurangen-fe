@@ -402,6 +402,11 @@ h2,
 h3,
 h4 {
   margin: 0;
+  font-family: 'Cinzel', serif;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
 }
 
 footer.row {
