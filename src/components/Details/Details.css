@@ -1,6 +1,7 @@
 form {
-    width: 90%;
-    max-width: 800px;
+    /* Too generic */
+    /* width: 90%;
+    max-width: 800px; */
 }
 
 input {
