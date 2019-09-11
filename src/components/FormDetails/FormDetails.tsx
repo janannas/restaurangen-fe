@@ -230,8 +230,9 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
         />
 
         <GDPR GDPRMessage={GDPRMessage} handleGDPRChange={this.handleGDPRChange} />
-
-        <button type="submit" className="submit-form-button btn" disabled={!formIsValid || !isGDPRChecked}>BOOK NOW</button>
+				<div className="row justify-content-center">
+					<button type="submit" className="submit-form-button btn col-6" disabled={!formIsValid || !isGDPRChecked}>BOOK NOW</button>
+				</div>
 
       </form>
     );

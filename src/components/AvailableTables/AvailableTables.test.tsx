@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import AvailableTables, { IAvailableTablesProp } from './AvailableTables';
-import Booking from '../Booking/Booking';
 
 describe('AvailableTables Component', () => {
 	let props: IAvailableTablesProp;

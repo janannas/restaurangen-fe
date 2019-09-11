@@ -64,16 +64,24 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 
 		// Looping through sittings and change div visability depending on selected time
 		for(let i = 0; i < sittingList.length; i++) {
-			var selectWrap = classNames({
-				'number_of_guests': true,
+			let selectWrap = classNames({
+				'number-of-guests': true,
+				'show': this.props.dateTime.time === sittingList[i],
+				'hide': this.props.dateTime.time !== sittingList[i]
+			});
+
+			let sittingBlock = classNames({
+				'sitting-block': true, 
+				'align-middle': true, 
+				'col-sm-6': true,
 				'show': this.props.dateTime.time === sittingList[i],
 				'hide': this.props.dateTime.time !== sittingList[i]
 			});
 
 			// Pushing looped sittings with HTML into an array
 			displaySittings.push((
-				<div key={'sitting_'+(i+1)} className="sitting_wrap" onClick={() => this.handleTimeClick(sittingList[i])}>
-					<h4>{sittingList[i]}</h4>
+				<div key={'sitting_'+(i+1)} className={sittingBlock} onClick={() => this.handleTimeClick(sittingList[i])}>
+					<h4 className="sitting-time">{sittingList[i]}</h4>
 					<div className={selectWrap}>
 							{selectNumberOfGuests}
 					</div>
@@ -82,9 +90,11 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 		}
 	
 		return (
-			<div>
-				<h3>{this.props.dateTime.date}</h3>
-				{displaySittings}
+			<div className="row justify-content-around">
+				<h3 className="col-sm-12 displayed-date">{this.props.dateTime.date}</h3>
+				<div className="sitting-wrap col-sm-12 row justify-content-between">
+					{displaySittings}
+				</div>
 			</div>
 		); 
 	}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import './Booking.css';
+import '../BaseCss/Base.css';
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
@@ -118,9 +119,6 @@ class Booking extends React.Component<{}, IBookingState> {
 		if (this.state.guests !== 0) {
 			const obj = this.bookingObj();
 
-			// TODO: remove
-			console.log(obj);
-
 			new ApiCalls().createBooking(obj)
 				.then((result: any) => {
 					console.log(result.data);
@@ -209,11 +207,13 @@ class Booking extends React.Component<{}, IBookingState> {
 
 		// OBS! -If h1 is removed/changed update test.tsx too
 		return (
-			<div className="Booking">
-				<h1>Booking works</h1>
+			<main className="Booking container-fluid">
+				<div className="row booking-heading">
+					<h2 className="col-12">Place booking</h2>
+				</div>
 				<div className="booking-form container">
 					<div className="row">
-						<div className="col-md-12">
+						<div className="col-12 col-md-6">
 							<BookingCalendar handleDate={this.changeDate} />
 							<AvailableTables
 								dateTime={this.state.dateTime}
@@ -223,11 +223,13 @@ class Booking extends React.Component<{}, IBookingState> {
 								freeSeats={this.state.freeSeats}
                 guests={this.state.guests}
 							/>
+						</div>
+						<div className="col-12 col-md-6">
 							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
 						</div>
 					</div>
 				</div>
-			</div>
+			</main>
 		);
 	}
 }

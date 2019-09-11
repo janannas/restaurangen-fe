@@ -1,6 +1,42 @@
+/* * {
+	border: 1px solid red;
+} */
+
+h3.displayed-date {
+	font-family: 'Cinzel', serif;
+	font-weight: bolder;
+	margin: .5rem 0;
+	text-align: center;
+}
+
+h4.sitting-time {
+	text-align: center;
+	color: white;
+	cursor: default;
+}
+
 .form-details {
-  /* border: solid 1px red; */
+	/* border: solid 1px red; */
   margin: auto 0;
+}
+
+.form-details label {
+	position: absolute;
+  /* width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+	border: 0; */
+	margin-top: .5rem;
+	right: 1rem;
+}
+
+.form-details input {
+	margin-bottom: 8px;
+	border: 1px solid rgb(1, 50, 64);
+	border-radius: 0;
 }
 
 .submit-form-button {
@@ -31,6 +67,59 @@
   border-left: 4px #EAC2B6 solid;
 }
 
-.GDPR-label {
-  margin: 0;
+label.GDPR-label {
+	position: absolute;
+	margin: 0;
+	left: 1.5rem;
+}
+
+.booking-heading {
+	margin: 0;
+	text-align: center;
+}
+
+.sitting-block {
+	background-color: #013240;
+	border: 1px solid black;
+	max-width: 10rem;
+	margin-bottom: 1rem;
+	padding-top: .5rem;
+	overflow: hidden;
+}
+
+.sitting-wrap {
+	height: 6rem;
+}
+
+.number-of-guests{
+	padding-top: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.sitting-block.hide {
+	max-height: 3rem;
+	transition: all .5s ease-in-out;
+}
+
+.sitting-block.show {
+	max-height: 5rem;
+	transition: all .5s ease-in-out;
+}
+
+.number-of-guests.hide {
+	max-height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	transition: all 0.25s ease-out;
+}
+
+.number-of-guests.show {
+	max-height: 2rem;
+	visibility: visible;
+	transition: all 0.15s ease-in;
+}
+
+.number-of-guests > select {
+	background-color: white;
+	width: 100%;
 }
