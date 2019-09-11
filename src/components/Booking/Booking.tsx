@@ -1,4 +1,5 @@
 import * as React from "react";
+import './Booking.css';
 import ApiCalls from '../../utils/ApiCalls';
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
