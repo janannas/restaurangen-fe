@@ -209,12 +209,9 @@ class Booking extends React.Component<{}, IBookingState> {
 		return (
 			<div className="booking">
 				<h1>Booking works</h1>
-
 				<div className="booking-form container">
-
 					<div className="row">
 						<div className="col-md-12">
-
 							<BookingCalendar handleDate={this.changeDate} />
 							<AvailableTables
 								dateTime={this.state.dateTime}
@@ -224,10 +221,8 @@ class Booking extends React.Component<{}, IBookingState> {
 								freeSeats={this.state.freeSeats}
 							/>
 							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
-
 						</div>
 					</div>
-
 				</div>
 			</div>
 		);
