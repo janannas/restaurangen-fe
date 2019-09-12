@@ -1,5 +1,4 @@
 import * as React from "react"; 
-import './AvailableTables.css';
 
 export interface IAvailableTablesProp {
 	dateTime: {
@@ -73,7 +72,7 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 			let sittingBlock = classNames({
 				'sitting-block': true, 
 				'align-middle': true, 
-				'col-sm-6': true,
+				'col-6': true,
 				'show': this.props.dateTime.time === sittingList[i],
 				'hide': this.props.dateTime.time !== sittingList[i]
 			});
@@ -92,7 +91,7 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 		return (
 			<div className="row justify-content-around">
 				<h3 className="col-sm-12 displayed-date">{this.props.dateTime.date}</h3>
-				<div className="sitting-wrap col-sm-12 row justify-content-between">
+				<div className="sitting-wrap col-12 row justify-content-between">
 					{displaySittings}
 				</div>
 			</div>

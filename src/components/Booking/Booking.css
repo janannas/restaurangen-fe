@@ -58,6 +58,10 @@ h4.sitting-time {
 	margin: 0;
 }
 
+.GDPR-label > input {
+	margin-right: .5rem;
+}
+
 .booking-heading {
 	margin: 0 auto;
 	text-align: center;
@@ -66,11 +70,17 @@ h4.sitting-time {
 
 .sitting-block {
 	background-color: #013240;
-	border: 1px solid black;
-	max-width: 10rem;
+	/* border: 1px solid black; */
+	border: 2px solid rgb(157, 133, 96);
+	max-width: 48%;
 	margin-bottom: 1rem;
 	padding-top: .5rem;
 	overflow: hidden;
+}
+
+.booking-button {
+	height: 3rem;
+	width: 18rem;
 }
 
 .sitting-wrap {
@@ -110,17 +120,28 @@ h4.sitting-time {
 	width: 100%;
 }
 
+div.react-calendar {
+	width: 100%;
+}
+
 @media screen and (min-width: 768px) {
 	.Booking {
-		margin-bottom: 3rem; 
+		margin-bottom: 5rem; 
 	}
 
 	.booking-button {
-		margin-top: .8rem;
+		margin-top: 1.8rem;
 		position: absolute;
 		left: -25%;
 	}
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
+	.Booking {
+		margin-bottom: 6rem; 
+	}
+
+	.booking-button {
+		margin-top: 6rem;
+	}
 }

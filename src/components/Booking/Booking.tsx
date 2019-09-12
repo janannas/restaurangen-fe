@@ -208,7 +208,7 @@ class Booking extends React.Component<{}, IBookingState> {
 				</div>
 				<div className="booking-form container">
 					<div className="row">
-						<div className="col-12 col-md-6">
+						<div className="col-12 col-md-6 col-lg-6">
 							<BookingCalendar handleDate={this.changeDate} />
 							<AvailableTables
 								dateTime={this.state.dateTime}
@@ -219,7 +219,7 @@ class Booking extends React.Component<{}, IBookingState> {
 								guests={this.state.guests}
 							/>
 						</div>
-						<div className="col-12 col-md-6">
+						<div className="col-12 col-md-6 col-lg-6">
 							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
 						</div>
 					</div>
