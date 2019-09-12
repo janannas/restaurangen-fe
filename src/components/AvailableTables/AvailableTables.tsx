@@ -1,7 +1,7 @@
-import * as React from "react"; 
+import * as React from "react";
 import './AvailableTables.css';
 
-export interface IAvailableTablesProp {
+interface IAvailableTablesProps {
 	dateTime: {
 		date: string;
 		time: string;
@@ -16,16 +16,16 @@ export interface IAvailableTablesProp {
 	handleSeatsClick(guests: number): any;
 }
 
-class AvailableTables extends React.Component<IAvailableTablesProp, {}> { 
-	constructor(props: any) {
+class AvailableTables extends React.Component<IAvailableTablesProps, {}> {
+	constructor(props: IAvailableTablesProps) {
 		super(props);
 	}
 
 	handleTimeClick = async (time: string) => {
 		this.props.handleTimeClick(time);
 	}
-	
-	handleSeatsClick = async (event:any) => {
+
+	handleSeatsClick = async (event: any) => {
 		event.preventDefault();
 		let guests = event.target.value;
 		this.props.handleSeatsClick(guests);
@@ -41,29 +41,29 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 		let sittingList = [this.props.config.sittingOne, this.props.config.sittingTwo];
 
 		// Checking if there are any free seats for selected time and date
-		if(this.props.freeSeats === 0) {
+		if (this.props.freeSeats === 0) {
 			selectNumberOfGuests = (
 				<p>No free seats</p>
 			);
 		}
 		else {
 			numberOfGuests.push(
-				<option value='0' key={'guests_'+0}>0</option>
-				);
-			for(let i = 0; i < this.props.freeSeats; i++){
+				<option value='0' key={'guests_' + 0}>0</option>
+			);
+			for (let i = 0; i < this.props.freeSeats; i++) {
 				numberOfGuests.push(
-					<option value={i+1} key={'guests_'+(i+1)}>{i+1}</option>
+					<option value={i + 1} key={'guests_' + (i + 1)}>{i + 1}</option>
 				);
 			}
 			selectNumberOfGuests = (
-				<select 
+				<select
 					value={this.props.guests}
-					name='guests' onChange={(e) => this.handleSeatsClick(e)}>{ numberOfGuests }</select>
+					name='guests' onChange={(e) => this.handleSeatsClick(e)}>{numberOfGuests}</select>
 			);
 		}
 
 		// Looping through sittings and change div visability depending on selected time
-		for(let i = 0; i < sittingList.length; i++) {
+		for (let i = 0; i < sittingList.length; i++) {
 			var selectWrap = classNames({
 				'number_of_guests': true,
 				'show': this.props.dateTime.time === sittingList[i],
@@ -72,21 +72,21 @@ class AvailableTables extends React.Component<IAvailableTablesProp, {}> {
 
 			// Pushing looped sittings with HTML into an array
 			displaySittings.push((
-				<div key={'sitting_'+(i+1)} className="sitting_wrap" onClick={() => this.handleTimeClick(sittingList[i])}>
+				<div key={'sitting_' + (i + 1)} className="sitting_wrap" onClick={() => this.handleTimeClick(sittingList[i])}>
 					<h4>{sittingList[i]}</h4>
 					<div className={selectWrap}>
-							{selectNumberOfGuests}
+						{selectNumberOfGuests}
 					</div>
 				</div>
 			));
 		}
-	
+
 		return (
 			<div>
 				<h3>{this.props.dateTime.date}</h3>
 				{displaySittings}
 			</div>
-		); 
+		);
 	}
 }
 

@@ -1,47 +1,21 @@
 import React from 'react';
 
 import { validate } from '../../utils/validation';
-import { IDetails } from '../Booking/Booking';
+import { IBookingDetails } from '../../interfaces/IBookingDetails';
 
 import FormTextControl from "../FormTextControl/FormTextControl";
 import { GDPR } from "../GDPR/GDPR";
+import { IFormControls } from '../../interfaces/IFormControls';
 
 interface IFormDetailsProps {
-  handleDetailSubmit(details: IDetails): void;
+  handleDetailSubmit(details: IBookingDetails): void;
   GDPRMessage: string;
 }
 
 interface IFormDetailsState {
   formIsValid: boolean;
   isGDPRChecked: boolean;
-
-  formControls: {
-    name: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isRequired: boolean;
-      };
-    };
-    email: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isEmail: boolean;
-      };
-    };
-    phone: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isNumber: boolean;
-        minLength: 3;
-      };
-    };
-  };
+  formControls: IFormControls;
   error: string;
 }
 

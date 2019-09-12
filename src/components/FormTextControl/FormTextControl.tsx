@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IProps {
+interface IFormTextControlProps {
   htmlFor: string;
   label: string;
   touched: boolean | number;
@@ -13,7 +13,7 @@ interface IProps {
   onBlur: any;
 }
 
-const FormTextControl = (props: IProps) => {
+const FormTextControl = (props: IFormTextControlProps) => {
   const {
     htmlFor,
     label,

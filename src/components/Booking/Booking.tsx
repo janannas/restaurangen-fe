@@ -1,25 +1,17 @@
 import * as React from "react";
 import './Booking.css';
+
 import ApiCalls from '../../utils/ApiCalls';
+import { IBooking } from "../../interfaces/IBooking";
+import { IBookingDetails } from "../../interfaces/IBookingDetails";
+import { IBookedTable } from "../../interfaces/IBookedTable";
+
 import BookingCalendar from '../BookingCalendar/BookingCalendar';
 import AvailableTables from '../AvailableTables/AvailableTables';
-import { IBooking } from "../../interfaces/IBooking";
 import FormDetails from "../FormDetails/FormDetails";
 import BookingConfirmation from "../BookingConfirmation/BookingConfirmation";
 
-
 const moment = require('moment');
-
-export interface IDetails {
-	name: string;
-	email: string;
-	phone: string;
-}
-
-export interface IBookedTable {
-	guests: number;
-	sitting: string;
-}
 
 interface IBookingState {
 	bookingSuccessful: boolean;
@@ -34,9 +26,8 @@ interface IBookingState {
 		sittingTwo: string;
 		GDPRMessage: string;
 	}
-	details: IDetails;
+	bookingDetails: IBookingDetails;
 	bookedTables: IBookedTable[];
-
 	freeSeats: number;
 }
 
@@ -57,7 +48,7 @@ class Booking extends React.Component<{}, IBookingState> {
 				sittingTwo: "",
 				GDPRMessage: "",
 			},
-			details: {
+			bookingDetails: {
 				name: '',
 				email: "",
 				phone: ""
@@ -67,9 +58,9 @@ class Booking extends React.Component<{}, IBookingState> {
 		}
 	}
 
-	handleDetailSubmit = async (newDetails: IDetails) => {
+	handleDetailSubmit = async (newDetails: IBookingDetails) => {
 		await this.setState({
-			details: newDetails
+			bookingDetails: newDetails
 		});
 
 		this.prepareBooking();
@@ -102,7 +93,7 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	bookingObj = (): IBooking => {
-		const { name, email, phone } = this.state.details;
+		const { name, email, phone } = this.state.bookingDetails;
 		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
@@ -201,12 +192,12 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	render() {
-		const { bookingSuccessful, details, dateTime } = this.state;
+		const { bookingSuccessful, bookingDetails, dateTime } = this.state;
 		const { GDPRMessage } = this.state.config;
 
 		if (bookingSuccessful) {
 			return <BookingConfirmation
-				name={details.name}
+				name={bookingDetails.name}
 				date={dateTime.date}
 				time={dateTime.time}
 			/>;
