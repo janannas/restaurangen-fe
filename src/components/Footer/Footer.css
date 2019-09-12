@@ -13,9 +13,9 @@
     color: rgb(1, 50, 64);
     padding: 10px 0 0 0;
 }
-.footer-text h2 {
-    font-weight: 700;
-}
+/* .footer-text h2 {
+    font-weight: 500;
+} */
 .footer-text p {
     line-height: 10px;
 }
