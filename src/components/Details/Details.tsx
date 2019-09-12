@@ -49,7 +49,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
       formControls: {
         name: {
           value: "",
-          valid: false,
+          valid: true,
           touched: false,
           validationRules: {
             isRequired: true
@@ -57,7 +57,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         },
         email: {
           value: "",
-          valid: false,
+          valid: true,
           touched: false,
           validationRules: {
             isEmail: true
@@ -65,7 +65,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         },
         phone: {
           value: "",
-          valid: false,
+          valid: true,
           touched: false,
           validationRules: {
             isNumber: true,
