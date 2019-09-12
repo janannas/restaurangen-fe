@@ -186,6 +186,7 @@ class Booking extends React.Component<{}, IBookingState> {
 			freeSeats: seatsThisSitting
 		});
 
+		//If free seats are 0 or if picked guests are greater than free seats, set state to 0
 		if(seatsThisSitting === 0 || seatsThisSitting < this.state.guests){
 			this.setState({
 				guests: 0
