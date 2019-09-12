@@ -1,6 +1,3 @@
-/* * {
-	border: 1px solid red;
-} */
 .Booking {
 	margin-bottom: 2rem; 
 }
@@ -70,7 +67,6 @@ h4.sitting-time {
 
 .sitting-block {
 	background-color: #013240;
-	/* border: 1px solid black; */
 	border: 2px solid rgb(157, 133, 96);
 	max-width: 48%;
 	margin-bottom: 1rem;
@@ -87,9 +83,14 @@ h4.sitting-time {
 	height: 6rem;
 }
 
-.number-of-guests{
+.number-of-guests {
 	padding-top: 0.5rem;
 	margin-bottom: 1rem;
+}
+
+.number-of-guests>p {
+	text-align: center;
+	color: white;
 }
 
 .sitting-block.hide {
@@ -104,15 +105,15 @@ h4.sitting-time {
 
 .number-of-guests.hide {
 	max-height: 0;
-	overflow: hidden;
+	/* overflow: hidden; */
 	visibility: hidden;
-	transition: all 0.25s ease-out;
+	transition: all 0.5s ease-out;
 }
 
 .number-of-guests.show {
 	max-height: 2rem;
 	visibility: visible;
-	transition: all 0.15s ease-in;
+	/* transition: all 0.15s ease-in; */
 }
 
 .number-of-guests > select {
@@ -122,6 +123,14 @@ h4.sitting-time {
 
 div.react-calendar {
 	width: 100%;
+}
+
+button.react-calendar__tile--active {
+	background-color: #013240;
+}
+
+button.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus  {
+	background-color: #00627e;
 }
 
 @media screen and (min-width: 768px) {
