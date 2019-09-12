@@ -1,19 +1,16 @@
 import React from 'react';
 import '../BaseCss/Base.css';
-import './Footer.css' ;
+import './Footer.css';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1Ijoia3JhZWluIiwiYSI6ImNqeGE2dXg0aTAwcmMzcnBiMmoyYnMwcjYifQ.eM_9TD9N2GdmB2w4hEw83w"
 });
 
-class Footer extends React.Component< {}, {}> {
-  
-  render() {
-  
-    return (
-      <footer className="Footer row">
-        <section className="footer-text col-12 col-lg-6">
+const Footer = () => {
+  return (
+    <footer className="Footer row">
+      <section className="footer-text col-12 col-lg-6">
         <img className="footer-logo"
             src="https://svgsilh.com/svg/2028176-013240.svg" 
             alt="crab logo"
