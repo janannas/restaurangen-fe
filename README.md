@@ -173,4 +173,19 @@
   13. Optional render methods like renderNavigation() or renderProfilePicture()
   14. render
 
-- When naming your classes, be as sepcific as possible and follow template "component name - class" to avoid overwriting eachother Example: className="contact-social-icon" or className="booking-form-input" etc 
+- When naming your classes, be as sepcific as possible and follow template "component name - class" to avoid overwriting eachother Example: className="contact-social-icon" or className="booking-form-input" etc.
+
+- Overal color scheme and Fonts:
+
+Colors:
+- Primary (Dark blue): rgb(1, 50, 64)
+- Secondary (Minty-gray): rgb(226, 228, 223)
+- Accent (Golden brown): rgb(157, 133, 96)
+- Second Secondary/Secondary accent (Peachy pink): rgb(234, 194, 182) 
+
+Fonts:
+- Logo, Headings: font-family: 'Cinzel', serif;
+- H1: font-weight: 700; H2-H6: font-weight: 500
+
+- Paragraphs, Other text: font-family: 'Lato', sans-serif;
+
