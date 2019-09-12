@@ -75,7 +75,6 @@ class Home extends React.Component< {}, {}> {
                 <img className="home-booking-link"
                   src="https://svgsilh.com/svg/32681-9d8560.svg" 
                   alt="fish icon"
-                  // height="100px"
                   width="auto" />
                 <h4 className="booking-text mt-3">Go to Bookings!</h4>
               </Link>  
