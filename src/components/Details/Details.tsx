@@ -252,7 +252,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         <h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
         <p className="mb-4 p-1 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
 
-        <form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
+        <form onSubmit={(e) => this.handleSubmit(e)} className="details-form form-details pt-2 mb-4">
           <div className="row mb-4">
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="customer_ID">Customer ID: </label>
