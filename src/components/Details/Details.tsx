@@ -49,7 +49,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
       formControls: {
         name: {
           value: "",
-          valid: true,
+          valid: false,
           touched: false,
           validationRules: {
             isRequired: true
@@ -57,7 +57,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         },
         email: {
           value: "",
-          valid: true,
+          valid: false,
           touched: false,
           validationRules: {
             isEmail: true
@@ -65,7 +65,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         },
         phone: {
           value: "",
-          valid: true,
+          valid: false,
           touched: false,
           validationRules: {
             isNumber: true,
@@ -113,7 +113,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
           formControls: {
             name: {
               value: mapArray.name,
-              valid: false,
+              valid: true,
               touched: false,
               validationRules: {
                 isRequired: true
@@ -121,7 +121,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             },
             email: {
               value: mapArray.email,
-              valid: false,
+              valid: true,
               touched: false,
               validationRules: {
                 isEmail: true
@@ -129,7 +129,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             },
             phone: {
               value: mapArray.phone,
-              valid: false,
+              valid: true,
               touched: false,
               validationRules: {
                 isNumber: true,
@@ -250,10 +250,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
       <div className="details-wrapper">
 
         <h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
-        <p className="mb-4 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
+        <p className="mb-4 p-1 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
 
         <form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
-          <div className="row">
+          <div className="row mb-4">
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="customer_ID">Customer ID: </label>
               <input className="form-control" disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
