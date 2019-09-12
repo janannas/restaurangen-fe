@@ -47,7 +47,7 @@ const BookingConfirmation = ({ name, date, time }: IBookingConfirmationProp) => 
 
 				<p className="mt-5 mb-0 d-block text-left secondary-text-size secondary-text-color">
 					If you have any questions, please give us a call or email:
-					<br /><span className="pl-0 primary-blue-color">&#9658;</span>+46 070123 44
+					<br /><span className="pl-0 primary-blue-color">&#9658;</span>+46 070123 44 88
 					<br /><span className="pl-0 primary-blue-color">&#9658;</span>bookings@lacasadelmar.com
 				</p>
 			</div>
