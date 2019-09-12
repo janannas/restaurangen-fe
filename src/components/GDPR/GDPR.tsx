@@ -70,7 +70,7 @@ export class GDPR extends React.Component<IGDPRProps, IGDPRState> {
           <p>{GDPRMessage}</p>
         </div>
 
-        <div className="text-center w-100">
+        <div className="text-left w-100">
           <label htmlFor="GDPRCheckBox" className="GDPR-label">
             <input
               type="checkbox"

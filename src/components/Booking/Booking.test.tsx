@@ -18,7 +18,7 @@ describe('Booking Component', () => {
 
   it('contains a header with "Booking works"', () => {
     const test = shallow(<Booking />);
-    expect(test.containsMatchingElement(<h1>Booking works</h1>)).toEqual(true);
+    expect(test.containsMatchingElement(<h2>Place booking</h2>)).toEqual(true);
   });
 
   describe('when the button is clicked with the input filled out', () => {

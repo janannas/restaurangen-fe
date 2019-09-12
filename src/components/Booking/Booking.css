@@ -1,18 +1,41 @@
+/* * {
+	border: 1px solid red;
+} */
+.Booking {
+	margin-bottom: 2rem; 
+}
+
+h3.displayed-date {
+	font-family: 'Cinzel', serif;
+	/* font-weight: bolder; */
+	margin: .5rem 0;
+	text-align: center;
+}
+
+h4.sitting-time {
+	text-align: center;
+	color: white;
+	cursor: default;
+}
+
 .form-details {
-  /* border: solid 1px red; */
   margin: auto 0;
 }
 
-.submit-form-button {
-  background-color: #013240;
-  border: 1px solid #013240;
-  color: #E2EEDF;
+.text-labels {
+	position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+	border: 0;
 }
 
-.submit-form-button:hover {
-  background-color: #E2EEDF;
-  border: 1px solid #013240;
-  color: #013240;
+.form-details input {
+	border: 1px solid rgb(1, 50, 64);
+	border-radius: 0;
 }
 
 .btn:disabled:hover {
@@ -32,5 +55,93 @@
 }
 
 .GDPR-label {
-  margin: 0;
+	margin: 0;
+}
+
+.GDPR-label > input {
+	margin-right: .5rem;
+}
+
+.booking-heading {
+	margin: 0 auto;
+	text-align: center;
+	padding: 40px 0;
+}
+
+.sitting-block {
+	background-color: #013240;
+	/* border: 1px solid black; */
+	border: 2px solid rgb(157, 133, 96);
+	max-width: 48%;
+	margin-bottom: 1rem;
+	padding-top: .5rem;
+	overflow: hidden;
+}
+
+.booking-button {
+	height: 3rem;
+	width: 18rem;
+}
+
+.sitting-wrap {
+	height: 6rem;
+}
+
+.number-of-guests{
+	padding-top: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.sitting-block.hide {
+	max-height: 3rem;
+	transition: all .5s ease-in-out;
+}
+
+.sitting-block.show {
+	max-height: 5rem;
+	transition: all .5s ease-in-out;
+}
+
+.number-of-guests.hide {
+	max-height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	transition: all 0.25s ease-out;
+}
+
+.number-of-guests.show {
+	max-height: 2rem;
+	visibility: visible;
+	transition: all 0.15s ease-in;
+}
+
+.number-of-guests > select {
+	background-color: white;
+	width: 100%;
+}
+
+div.react-calendar {
+	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.Booking {
+		margin-bottom: 5rem; 
+	}
+
+	.booking-button {
+		margin-top: 1.8rem;
+		position: absolute;
+		left: -25%;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.Booking {
+		margin-bottom: 6rem; 
+	}
+
+	.booking-button {
+		margin-top: 6rem;
+	}
 }
