@@ -42,8 +42,7 @@ const Footer = () => {
           </Map>
         </section>
       </footer>
-    );
-  }
+  );
 }
 
 export default Footer;
