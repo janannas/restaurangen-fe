@@ -125,6 +125,14 @@ div.react-calendar {
 	width: 100%;
 }
 
+button.react-calendar__tile--active {
+	background-color: #013240;
+}
+
+button.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus  {
+	background-color: #00627e;
+}
+
 @media screen and (min-width: 768px) {
 	.Booking {
 		margin-bottom: 5rem; 
