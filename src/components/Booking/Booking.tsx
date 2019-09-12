@@ -166,22 +166,33 @@ class Booking extends React.Component<{}, IBookingState> {
 		}
 
 		this.setState({
-			dateTime: dateTimeObj
+			dateTime: dateTimeObj,
 		});
 
+		//Getting number of tables from database
 		let numberOfTables = this.state.config.tables;
 
+		//Looping through booked bookings for specific sitting
 		for (let i = 0; i < this.state.bookedTables.length; i++) {
 			let formattedBookedTime = moment(this.state.bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
+			//Checks if chosen time is the same as a booking
 			if (time === formattedBookedTime) {
+				//Checks how many tables are taken by rounding up to closest int
 				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests / 6);
 			}
 		}
+		//Calculates free seats depending on number of free tables
 		var seatsThisSitting = numberOfTables * 6;
 
 		this.setState({
 			freeSeats: seatsThisSitting
 		});
+
+		if(seatsThisSitting === 0){
+			this.setState({
+				guests: 0
+			});
+		}
 	}
 
 	handleSeatsClick = (guests: number) => {
@@ -200,7 +211,7 @@ class Booking extends React.Component<{}, IBookingState> {
 			/>;
 		}
 
-		// OBS! -If h1 is removed/changed update test.tsx too
+		// OBS! -If h2 is removed/changed update test.tsx too
 		return (
 			<main className="Booking container-fluid">
 				<div className="row booking-heading">
