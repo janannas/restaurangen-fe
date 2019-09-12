@@ -151,8 +151,6 @@ class Booking extends React.Component<{}, IBookingState> {
 						bookedTables: data
 					});
 				}
-				// TODO: remove
-				console.log(this.state.bookedTables);
 			})
 			.catch(error => {
 				console.log(error);
