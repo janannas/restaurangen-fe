@@ -8,7 +8,7 @@ nav.row {
     margin: 0;
 }
 .nav-logo {
-    padding: 50px 0 0 0;
+    padding: 20px 0 0 0;
     text-align: center;
 }
 .nav-logo h1 {
@@ -46,7 +46,7 @@ nav.row {
     left: 0; 
 }
 .nav-links {
-    padding: 10px 0;
+    padding: 20px 0;
     width: 40%;
     list-style: none;
     text-decoration: none;
@@ -55,22 +55,13 @@ nav.row {
     align-content: center;
 }
 @media screen and (min-width: 768px) {
-    .nav-style a {
-        font-size: 1.8em;
-    }
     .nav-links {
         padding: 20px 0;
     }
 }
 @media screen and (min-width: 1024px) {
-    .nav-logo {
-        padding: 10px 0 0 0;
-    }
     .nav-links {
         padding: 50px 0;
         margin: 0;
-    }
-    .nav-style a {
-        font-size: 1.5em;
     }
 }

@@ -7,20 +7,12 @@
     font-family: 'Cinzel', serif;
     margin: 0 auto;
 }
-.contact-form {
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-}
 .contact-card {
     max-height: 35rem;
     text-align: center;
 }
 .contact-details {
     margin: 0 auto;
-}
-.contact-text-only {
-    font-weight: 700;
 }
 .name-line {
     display: flex;
@@ -44,10 +36,10 @@
     border: 1px solid rgb(1, 50, 64);
 }
 .text-input {
-    height: 5vh;
+    height: 40px;
 }
 .text-area {
-    height: 20vh;
+    height: 200px;
     border: 1px solid rgb(1, 50, 64);
 }
 .submit-form-button {
@@ -72,9 +64,6 @@
     margin-right: 0.3em;
     text-align: center;
 }
-.icon-frame:hover {
-    background-color: rgb(1, 50, 64);
-}
 .social-icon {
     font-size: 2.5em;
     color: white;
@@ -90,15 +79,30 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .contact-form {
-        padding: 0 5em 0 10em;
-        margin: 0 auto;
-    }
     .contact-card {
         padding: 0 5em;
     }
     .icon-frame {
-        background-color: rgb(234, 194, 182);
+        background-color: rgb(1, 50, 64);
     }
+    .icon-frame:hover {
+        background-color: rgb(226, 228, 223);
+    }
+    .social-icon:hover {
+        color: rgb(1, 50, 64);
+    }
+    .icon-frame a:after {    
+        background-color: rgb(226, 228, 223);
+        background: none repeat scroll 0 0 transparent;
+        position: absolute;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .social-icon a:after {    
+        background-color: rgb(1, 50, 64);
+        background: none repeat scroll 0 0 transparent;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    } 
 }
 

@@ -1,29 +1,27 @@
 import React from 'react';
 import '../BaseCss/Base.css';
-import './Footer.css' ;
+import './Footer.css';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1Ijoia3JhZWluIiwiYSI6ImNqeGE2dXg0aTAwcmMzcnBiMmoyYnMwcjYifQ.eM_9TD9N2GdmB2w4hEw83w"
 });
 
-class Footer extends React.Component< {}, {}> {
-  
-  render() {
-  
-    return (
-      <footer className="Footer row">
-        <section className="footer-text col-12 col-lg-6">
+const Footer = () => {
+  return (
+    <footer className="Footer row">
+      <section className="footer-text col-12 col-lg-6">
         <img className="footer-logo"
             src="https://svgsilh.com/svg/2028176-013240.svg" 
             alt="crab logo"
-            height="150px"
+            height="120px"
             width="auto" />
           <h2>La Casa Del Mar</h2>
           <p>...</p>
-          <p>Tulegatan 41, Vasastan, 144 88 Stockholm</p>
-          <p>Tel: +46 070123 44 88</p>
-          <p>bookings@lacasadelmar.com</p>
+          <p>Tulegatan 41</p>
+          <p>144 88, Stockholm</p>
+          <p>Tel: +46 070 123 44 88</p>
+          <p className="bold">bookings@lacasadelmar.com</p>
         </section>
         <section className="map-container col-12 col-lg-6">
           <Map className="map"
@@ -44,8 +42,7 @@ class Footer extends React.Component< {}, {}> {
           </Map>
         </section>
       </footer>
-    );
-  }
+  );
 }
 
 export default Footer;
