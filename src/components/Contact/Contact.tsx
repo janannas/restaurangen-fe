@@ -13,8 +13,8 @@ const Contact = () => {
         <h2 className="col-12">CONTACT US</h2>
       </div>
 
-      <section className="row justify-content-center mb-3">
-				<div className="col-10 col-lg-5 contact-details">
+      <section className="row m-0 justify-content-center mb-3">
+				<div className="col-10 col-lg-5 mb-3 contact-details">
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
 								<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
@@ -54,7 +54,7 @@ const Contact = () => {
 						<label htmlFor="subject"></label>
 						<textarea id="subject" name="subject" placeholder=" Your message" className="text-area"></textarea>
 
-						<button type="submit" className="btn submit-form-button">SEND E-MAIL</button>
+						<button type="submit" className="btn submit-form-button m-3">SEND E-MAIL</button>
 
 					</form>
 				</div>
