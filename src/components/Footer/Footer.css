@@ -1,6 +1,6 @@
 .Footer {
     background-color: rgb(226, 228, 223);
-    height: 100vh;
+    height: 650px;
     text-align: center;
     border: 10px solid rgb(157, 133, 96); 
 }
@@ -13,9 +13,6 @@
     color: rgb(1, 50, 64);
     padding: 10px 0 0 0;
 }
-/* .footer-text h2 {
-    font-weight: 500;
-} */
 .footer-text p {
     line-height: 10px;
 }
@@ -24,17 +21,17 @@
     padding: 0;
     margin: 0;
 }
-.map canvas {
-    text-align: inherit;
-}
 @media screen and (min-width: 768px) {
+    .Footer {
+        height: 700px;
+    }
     .footer-text {
-        padding: 70px 0;
+        padding: 50px 0;
     }
 }
 @media screen and (min-width: 1024px) {
     .Footer {
-        height: 80vh;
+        height: 500px;
     }
     .footer-text {
         height: 100%;
