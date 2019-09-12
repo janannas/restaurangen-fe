@@ -23,13 +23,13 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 		super(props);
 		
 		this.state = {
-				booking_ID: 0,
-				customer_ID: 0,
-				email:'',
-				guests: 0,
-				name: '',
-				phone: '',
-				sitting: ''
+			booking_ID: 0,
+			customer_ID: 0,
+			email:'',
+			guests: 0,
+			name: '',
+			phone: '',
+			sitting: ''
 		};
   
 	}
@@ -83,14 +83,13 @@ class Details extends React.Component< IAccordionProps, IBookingItem> {
 	}
 
 	handleInputChange = async (event: any) =>{
-			const target = event.target;
-			const value = target.value;
+		const target = event.target;
+		const value = target.value;
 
-			await this.setState({
-				[target.name]: value
-			} as any);
+		await this.setState({
+			[target.name]: value
+		} as any);
 
-			console.log(this.state);
 	}
 
 	updateCustomer = (customerToUpdate: IUpdateCustomer) => {
