@@ -1,72 +1,48 @@
 import React from 'react';
-import './Details.css' ;
-import { validate } from '../../utils/validation';
-import { IBookingItem } from '../../interfaces/IBookingItem';
+import './Details.css';
+
 import ApiCalls from '../../utils/ApiCalls';
+import { validate } from '../../utils/validation';
+
+import { IBookingItem } from '../../interfaces/IBookingItem';
 import { IUpdateBooking } from '../../interfaces/IUpdateBooking';
 import { IUpdateCustomer } from '../../interfaces/IUpdateCustomer';
+import { IFormControls } from '../../interfaces/IFormControls';
+
 import FormTextControl from "../FormTextControl/FormTextControl";
 
 const axios = require('axios');
 
-export interface IAccordionProps {
-	match: {
-		params: {
-			id: any;
-		}
-	}
-	history: {
-		push: any
-	},
+interface IDetailsProps {
+  match: {
+    params: {
+      id: any;
+    }
+  },
+  history: {
+    push: any
+  }
 }
 
 interface IDetailsState {
   formIsValid: boolean;
-
   booking: IUpdateBooking;
-
-  formControls: {
-    name: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isRequired: boolean;
-      };
-    };
-    email: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isEmail: boolean;
-      };
-    };
-    phone: {
-      value: string;
-      valid: boolean;
-      touched: boolean;
-      validationRules: {
-        isNumber: boolean;
-        minLength: 3;
-      };
-    };
-  };
+  formControls: IFormControls;
   error: string;
 }
 
-class Details extends React.Component< IAccordionProps, IDetailsState> {
-  constructor(props: any) {
-		super(props);
-		
-		this.state = {
+class Details extends React.Component<IDetailsProps, IDetailsState> {
+  constructor(props: IDetailsProps) {
+    super(props);
+
+    this.state = {
 
       formIsValid: false, //tracks the overall form validity
 
-			booking: {
+      booking: {
         booking_ID: 0,
-			  customer_ID: 0,
-		  	guests: 0,
+        customer_ID: 0,
+        guests: 0,
         sitting: ''
       },
 
@@ -97,86 +73,83 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           }
         }
       },
-
       error: ""
+    };
+  }
 
-		};
-  
-	}
-
-	componentDidMount() {
+  componentDidMount() {
     this.getBooking();
-	}
-	
-	public getBooking() {
+  }
+
+  public getBooking() {
     new ApiCalls()
-    .getAllBookings().then((result: any) => {
-			var tempArray: IBookingItem[] = [];
-			var mapArray: IBookingItem = {
-        booking_ID: 0,
-        customer_ID: 0,
-        email:'',
-        guests: 0,
-        name: '',
-        phone: '',
-        sitting: ''
-			};
+      .getAllBookings().then((result: any) => {
+        var tempArray: IBookingItem[] = [];
+        var mapArray: IBookingItem = {
+          booking_ID: 0,
+          customer_ID: 0,
+          email: '',
+          guests: 0,
+          name: '',
+          phone: '',
+          sitting: ''
+        };
 
-			tempArray = result.data;
-			tempArray.map((booking: IBookingItem) => {
-				if(booking.booking_ID === this.props.match.params.id) {
-					mapArray = booking;
-        }
-        return mapArray;
-			});
-
-			this.setState({
-				booking: {
-          booking_ID: mapArray.booking_ID,
-				  customer_ID: mapArray.customer_ID,
-			  	guests: mapArray.guests,
-          sitting: mapArray.sitting
-        },
-        formControls: {
-          name: {
-            value: mapArray.name,
-            valid: false,
-            touched: false,
-            validationRules: {
-              isRequired: true
-            }
-          },
-          email: {
-            value: mapArray.email,
-            valid: false,
-            touched: false,
-            validationRules: {
-              isEmail: true
-            }
-          },
-          phone: {
-            value: mapArray.phone,
-            valid: false,
-            touched: false,
-            validationRules: {
-              isNumber: true,
-              minLength: 3
-            }
+        tempArray = result.data;
+        tempArray.map((booking: IBookingItem) => {
+          if (booking.booking_ID === this.props.match.params.id) {
+            mapArray = booking;
           }
-        },
+          return mapArray;
+        });
 
+        this.setState({
+          booking: {
+            booking_ID: mapArray.booking_ID,
+            customer_ID: mapArray.customer_ID,
+            guests: mapArray.guests,
+            sitting: mapArray.sitting
+          },
+          formControls: {
+            name: {
+              value: mapArray.name,
+              valid: false,
+              touched: false,
+              validationRules: {
+                isRequired: true
+              }
+            },
+            email: {
+              value: mapArray.email,
+              valid: false,
+              touched: false,
+              validationRules: {
+                isEmail: true
+              }
+            },
+            phone: {
+              value: mapArray.phone,
+              valid: false,
+              touched: false,
+              validationRules: {
+                isNumber: true,
+                minLength: 3
+              }
+            }
+          },
+
+        });
+
+        this.validateForm();
+
+      })
+      .catch(error => {
+        console.log(error);
       });
-      
-    this.validateForm();
+  }
 
-	  })
-	  .catch(error => {
-		  console.log(error);
-  	});
-	}
+  handleInputChange = async (event: any) => {
 
-	handleInputChange = async (event: any) =>{
-    
     const name: keyof IDetailsState["formControls"] = event.target.name;
     const value = event.target.value;
 
@@ -201,15 +174,15 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
       formControls: updatedControls
     });
 
-	}
+  }
 
-	updateCustomer = (customerToUpdate: IUpdateCustomer) => {
-		axios
-    	.put('http://localhost/admin/update-customer.php/', customerToUpdate)
-    	.then(() => {
-				this.props.history.push("/admin");
-			})
-	}
+  updateCustomer = (customerToUpdate: IUpdateCustomer) => {
+    axios
+      .put('http://localhost/admin/update-customer.php/', customerToUpdate)
+      .then(() => {
+        this.props.history.push("/admin");
+      })
+  }
 
   validateForm = () => {
     const updatedControls = {
@@ -231,7 +204,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
 
     return formIsValid;
   }
-  
+
   validateControl = (event: any) => {
     const name: keyof IDetailsState["formControls"] = event.target.name;
 
@@ -248,38 +221,38 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
       formControls: updatedControls
     });
   }
-  
+
   triggerAllValidation = (event: any) => {
     this.validateControl(event);
     this.validateForm();
   }
-	
-	handleSubmit = (event: any) => {
-	 	event.preventDefault();
 
-	 	var customerToUpdate: IUpdateCustomer;
+  handleSubmit = (event: any) => {
+    event.preventDefault();
 
-	 	customerToUpdate = {
-	 		customer_ID: this.state.booking.customer_ID,
-	 		name: this.state.formControls.name.value,
-	 		email: this.state.formControls.email.value,
-	 		phone: this.state.formControls.phone.value
+    var customerToUpdate: IUpdateCustomer;
+
+    customerToUpdate = {
+      customer_ID: this.state.booking.customer_ID,
+      name: this.state.formControls.name.value,
+      email: this.state.formControls.email.value,
+      phone: this.state.formControls.phone.value
     }
 
-	 	if(window.confirm('Are you sure you want to save this update?')) {
-	 		this.updateCustomer(customerToUpdate);
-	 	}
-		
-	}
-  
+    if (window.confirm('Are you sure you want to save this update?')) {
+      this.updateCustomer(customerToUpdate);
+    }
+
+  }
+
   render() {
     return (
-			<div className="details-wrapper">
+      <div className="details-wrapper">
 
-				<h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
-				<p className="mb-4 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
-				
-				<form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
+        <h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
+        <p className="mb-4 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
+
+        <form onSubmit={(e) => this.handleSubmit(e)} className="details-form pt-2 mb-4">
           <div className="row">
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="customer_ID">Customer ID: </label>
@@ -299,7 +272,7 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="guests">Number fo guests: </label>
               <input className="form-control" disabled id="guests" value={this.state.booking.guests}></input>
-            </div>    
+            </div>
           </div>
 
           <FormTextControl
@@ -342,9 +315,9 @@ class Details extends React.Component< IAccordionProps, IDetailsState> {
           />
 
           <button className="submit-form-button btn" type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
-				</form>
-			</div>
-		);
+        </form>
+      </div>
+    );
   }
 }
 
