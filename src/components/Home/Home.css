@@ -144,7 +144,7 @@
 
 @media screen and (min-width: 1024px) {
     .intro-text, .intro-text-two, .intro-text-three {
-        padding: 1em 20em;
+        padding: 1em 15em;
     }
     .intro-text h2, .intro-text-two h2, .intro-text-three h2 {
         font-size: 2.5em;
