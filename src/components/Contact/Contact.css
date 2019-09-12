@@ -51,14 +51,14 @@
     border: 1px solid rgb(1, 50, 64);
 }
 .submit-form-button {
-    background-color: #013240;
-    border: 1px solid #013240;
-    color: #E2EEDF;
+    background-color: rgb(1, 50, 64);
+    border: 1px solid rgb(1, 50, 64);
+    color: rgb(226, 228, 223);
 }
 .submit-form-button:hover {
-    background-color: #E2EEDF;
-    border: 1px solid #013240;
-    color: #013240;
+    background-color: rgb(226, 228, 223);
+    border: 1px solid rgb(1, 50, 64);
+    color: rgb(1, 50, 64);
 }
 .social-icons-wrapper {
     display: flex;
@@ -104,15 +104,4 @@
         background-color: rgb(234, 194, 182);
     }
 }
-
-/* colors:
-dark blue: rgb(1, 50, 64)
-minty gray: rgb(226, 228, 223)
-golden brown: rgb(157, 133, 96)
-peachy pink rgb(234, 194, 182) 
-
-fonts:
-Rubrik/Logo: font-family: 'Cinzel', serif;
-Text: font-family: 'Lato', sans-serif;
-*/
 

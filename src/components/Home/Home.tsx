@@ -1,4 +1,5 @@
 import React from 'react';
+import '../BaseCss/Base.css';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
@@ -54,7 +55,7 @@ class Home extends React.Component< {}, {}> {
                   alt="fish icon"
                   // height="100px"
                   width="auto" />
-                <h4 className="booking-text">Book your table now!</h4>
+                <h4 className="booking-text">Go to Bookings!</h4>
               </Link>  
             </div>
           </div>
