@@ -36,10 +36,10 @@
     border: 1px solid rgb(1, 50, 64);
 }
 .text-input {
-    height: 5vh;
+    height: 40px;
 }
 .text-area {
-    height: 20vh;
+    height: 200px;
     border: 1px solid rgb(1, 50, 64);
 }
 .submit-form-button {
@@ -79,8 +79,8 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .Contact {
-        height: 60vh;
+    .contact-card {
+        padding: 0 5em;
     }
     .icon-frame {
         background-color: rgb(1, 50, 64);
