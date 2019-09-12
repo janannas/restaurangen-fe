@@ -17,8 +17,8 @@ class Contact extends React.Component< {}, {}> {
           <h2 className="col-12">CONTACT US</h2>
       </div>
 
-      <section className="row contact-form">
-          <div className="col-12 col-lg-4 contact-details">
+      <section className="row justify-content-center mb-3">
+          <div className="col-10 col-md-5 contact-details">
               <div className="social-icons-wrapper">
                   <div className="icon-frame">
                       <a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
@@ -31,16 +31,18 @@ class Contact extends React.Component< {}, {}> {
                   </div>
               </div>
 
-              <div className="contact-text-only">
-              <p>LA CASA DEL MAR</p>
-              <p>TULEGATAN 41,<br />VASASTAN, 144 88 STOCKHOLM, SE</p>
-              <p>GET DIRECTIONS >></p>
-              <p>EMAIL AND PHONE<br />BOOKINGS@LACASADELMAR.COM<br />+46 070123 44 88</p>
+              <div>
+              	<p className="mb-0 bold">LA CASA DEL MAR</p>
+              	<p className="mb-0">TULEGATAN 41</p>
+            		<p>144 88 STOCKHOLM, SE</p>
+              	<p className="mb-0 bold">EMAIL AND PHONE</p>
+								<p className="mb-0">BOOKINGS@LACASADELMAR.COM</p>
+								<p>+46 070123 44 88</p>
               </div>
 
           </div>
 
-          <div className="col-12 col-lg-8">
+          <div className="col-10 col-md-5">
               <form action="mailto:bookings@lacasadelmar.com" className="contact-card">
 
                   <div className="name-line">
