@@ -1,48 +1,47 @@
 import React from 'react';
 import './Admin.css';
+import { Link } from 'react-router-dom';
+
 import ApiCalls from '../../utils/ApiCalls';
 import { IBookingItem } from '../../interfaces/IBookingItem';
-import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export interface IBookingState { 
+interface IAdminState {
   bookingInfo: IBookingItem[];
-  on: boolean;
 }
 
 interface IAdminProps {
   history: {
-		push: any
-	}
+    push: any
+  }
 }
 
-class Admin extends React.Component< IAdminProps, IBookingState > {
-  constructor(props: any) {
+class Admin extends React.Component<IAdminProps, IAdminState> {
+  constructor(props: IAdminProps) {
     super(props);
 
     this.state = {
-      bookingInfo: [],
-      on: false
+      bookingInfo: []
     }
-
   }
 
   componentDidMount() {
     this.getBookings();
   }
-    
+
   deleteBookingWithID = (targetID: any) => {
-    if(window.confirm('Are you sure you want to delete this booking?')) {
+    if (window.confirm('Are you sure you want to delete this booking?')) {
       new ApiCalls().deleteBooking(targetID).then((result: any) => {
         this.props.history.push("/admin");
         this.getBookings();
       });
     }
-	}
+  }
 
   public getBookings() {
     new ApiCalls()
-    .getAllBookings().then((result: any) => {
+      .getAllBookings().then((result: any) => {
         const isArr = Array.isArray(result.data);
 
         const storedInfo: IBookingItem[] = [];
@@ -50,11 +49,11 @@ class Admin extends React.Component< IAdminProps, IBookingState > {
         if (isArr) {
           this.setState({ bookingInfo: result.data });
         }
-        else {         
-          storedInfo.push(result.data);    
+        else {
+          storedInfo.push(result.data);
           this.setState({ bookingInfo: storedInfo });
         }
-        
+
       })
       .catch((error: string) => {
         console.log(error);
@@ -62,7 +61,6 @@ class Admin extends React.Component< IAdminProps, IBookingState > {
   }
 
   render() {
-
     return (
     <div className="App">
       <div className="booking-info-wrapper">

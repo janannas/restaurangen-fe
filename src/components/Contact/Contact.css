@@ -72,9 +72,6 @@
     margin-right: 0.3em;
     text-align: center;
 }
-.icon-frame:hover {
-    background-color: rgb(1, 50, 64);
-}
 .social-icon {
     font-size: 2.5em;
     color: white;
@@ -101,7 +98,26 @@
         padding: 0 5em;
     }
     .icon-frame {
-        background-color: rgb(234, 194, 182);
+        background-color: rgb(1, 50, 64);
     }
+    .icon-frame:hover {
+        background-color: rgb(226, 228, 223);
+    }
+    .social-icon:hover {
+        color: rgb(1, 50, 64);
+    }
+    .icon-frame a:after {    
+        background-color: rgb(226, 228, 223);
+        background: none repeat scroll 0 0 transparent;
+        position: absolute;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .social-icon a:after {    
+        background-color: rgb(1, 50, 64);
+        background: none repeat scroll 0 0 transparent;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    } 
 }
 
