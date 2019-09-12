@@ -14,7 +14,7 @@ const Contact = () => {
       </div>
 
       <section className="row justify-content-center mb-3">
-				<div className="col-10 col-md-5 contact-details">
+				<div className="col-10 col-md-10 col-lg-4 contact-details">
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
 								<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
@@ -37,7 +37,7 @@ const Contact = () => {
 					</div>
 				</div>
 
-				<div className="col-10 col-md-5">
+				<div className="col-10 col-lg-8">
 					<form action="mailto:bookings@lacasadelmar.com" className="contact-card">
 
 						<div className="name-line">
@@ -54,7 +54,7 @@ const Contact = () => {
 						<label htmlFor="subject"></label>
 						<textarea id="subject" name="subject" placeholder=" Your message" className="text-area"></textarea>
 
-						<button type="submit" className="submit-form-button btn submit-form-button">SEND E-MAIL</button>
+						<button type="submit" className="btn submit-form-button">SEND E-MAIL</button>
 
 					</form>
 				</div>
