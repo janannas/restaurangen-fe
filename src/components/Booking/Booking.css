@@ -105,15 +105,15 @@ h4.sitting-time {
 
 .number-of-guests.hide {
 	max-height: 0;
-	overflow: hidden;
+	/* overflow: hidden; */
 	visibility: hidden;
-	transition: all 0.25s ease-out;
+	transition: all 0.5s ease-out;
 }
 
 .number-of-guests.show {
 	max-height: 2rem;
 	visibility: visible;
-	transition: all 0.15s ease-in;
+	/* transition: all 0.15s ease-in; */
 }
 
 .number-of-guests > select {
