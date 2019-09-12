@@ -117,10 +117,11 @@
     .intro-text h2, .intro-text-two h2, .intro-text-three h2 {
         font-size: 2.2em;
         padding: 1em;
-    }
+    } 
     .primary-intro-paragraph {
-        font-size: 1.5em;
-    }  
+        max-width: 750px;
+        margin: 0 auto;
+    }
     .break-point-img-one {
         height: 350px;
     }
@@ -149,9 +150,6 @@
     .intro-text h2, .intro-text-two h2, .intro-text-three h2 {
         font-size: 2.5em;
         padding-bottom: 1em;
-    }
-    .primary-intro-paragraph {
-        font-size: 1.5em;
     }
     .break-point-img-one {
         height: 450px;
