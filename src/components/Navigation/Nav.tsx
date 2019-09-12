@@ -1,4 +1,5 @@
 import React from 'react';
+import '../BaseCss/Base.css';
 import './Nav.css';
 import { Link } from 'react-router-dom';
 
