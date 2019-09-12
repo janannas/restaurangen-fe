@@ -55,7 +55,7 @@ class Home extends React.Component< {}, {}> {
                   alt="fish icon"
                   // height="100px"
                   width="auto" />
-                <h4 className="booking-text">Go to Bokkings!</h4>
+                <h4 className="booking-text">Go to Bookings!</h4>
               </Link>  
             </div>
           </div>
