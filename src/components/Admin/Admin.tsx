@@ -65,28 +65,30 @@ class Admin extends React.Component< IAdminProps, IBookingState > {
 
     return (
     <div className="App">
-      <div>
-        <div className="booking-info-wrapper">
-          <span className="booking-info-span"> Booking ID </span><span> | </span>
-          <span className="booking-info-span"> Name </span><span> | </span>
-          <span className="booking-info-span"> Nr of guests </span><span> | </span>
-          <span className="booking-info-span"> Sitting </span><span> | </span>
-        </div>
-
-        <div>
+      <div className="booking-info-wrapper">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Booking ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Nr of guests</th>
+              <th scope="col">Sitting</th>
+            </tr>
+          </thead>
+          <tbody>
           {this.state.bookingInfo.map((booking: IBookingItem) => (
-          <div key={booking.booking_ID}>
-            <span className="booking-info-span">{booking.booking_ID}</span>
-            <span className="booking-info-span">{booking.name}</span>
-            <span className="booking-info-span">{booking.guests}</span>
-            <span className="booking-info-span">{booking.sitting}</span>
-            <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">Manage booking</button></Link>
-            <button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(booking.booking_ID)}>Delete booking</button>
-          </div>
-          ))}
-        </div>
+            <tr key={booking.booking_ID}>
+              <td>{booking.booking_ID}</td>
+              <td>{booking.name}</td>
+              <td>{booking.guests}</td>
+              <td>{booking.sitting}</td>
+              <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">Manage booking</button></Link>
+              <button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(booking.booking_ID)}>Delete booking</button>
+            </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-
     </div>
     );
   }
