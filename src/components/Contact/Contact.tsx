@@ -14,7 +14,7 @@ const Contact = () => {
       </div>
 
       <section className="row justify-content-center mb-3">
-				<div className="col-10 col-md-10 col-lg-4 contact-details">
+				<div className="col-10 col-lg-5 contact-details">
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
 								<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
@@ -37,7 +37,7 @@ const Contact = () => {
 					</div>
 				</div>
 
-				<div className="col-10 col-lg-8">
+				<div className="col-10 col-lg-7">
 					<form action="mailto:bookings@lacasadelmar.com" className="contact-card">
 
 						<div className="name-line">
