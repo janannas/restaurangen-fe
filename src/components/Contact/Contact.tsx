@@ -57,7 +57,7 @@ class Contact extends React.Component< {}, {}> {
                   <label htmlFor="subject"></label>
                   <textarea id="subject" name="subject" placeholder=" Your message" className="text-area"></textarea>
 
-                  <input name="mail-to" type="submit" className="contact-button" value="SUBMIT" />
+                  <button type ="submit" className="submit-form-button btn submit-form-button">SEND E-MAIL</button>
 
               </form>
 

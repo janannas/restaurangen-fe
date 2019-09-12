@@ -3,7 +3,7 @@
 }
 .contact-heading {
     text-align: center;
-    padding: 20px 0;
+    padding: 40px 0;
     font-family: 'Cinzel', serif;
     margin: 0 auto;
 }
@@ -12,32 +12,31 @@
     align-items: center;
     justify-content: center;
 }
-
 .contact-card {
-    padding: 0.5em;
-    margin: 0 1em 1em 1em;
     max-height: 35rem;
+    text-align: center;
 }
-
+.contact-details {
+    margin: 0 auto;
+}
+.contact-text-only {
+    font-weight: 700;
+}
 .name-line {
     display: flex;
 }
-
 #fname,
 #lname {
     width: 50%;
     margin-bottom: 8px;
     border: 1px solid rgb(1, 50, 64);
 }
-
 #fname {
     margin-right: 4px;
 }
-
 #lname {
     margin-left: 4px;
 }
-
 #telephone,
 #subject {
     width: 100%;
@@ -51,41 +50,16 @@
     height: 20vh;
     border: 1px solid rgb(1, 50, 64);
 }
-
-.contact-button {
-    width: 120px;
-    height: 40px;
-    border: 1px solid rgb(1, 50, 64);
-    background-color: white;
-    text-align: center;
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Lato', sans-serif;
-    font-size: 1.2em;
-    padding: 0.4em 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.contact-button:hover {
+.submit-form-button {
     background-color: rgb(1, 50, 64);
-    color: white;
+    border: 1px solid rgb(1, 50, 64);
+    color: rgb(226, 228, 223);
 }
-
-.contact-details {
-    padding: 0 2em 2em 2em;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.contact-details p {
-    font-weight: bold;
+.submit-form-button:hover {
+    background-color: rgb(226, 228, 223);
+    border: 1px solid rgb(1, 50, 64);
     color: rgb(1, 50, 64);
-    font-family: 'Lato', sans-serif;
 }
-
 .social-icons-wrapper {
     display: flex;
     padding-bottom: 1em;
@@ -98,18 +72,15 @@
     margin-right: 0.3em;
     text-align: center;
 }
-
 .icon-frame:hover {
     background-color: rgb(1, 50, 64);
 }
-
 .social-icon {
     font-size: 2.5em;
     color: white;
     align-self: center;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
-
 }
 
 @media screen and (min-width: 768px) {
@@ -119,6 +90,9 @@
 }
 
 @media screen and (min-width: 1024px) {
+    .Contact {
+        height: 60vh;
+    }
     .contact-form {
         padding: 0 5em 0 10em;
         margin: 0 auto;
@@ -130,15 +104,4 @@
         background-color: rgb(234, 194, 182);
     }
 }
-
-/* colors:
-dark blue: rgb(1, 50, 64)
-minty gray: rgb(226, 228, 223)
-golden brown: rgb(157, 133, 96)
-peachy pink rgb(234, 194, 182) 
-
-fonts:
-Rubrik/Logo: font-family: 'Cinzel', serif;
-Text: font-family: 'Lato', sans-serif;
-*/
 

@@ -121,6 +121,7 @@ class Booking extends React.Component<{}, IBookingState> {
 
 			new ApiCalls().createBooking(obj)
 				.then((result: any) => {
+					// TODO: remove
 					console.log(result.data);
 
 					this.setState({ bookingSuccessful: true });
@@ -160,6 +161,7 @@ class Booking extends React.Component<{}, IBookingState> {
 						bookedTables: data
 					});
 				}
+				// TODO: remove
 				console.log(this.state.bookedTables);
 			})
 			.catch(error => {
@@ -197,12 +199,15 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	render() {
-		console.log(this.state.guests);
-		const { bookingSuccessful } = this.state;
+		const { bookingSuccessful, details, dateTime } = this.state;
 		const { GDPRMessage } = this.state.config;
 
 		if (bookingSuccessful) {
-			return <BookingConfirmation name={this.state.details.name} />;
+			return <BookingConfirmation
+				name={details.name}
+				date={dateTime.date}
+				time={dateTime.time}
+			/>;
 		}
 
 		// OBS! -If h1 is removed/changed update test.tsx too
@@ -221,7 +226,7 @@ class Booking extends React.Component<{}, IBookingState> {
 								handleTimeClick={this.calculateFreeSeats}
 								handleSeatsClick={this.handleSeatsClick}
 								freeSeats={this.state.freeSeats}
-                guests={this.state.guests}
+								guests={this.state.guests}
 							/>
 						</div>
 						<div className="col-12 col-md-6">

@@ -2,34 +2,51 @@ nav {
     display: flex;
     justify-content: space-around;
     align-content: center;
-    background: rgb(1, 50, 64);   
+    background: rgb(1, 50, 64);
 }
 nav.row {
     margin: 0;
 }
 .nav-logo {
-    padding: 30px 0 0 0;
+    padding: 50px 0 0 0;
     text-align: center;
 }
-.nav-crab-logo {
-    height: 100px;
-}
-.nav-logo h2{
+.nav-logo h1 {
     color: rgb(157, 133, 96);
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
+    font-size: 1.5em;
 }
 .nav-style a {
     color: rgb(226, 228, 223);
     text-decoration: none;
     font-family: 'Lato', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
 }
-.nav-style a:hover {
+.nav-links a:hover {
     color: rgb(157, 133, 96);
 }
+.nav-links a:after {    
+    background-color: rgb(157, 133, 96);
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.nav-links a:hover:after { 
+    background-color: rgb(157, 133, 96);
+    width: 100%; 
+    left: 0; 
+}
 .nav-links {
-    padding: 50px 0;
+    padding: 10px 0;
     width: 40%;
     list-style: none;
     text-decoration: none;
@@ -38,25 +55,20 @@ nav.row {
     align-content: center;
 }
 @media screen and (min-width: 768px) {
-    .nav-crab-logo {
-        height: 200px;
-    }
     .nav-style a {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .nav-links {
         padding: 20px 0;
     }
 }
 @media screen and (min-width: 1024px) {
-    .nav-logo h2{
-        padding: 0 0 50px 0;
-    }
-    .nav-crab-logo {
-        height: 80px;
+    .nav-logo {
+        padding: 10px 0 0 0;
     }
     .nav-links {
-        padding: 70px 0;
+        padding: 50px 0;
+        margin: 0;
     }
     .nav-style a {
         font-size: 1.5em;

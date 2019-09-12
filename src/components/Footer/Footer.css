@@ -11,14 +11,12 @@
 }
 .footer-logo {
     color: rgb(1, 50, 64);
-    padding: 10px 0;
+    padding: 10px 0 0 0;
 }
-.footer-text h1 {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-}
+/* .footer-text h2 {
+    font-weight: 500;
+} */
 .footer-text p {
-    font-family: 'Lato', sans-serif;
     line-height: 10px;
 }
 .map-container {

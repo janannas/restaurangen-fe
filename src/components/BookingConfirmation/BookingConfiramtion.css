@@ -1,0 +1,25 @@
+.booking-confirmation {
+  border-top: 5px solid rgb(234, 194, 182);
+  border-bottom: 5px solid rgb(234, 194, 182);
+  padding: 25px;
+  background-color: rgb(248, 248, 247);
+  border-radius: 6px;
+  box-shadow: 3px 5px 6px 0 hsla(0, 0%, 0%, 0.1);
+}
+
+.heading2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
+}
+
+.secondary-text-size {
+ font-size: 0.9em;
+}  
+
+.secondary-text-color {
+ color: rgb(110, 133, 140);
+}
+
+.primary-blue-color {
+  color: rgb(1, 50, 64);
+}

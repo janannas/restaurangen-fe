@@ -396,12 +396,24 @@ template {
 }
 
 /*=====own code, clean base styling====*/
+h1 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
 
-h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   margin: 0;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
 }
 
 footer.row {
@@ -411,6 +423,17 @@ footer.row {
 
 main.container-fluid {
   padding: 0;
+}
+
+.submit-form-button {
+  background-color: rgb(1, 50, 64);
+  border: 1px solid rgb(1, 50, 64);
+  color: rgb(226, 228, 223);
+}
+.submit-form-button:hover {
+  background-color: rgb(226, 228, 223);
+  border: 1px solid rgb(1, 50, 64);
+  color: rgb(1, 50, 64);
 }
 /* © 2019 GitHub, Inc.
 Terms
