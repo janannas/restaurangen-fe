@@ -28,11 +28,6 @@ class ApiCalls {
   deleteBooking(targetID: number) {
     return axios.delete('http://localhost/admin/delete-booking.php/', {data: {"booking_ID": targetID}})
   }
-
-  updateBooking() {
-    return axios.put('http://localhost/admin/update-booking.php');
-
-  }
 }
 
 export default ApiCalls;

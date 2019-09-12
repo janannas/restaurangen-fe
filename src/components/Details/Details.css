@@ -1,13 +1,13 @@
-form {
-    /* Too generic */
-    /* width: 90%;
-    max-width: 800px; */
+.details-wrapper, .details-form {
+  margin: 0 auto;
 }
 
-input {
-    /* margin: .1em .5em; */
+.details-form {
+  width: 90%;
+  max-width: 600px;
 }
 
-button {
-    margin: .5em;
+.details-form-input {
+  margin: .1em .5em .1em 0;
+  display: block; 
 }
