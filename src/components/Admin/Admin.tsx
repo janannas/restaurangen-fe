@@ -6,6 +6,13 @@ import ApiCalls from '../../utils/ApiCalls';
 import { IBookingItem } from '../../interfaces/IBookingItem';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab} from '@fortawesome/free-brands-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+library.add(fab, faEdit, faTrashAlt);
+
+require('bootstrap');
 
 interface IAdminState {
   bookingInfo: IBookingItem[];
@@ -64,7 +71,7 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
     return (
     <div className="App">
       <div className="booking-info-wrapper">
-        <table className="table">
+        <table className="table mt-3 mb-3">
           <thead>
             <tr>
               <th scope="col">Booking ID</th>
@@ -80,8 +87,10 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
               <td>{booking.name}</td>
               <td>{booking.guests}</td>
               <td>{booking.sitting}</td>
-              <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn btn-outline-secondary">Manage booking</button></Link>
-              <button className="btn btn-outline-secondary" id="delete-button" onClick={() =>this.deleteBookingWithID(booking.booking_ID)}>Delete booking</button>
+              <td>
+                <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn admin-btn submit-form-button"><FontAwesomeIcon icon='edit' /></button></Link>
+                <button className="btn admin-btn submit-form-button" id="delete-button" onClick={() =>this.deleteBookingWithID(booking.booking_ID)}><FontAwesomeIcon icon='trash-alt' /></button>
+              </td>
             </tr>
             ))}
           </tbody>

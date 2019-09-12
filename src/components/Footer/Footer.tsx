@@ -21,9 +21,10 @@ class Footer extends React.Component< {}, {}> {
             width="auto" />
           <h2>La Casa Del Mar</h2>
           <p>...</p>
-          <p>Tulegatan 41, Vasastan, 144 88 Stockholm</p>
-          <p>Tel: +46 070123 44 88</p>
-          <p>bookings@lacasadelmar.com</p>
+          <p>Tulegatan 41</p>
+          <p>144 88, Stockholm</p>
+          <p>Tel: +46 070 123 44 88</p>
+          <p className="bold">bookings@lacasadelmar.com</p>
         </section>
         <section className="map-container col-12 col-lg-6">
           <Map className="map"

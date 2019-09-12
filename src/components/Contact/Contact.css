@@ -7,20 +7,12 @@
     font-family: 'Cinzel', serif;
     margin: 0 auto;
 }
-.contact-form {
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-}
 .contact-card {
     max-height: 35rem;
     text-align: center;
 }
 .contact-details {
     margin: 0 auto;
-}
-.contact-text-only {
-    font-weight: 700;
 }
 .name-line {
     display: flex;
@@ -89,13 +81,6 @@
 @media screen and (min-width: 1024px) {
     .Contact {
         height: 60vh;
-    }
-    .contact-form {
-        padding: 0 5em 0 10em;
-        margin: 0 auto;
-    }
-    .contact-card {
-        padding: 0 5em;
     }
     .icon-frame {
         background-color: rgb(1, 50, 64);
