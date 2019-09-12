@@ -35,27 +35,48 @@ class Home extends React.Component< {}, {}> {
             <p className="primary-intro-paragraph">Get cozy with these classic cold weather Spanish tapas fresh on our menu this month!</p>
             <hr className="menu-hr"/>
             <ul className="primary-intro-menu">
-              <li>Champiñones rellenos (Stuffed Mushrooms)</li>
-              <li>Gambas al Ajillo (Garlic Shrimp)</li>
-              <li>Buñuelos de bacalao (Salt Cod Fritters)</li>
-              <li>Boquerones en Vinagre (Anchovies Marinated in Vinegar)</li>
-              <li>Patatas revolconas (Paprika Mashed Potatoes)</li>
+              <li>
+                <p className="bold mb-0">Champiñones rellenos</p>
+                <p className="small-italic mb-0">(Stuffed Mushrooms)</p>
+                <p className="bold">120:-</p>
+              </li>
+              <li>
+                <p className="bold mb-0">Gambas al Ajillo</p>
+                <p className="small-italic mb-0">(Garlic Shrimp)</p>
+                <p className="bold">145:-</p>
+              </li>
+              <li>
+                <p className="bold mb-0">Buñuelos de bacalao</p>
+                <p className="small-italic mb-0">(Salt Cod Fritters)</p>
+                <p className="bold">135:-</p>
+              </li>
+              <li>
+                <p className="bold mb-0">Boquerones en Vinagre</p>
+                <p className="small-italic mb-0">(Anchovies Marinated in Vinegar)</p>
+                <p className="bold">130:-</p>
+              </li>
+              <li>
+                <p className="bold mb-0">Patatas revolconas</p>
+                <p className="small-italic mb-0">(Paprika Mashed Potatoes)</p>
+                <p className="bold">115:-</p>
+              </li>
             </ul>
+            <hr className="menu-hr"/>
             <p className="primary-intro-paragraph">And we celebrate La Rioja Grape Harvest Festival in Logroño with a wine tasting from the region.</p>
           </div>
         </div>
 
-        <div className="break-point-img-three">
+        <div className="break-point-img-three p-3">
           <div className="img-four-box">
             <div className="img-four-text">
-              <p>We invite spacious and stylish culinary experience in luxury setting, thrive most with parties of six or more and encourage social dining.<br />We highly recommend booking in advance!</p>
+              <p>We invite spacious and stylish culinary experience in luxury setting, thrive most with parties of six or more and encourage social dining.</p>
+                <p>We highly recommend booking in advance!</p>
               <Link to='/booking'>
                 <img className="home-booking-link"
                   src="https://svgsilh.com/svg/32681-9d8560.svg" 
                   alt="fish icon"
-                  // height="100px"
                   width="auto" />
-                <h4 className="booking-text">Go to Bookings!</h4>
+                <h4 className="booking-text mt-3">Go to Bookings!</h4>
               </Link>  
             </div>
           </div>
