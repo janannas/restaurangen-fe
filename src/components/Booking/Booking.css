@@ -1,6 +1,3 @@
-/* * {
-	border: 1px solid red;
-} */
 .Booking {
 	margin-bottom: 2rem; 
 }
@@ -70,7 +67,6 @@ h4.sitting-time {
 
 .sitting-block {
 	background-color: #013240;
-	/* border: 1px solid black; */
 	border: 2px solid rgb(157, 133, 96);
 	max-width: 48%;
 	margin-bottom: 1rem;
