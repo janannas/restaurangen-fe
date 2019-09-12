@@ -17,16 +17,18 @@ class Home extends React.Component{
   }
 
   topFunction(){
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scroll({
+      top:0,
+      behavior: 'smooth'
+    })
   }
 
   render() {
     return (
       <div className="Home" >
 
-        <button onClick={this.topFunction} id="myBtn" title="Go to top">
-        <FontAwesomeIcon icon='arrow-up' />
+        <button onClick={this.topFunction} className="to-top-button" title="Go to top">
+        <FontAwesomeIcon className="to-top-i" icon='arrow-up' />
         </button>
   
         <header className="hero-image">

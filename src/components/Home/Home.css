@@ -1,4 +1,4 @@
-#myBtn {
+.to-top-button {
     position: fixed;
     bottom: 20px;
     right: 30px;
@@ -13,8 +13,12 @@
     border-radius: 4px;
 }
   
-#myBtn:hover {
-    background-color: rgb(226, 228, 223, 0.5);
+.to-top-button:hover {
+    background-color: rgb(0, 91, 117);
+}
+
+.to-top-i:hover i {
+    color: black;
 }
 
 .bold {
