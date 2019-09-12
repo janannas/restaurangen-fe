@@ -1,10 +1,13 @@
 /* * {
 	border: 1px solid red;
 } */
+.Booking {
+	margin-bottom: 2rem; 
+}
 
 h3.displayed-date {
 	font-family: 'Cinzel', serif;
-	font-weight: bolder;
+	/* font-weight: bolder; */
 	margin: .5rem 0;
 	text-align: center;
 }
@@ -16,39 +19,23 @@ h4.sitting-time {
 }
 
 .form-details {
-	/* border: solid 1px red; */
   margin: auto 0;
 }
 
-.form-details label {
+.text-labels {
 	position: absolute;
-  /* width: 1px;
+  width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
-	border: 0; */
-	margin-top: .5rem;
-	right: 1rem;
+	border: 0;
 }
 
 .form-details input {
-	margin-bottom: 8px;
 	border: 1px solid rgb(1, 50, 64);
 	border-radius: 0;
-}
-
-.submit-form-button {
-  background-color: #013240;
-  border: 1px solid #013240;
-  color: #E2EEDF;
-}
-
-.submit-form-button:hover {
-  background-color: #E2EEDF;
-  border: 1px solid #013240;
-  color: #013240;
 }
 
 .btn:disabled:hover {
@@ -67,15 +54,14 @@ h4.sitting-time {
   border-left: 4px #EAC2B6 solid;
 }
 
-label.GDPR-label {
-	position: absolute;
+.GDPR-label {
 	margin: 0;
-	left: 1.5rem;
 }
 
 .booking-heading {
-	margin: 0;
+	margin: 0 auto;
 	text-align: center;
+	padding: 40px 0;
 }
 
 .sitting-block {
@@ -122,4 +108,19 @@ label.GDPR-label {
 .number-of-guests > select {
 	background-color: white;
 	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.Booking {
+		margin-bottom: 3rem; 
+	}
+
+	.booking-button {
+		margin-top: .8rem;
+		position: absolute;
+		left: -25%;
+	}
+}
+
+@media screen and (min-width: 1024px) {
 }

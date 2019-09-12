@@ -2,7 +2,7 @@ import React from 'react';
 
 interface IProps {
   htmlFor: string;
-  label: string;
+	label: string;
   touched: boolean | number;
   valid: boolean | number;
   error: string;
@@ -25,8 +25,8 @@ const FormTextControl = (props: IProps) => {
   return (
     <>
       <div>
-        <label htmlFor={htmlFor}>{label}</label>
-        <input className="form-control" {...props} />
+        <label className="text-labels" htmlFor={htmlFor}>{label}</label>
+        <input className="form-control" placeholder={label} {...props} />
       </div>
 
       <div className="form-control-error">

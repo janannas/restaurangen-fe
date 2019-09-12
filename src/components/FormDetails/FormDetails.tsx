@@ -197,7 +197,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
           onBlur={this.triggerAllValidation}
           value={name.value}
           id="name"
-          label="Name: "
+					label="Name"
           touched={name.touched ? 1 : 0}
           valid={name.valid ? 1 : 0}
           error={"Field is required"}
@@ -210,7 +210,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
           onBlur={this.triggerAllValidation}
           value={email.value}
           id="email"
-          label="Email: "
+					label="Email"
           touched={email.touched ? 1 : 0}
           valid={email.valid ? 1 : 0}
           error={"Please enter a valid email-address"}
@@ -223,7 +223,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
           onBlur={this.triggerAllValidation}
           value={phone.value}
           id="phone"
-          label="Phone Number: "
+					label="Phone Number"
           touched={phone.touched ? 1 : 0}
           valid={phone.valid ? 1 : 0}
           error={"Please enter at least three digits"}
@@ -231,7 +231,7 @@ class FormDetails extends React.Component<IFormDetailsProps, IFormDetailsState> 
 
         <GDPR GDPRMessage={GDPRMessage} handleGDPRChange={this.handleGDPRChange} />
 				<div className="row justify-content-center">
-					<button type="submit" className="submit-form-button btn col-6" disabled={!formIsValid || !isGDPRChecked}>BOOK NOW</button>
+					<button type="submit" className="booking-button submit-form-button btn col-6" disabled={!formIsValid || !isGDPRChecked}>BOOK NOW</button>
 				</div>
 
       </form>
