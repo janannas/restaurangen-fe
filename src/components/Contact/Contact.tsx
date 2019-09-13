@@ -14,15 +14,33 @@ const Contact = () => {
 
 			<section className="row m-0 justify-content-center mb-3">
 				<div className="col-10 col-lg-5 mb-3 contact-details">
+
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
-							<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
+							<a
+								href="https://www.facebook.com"
+								aria-label="Find us on facebook"
+							>
+								<FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} />
+							</a>
 						</div>
+
 						<div className="icon-frame">
-							<a href="https://www.instagram.com" aria-label="Find us on instagram"><FontAwesomeIcon className="social-icon" icon={['fab', 'instagram']} /></a>
+							<a
+								href="https://www.instagram.com"
+								aria-label="Find us on instagram"
+							>
+								<FontAwesomeIcon className="social-icon" icon={['fab', 'instagram']} />
+							</a>
 						</div>
+
 						<div className="icon-frame">
-							<a href="https://www.twitter.com" aria-label="Find us on twitter"><FontAwesomeIcon className="social-icon" icon={['fab', 'twitter']} /></a>
+							<a
+								href="https://www.twitter.com"
+								aria-label="Find us on twitter"
+							>
+								<FontAwesomeIcon className="social-icon" icon={['fab', 'twitter']} />
+							</a>
 						</div>
 					</div>
 
@@ -41,17 +59,39 @@ const Contact = () => {
 
 						<div className="name-line">
 							<label htmlFor="fname"></label>
-							<input type="text" id="fname" name="firstname" className="text-input" placeholder=" First Name" />
+							<input type="text"
+								id="fname"
+								name="firstname"
+								className="text-input"
+								placeholder=" First Name"
+							/>
 
 							<label htmlFor="lname"></label>
-							<input type="text" id="lname" name="lastname" className="text-input" placeholder=" Last Name" />
+							<input
+								type="text"
+								id="lname"
+								name="lastname"
+								className="text-input"
+								placeholder=" Last Name"
+							/>
 						</div>
 
 						<label htmlFor="telephone"></label>
-						<input type="text" id="telephone" name="telephone" placeholder=" Telephone Number" className="text-input" />
+						<input
+							type="text"
+							id="telephone"
+							name="telephone"
+							placeholder=" Telephone Number"
+							className="text-input"
+						/>
 
 						<label htmlFor="subject"></label>
-						<textarea id="subject" name="subject" placeholder=" Your message" className="text-area"></textarea>
+						<textarea
+							id="subject"
+							name="subject"
+							placeholder=" Your message"
+							className="text-area">
+						</textarea>
 
 						<button type="submit" className="btn submit-form-button m-3">SEND E-MAIL</button>
 

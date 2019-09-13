@@ -16,6 +16,13 @@ export interface IAvailableTablesProps {
 }
 
 const AvailableTables = (props: IAvailableTablesProps) => {
+	const {
+		config,
+		freeSeats,
+		guests,
+		dateTime
+	} = props;
+
 	const handleTimeClick = async (time: string) => {
 		props.handleTimeClick(time);
 	}
@@ -32,10 +39,10 @@ const AvailableTables = (props: IAvailableTablesProps) => {
 	var selectNumberOfGuests;
 
 	// Adding the sittings into an array in order to loop through them
-	let sittingList = [props.config.sittingOne, props.config.sittingTwo];
+	let sittingList = [config.sittingOne, config.sittingTwo];
 
 	// Checking if there are any free seats for selected time and date
-	if (props.freeSeats === 0) {
+	if (freeSeats === 0) {
 		selectNumberOfGuests = (
 			<p>No free seats</p>
 		);
@@ -44,15 +51,23 @@ const AvailableTables = (props: IAvailableTablesProps) => {
 		numberOfGuests.push(
 			<option value='0' key={'guests_' + 0}>0</option>
 		);
-		for (let i = 0; i < props.freeSeats; i++) {
+		for (let i = 0; i < freeSeats; i++) {
 			numberOfGuests.push(
-				<option value={i + 1} key={'guests_' + (i + 1)}>{i + 1}</option>
+				<option
+					value={i + 1}
+					key={'guests_' + (i + 1)}
+				>
+					{i + 1}
+				</option>
 			);
 		}
 		selectNumberOfGuests = (
 			<select
-				value={props.guests}
-				name='guests' onChange={(e) => handleSeatsClick(e)}>{numberOfGuests}</select>
+				value={guests}
+				name='guests' onChange={(e) => handleSeatsClick(e)}
+			>
+				{numberOfGuests}
+			</select>
 		);
 	}
 
@@ -60,21 +75,25 @@ const AvailableTables = (props: IAvailableTablesProps) => {
 	for (let i = 0; i < sittingList.length; i++) {
 		let selectWrap = classNames({
 			'number-of-guests': true,
-			'show': props.dateTime.time === sittingList[i],
-			'hide': props.dateTime.time !== sittingList[i]
+			'show': dateTime.time === sittingList[i],
+			'hide': dateTime.time !== sittingList[i]
 		});
 
 		let sittingBlock = classNames({
 			'sitting-block': true,
 			'align-middle': true,
 			'col-6': true,
-			'show': props.dateTime.time === sittingList[i],
-			'hide': props.dateTime.time !== sittingList[i]
+			'show': dateTime.time === sittingList[i],
+			'hide': dateTime.time !== sittingList[i]
 		});
 
 		// Pushing looped sittings with HTML into an array
 		displaySittings.push((
-			<div key={'sitting_' + (i + 1)} className={sittingBlock} onClick={() => handleTimeClick(sittingList[i])}>
+			<div
+				key={'sitting_' + (i + 1)}
+				className={sittingBlock}
+				onClick={() => handleTimeClick(sittingList[i])}
+			>
 				<h4 className="sitting-time">{sittingList[i]}</h4>
 				<div className={selectWrap}>
 					{selectNumberOfGuests}
@@ -85,7 +104,7 @@ const AvailableTables = (props: IAvailableTablesProps) => {
 
 	return (
 		<div className="row justify-content-around">
-			<h3 className="col-sm-12 displayed-date">{props.dateTime.date}</h3>
+			<h3 className="col-sm-12 displayed-date">{dateTime.date}</h3>
 			<div className="sitting-wrap col-12 row justify-content-between">
 				{displaySittings}
 			</div>

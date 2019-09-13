@@ -39,10 +39,11 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
 
   deleteBookingWithID = (targetID: any) => {
     if (window.confirm('Are you sure you want to delete this booking?')) {
-      new ApiCalls().deleteBooking(targetID).then((result: any) => {
-        this.props.history.push("/admin");
-        this.getBookings();
-      });
+      new ApiCalls().deleteBooking(targetID)
+        .then((result: any) => {
+          this.props.history.push("/admin");
+          this.getBookings();
+        });
     }
   }
 
@@ -85,14 +86,30 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
             <tbody>
               {this.state.bookingInfo.map((booking: IBookingItem) => (
                 <tr key={booking.booking_ID}>
+
                   <td>{booking.booking_ID}</td>
                   <td>{booking.name}</td>
                   <td>{booking.guests}</td>
                   <td>{booking.sitting}</td>
                   <td>
-                    <Link to={`accordion/${booking.booking_ID}`}><button type="button" className="btn admin-btn submit-form-button"><FontAwesomeIcon icon='edit' /></button></Link>
-                    <button className="btn admin-btn submit-form-button" id="delete-button" onClick={() => this.deleteBookingWithID(booking.booking_ID)}><FontAwesomeIcon icon='trash-alt' /></button>
+                    <Link to={`accordion/${booking.booking_ID}`}>
+                      <button
+                        type="button"
+                        className="btn admin-btn submit-form-button"
+                      >
+                        <FontAwesomeIcon icon='edit' />
+                      </button>
+                    </Link>
+
+                    <button
+                      className="btn admin-btn submit-form-button"
+                      id="delete-button"
+                      onClick={() => this.deleteBookingWithID(booking.booking_ID)}
+                    >
+                      <FontAwesomeIcon icon='trash-alt' />
+                    </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>

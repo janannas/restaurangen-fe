@@ -16,11 +16,13 @@ const Nav = () => {
       </ul>
 
       <Link className="nav-logo col-12 col-lg-4 order-first" to='/'>
-        <img className="nav-crab-logo"
+        <img
+          className="nav-crab-logo"
           src="https://svgsilh.com/svg/2028176-9d8560.svg"
           alt="crab logo"
           height="60px"
-          width="auto" />
+          width="auto"
+        />
         <h1>La Casa Del Mar</h1>
       </Link>
 
@@ -32,7 +34,6 @@ const Nav = () => {
           <li>Admin</li>
         </Link>
       </ul>
-
     </nav>
   );
 }
