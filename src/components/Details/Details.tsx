@@ -36,16 +36,13 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
     super(props);
 
     this.state = {
-
       formIsValid: false, //tracks the overall form validity
-
       booking: {
         booking_ID: 0,
         customer_ID: 0,
         guests: 0,
         sitting: ''
       },
-
       formControls: {
         name: {
           value: "",
@@ -81,7 +78,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
     this.getBooking();
   }
 
-  public getBooking() {
+  getBooking() {
     new ApiCalls()
       .getAllBookings().then((result: any) => {
         var tempArray: IBookingItem[] = [];
@@ -137,11 +134,9 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
               }
             }
           },
-
         });
 
         this.validateForm();
-
       })
       .catch(error => {
         console.log(error);
@@ -149,7 +144,6 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
   }
 
   handleInputChange = async (event: any) => {
-
     const name: keyof IDetailsState["formControls"] = event.target.name;
     const value = event.target.value;
 
@@ -229,14 +223,15 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
+    const { booking, formControls } = this.state;
 
     var customerToUpdate: IUpdateCustomer;
 
     customerToUpdate = {
-      customer_ID: this.state.booking.customer_ID,
-      name: this.state.formControls.name.value,
-      email: this.state.formControls.email.value,
-      phone: this.state.formControls.phone.value
+      customer_ID: booking.customer_ID,
+      name: formControls.name.value,
+      email: formControls.email.value,
+      phone: formControls.phone.value
     }
 
     if (window.confirm('Are you sure you want to save this update?')) {
@@ -246,32 +241,58 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
   }
 
   render() {
+    const {
+      booking,
+      formControls,
+      formIsValid
+    } = this.state;
+
     return (
       <div className="details-wrapper">
 
-        <h3 className="m-4 text-center">Handling booking with id: {this.state.booking.booking_ID}</h3>
+        <h3 className="m-4 text-center">Handling booking with id: {booking.booking_ID}</h3>
         <p className="mb-4 p-1 text-center">To edit this booking, make your changes and click the "Submit changes" button</p>
 
         <form onSubmit={(e) => this.handleSubmit(e)} className="details-form form-details pt-2 mb-4">
           <div className="row mb-4">
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="customer_ID">Customer ID: </label>
-              <input className="form-control" disabled id="customer_ID" value={this.state.booking.customer_ID}></input>
+              <input
+                className="form-control"
+                disabled id="customer_ID"
+                value={booking.customer_ID}
+              >
+              </input>
             </div>
 
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="booking_ID">Booking ID: </label>
-              <input className="form-control" disabled id="booking_ID" value={this.state.booking.booking_ID}></input>
+              <input
+                className="form-control"
+                disabled id="booking_ID"
+                value={booking.booking_ID}
+              >
+              </input>
             </div>
 
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="sitting">Sitting: </label>
-              <input className="form-control" disabled id="sitting" value={this.state.booking.sitting}></input>
+              <input
+                className="form-control"
+                disabled id="sitting"
+                value={booking.sitting}
+              >
+              </input>
             </div>
 
             <div className="d-flex flex-column col-12 col-md-6">
               <label htmlFor="guests">Number fo guests: </label>
-              <input className="form-control" disabled id="guests" value={this.state.booking.guests}></input>
+              <input
+                className="form-control"
+                disabled id="guests"
+                value={booking.guests}
+              >
+              </input>
             </div>
           </div>
 
@@ -280,11 +301,11 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             htmlFor="name"
             onChange={this.handleInputChange}
             onBlur={this.triggerAllValidation}
-            value={this.state.formControls.name.value}
+            value={formControls.name.value}
             id="name"
             label="Name: "
-            touched={this.state.formControls.name.touched ? 1 : 0}
-            valid={this.state.formControls.name.valid ? 1 : 0}
+            touched={formControls.name.touched ? 1 : 0}
+            valid={formControls.name.valid ? 1 : 0}
             error={"Field is required"}
           />
 
@@ -293,11 +314,11 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             htmlFor="email"
             onChange={this.handleInputChange}
             onBlur={this.triggerAllValidation}
-            value={this.state.formControls.email.value}
+            value={formControls.email.value}
             id="email"
             label="Email: "
-            touched={this.state.formControls.email.touched ? 1 : 0}
-            valid={this.state.formControls.email.valid ? 1 : 0}
+            touched={formControls.email.touched ? 1 : 0}
+            valid={formControls.email.valid ? 1 : 0}
             error={"Please enter a valid email-address"}
           />
 
@@ -306,15 +327,21 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             htmlFor="phone"
             onChange={this.handleInputChange}
             onBlur={this.triggerAllValidation}
-            value={this.state.formControls.phone.value}
+            value={formControls.phone.value}
             id="phone"
             label="Phone Number: "
-            touched={this.state.formControls.phone.touched ? 1 : 0}
-            valid={this.state.formControls.phone.valid ? 1 : 0}
+            touched={formControls.phone.touched ? 1 : 0}
+            valid={formControls.phone.valid ? 1 : 0}
             error={"Please enter at least three digits"}
           />
 
-          <button className="submit-form-button btn" type="submit" disabled={!this.state.formIsValid}>Submit changes</button>
+          <button
+            className="submit-form-button btn"
+            type="submit"
+            disabled={!formIsValid}
+          >
+            Submit changes
+          </button>
         </form>
       </div>
     );

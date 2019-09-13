@@ -72,7 +72,6 @@ class Booking extends React.Component<{}, IBookingState> {
 				const data = result.data;
 
 				let configObj = data.reduce((acc: any, obj: any) => {
-
 					return { ...acc, [obj.key]: obj["value"] }
 				}, {});
 
@@ -94,24 +93,26 @@ class Booking extends React.Component<{}, IBookingState> {
 
 	bookingObj = (): IBooking => {
 		const { name, email, phone } = this.state.bookingDetails;
+		const { guests } = this.state;
 		let dateTime = this.state.dateTime.date + " " + this.state.dateTime.time;
 
 		return {
 			name: name,
 			email: email,
 			phone: phone,
-			guests: this.state.guests,
+			guests: guests,
 			sitting: dateTime
 		};
 	}
 
 	prepareBooking = (): void => {
-		if (this.state.guests !== 0) {
+		const { guests } = this.state;
+
+		if (guests !== 0) {
 			const obj = this.bookingObj();
 
 			new ApiCalls().createBooking(obj)
 				.then((result: any) => {
-					// TODO: remove
 					console.log(result.data);
 
 					this.setState({ bookingSuccessful: true });
@@ -158,8 +159,15 @@ class Booking extends React.Component<{}, IBookingState> {
 	}
 
 	calculateFreeSeats = (time: string) => {
+		const {
+			dateTime,
+			config,
+			bookedTables,
+			guests
+		} = this.state;
+
 		var dateTimeObj = {
-			date: this.state.dateTime.date,
+			date: dateTime.date,
 			time: time
 		}
 
@@ -168,15 +176,15 @@ class Booking extends React.Component<{}, IBookingState> {
 		});
 
 		//Getting number of tables from database
-		let numberOfTables = this.state.config.tables;
+		let numberOfTables = config.tables;
 
 		//Looping through booked bookings for specific sitting
-		for (let i = 0; i < this.state.bookedTables.length; i++) {
-			let formattedBookedTime = moment(this.state.bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
+		for (let i = 0; i < bookedTables.length; i++) {
+			let formattedBookedTime = moment(bookedTables[i].sitting, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
 			//Checks if chosen time is the same as a booking
 			if (time === formattedBookedTime) {
 				//Checks how many tables are taken by rounding up to closest int
-				numberOfTables -= Math.ceil(this.state.bookedTables[i].guests / 6);
+				numberOfTables -= Math.ceil(bookedTables[i].guests / 6);
 			}
 		}
 		//Calculates free seats depending on number of free tables
@@ -187,7 +195,7 @@ class Booking extends React.Component<{}, IBookingState> {
 		});
 
 		//If free seats are 0 or if picked guests are greater than free seats, set state to 0
-		if(seatsThisSitting === 0 || seatsThisSitting < this.state.guests){
+		if (seatsThisSitting === 0 || seatsThisSitting < guests) {
 			this.setState({
 				guests: 0
 			});
@@ -210,13 +218,15 @@ class Booking extends React.Component<{}, IBookingState> {
 			/>;
 		}
 
-		// OBS! -If h2 is removed/changed update test.tsx too
+		// If h2 is removed/changed update test.tsx too
 		return (
 			<main className="Booking container-fluid">
 				<div className="row booking-heading">
 					<h2 className="col-12">Place booking</h2>
 				</div>
+
 				<div className="booking-form container">
+
 					<div className="row">
 						<div className="col-12 col-md-6 col-lg-6">
 							<BookingCalendar handleDate={this.changeDate} />
@@ -229,10 +239,15 @@ class Booking extends React.Component<{}, IBookingState> {
 								guests={this.state.guests}
 							/>
 						</div>
+
 						<div className="col-12 col-md-6 col-lg-6">
-							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+							<FormDetails
+								handleDetailSubmit={this.handleDetailSubmit}
+								GDPRMessage={GDPRMessage}
+							/>
 						</div>
 					</div>
+
 				</div>
 			</main>
 		);

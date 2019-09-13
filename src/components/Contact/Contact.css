@@ -1,112 +1,133 @@
 .Contact {
-    height: auto;
+  height: auto;
 }
+
 .contact-heading {
-    text-align: center;
-    padding: 40px 0;
-    font-family: 'Cinzel', serif;
-    margin: 0 auto;
+  text-align: center;
+  padding: 40px 0;
+  font-family: 'Cinzel', serif;
+  margin: 0 auto;
 }
+
 .contact-card {
-    max-height: 35rem;
-    text-align: center;
+  max-height: 35rem;
+  text-align: center;
 }
+
 .contact-details {
-    margin: 0 auto;
+  margin: 0 auto;
 }
+
 .name-line {
-    display: flex;
+  display: flex;
 }
+
 #fname,
 #lname {
-    width: 50%;
-    margin-bottom: 8px;
-    border: 1px solid rgb(1, 50, 64);
+  width: 50%;
+  margin-bottom: 8px;
+  border: 1px solid rgb(1, 50, 64);
 }
+
 #fname {
-    margin-right: 4px;
+  margin-right: 4px;
 }
+
 #lname {
-    margin-left: 4px;
+  margin-left: 4px;
 }
+
 #telephone,
 #subject {
-    width: 100%;
-    margin-bottom: 8px;
-    border: 1px solid rgb(1, 50, 64);
+  width: 100%;
+  margin-bottom: 8px;
+  border: 1px solid rgb(1, 50, 64);
 }
+
 .text-input {
-    height: 40px;
+  height: 40px;
 }
+
 .text-area {
-    height: 200px;
-    border: 1px solid rgb(1, 50, 64);
+  height: 200px;
+  border: 1px solid rgb(1, 50, 64);
 }
+
 .submit-form-button {
-    background-color: rgb(1, 50, 64);
-    border: 1px solid rgb(1, 50, 64);
-    color: rgb(226, 228, 223);
+  background-color: rgb(1, 50, 64);
+  border: 1px solid rgb(1, 50, 64);
+  color: rgb(226, 228, 223);
 }
+
 .submit-form-button:hover {
-    background-color: rgb(226, 228, 223);
-    border: 1px solid rgb(1, 50, 64);
-    color: rgb(1, 50, 64);
+  background-color: rgb(226, 228, 223);
+  border: 1px solid rgb(1, 50, 64);
+  color: rgb(1, 50, 64);
 }
+
 .social-icons-wrapper {
-    display: flex;
-    padding-bottom: 1em;
+  display: flex;
+  padding-bottom: 1em;
 }
+
 .icon-frame {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgb(1, 50, 64);
-    margin-right: 0.3em;
-    text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(1, 50, 64);
+  margin-right: 0.3em;
+  text-align: center;
 }
+
 .social-icon {
-    font-size: 2.5em;
-    color: white;
-    align-self: center;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+  font-size: 2.5em;
+  color: white;
+  align-self: center;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 @media screen and (min-width: 768px) {
-    .Contact {
-        width: 80%;
-    }
+  .Contact {
+    width: 80%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .Contact {
-        width: 70%;
-        margin: 0 auto;
-    }
-    .contact-card {
-        padding: 0 1em;
-    }
-    .icon-frame {
-        background-color: rgb(1, 50, 64);
-    }
-    .icon-frame:hover {
-        background-color: rgb(226, 228, 223);
-    }
-    .social-icon:hover {
-        color: rgb(1, 50, 64);
-    }
-    .icon-frame a:after {    
-        background-color: rgb(226, 228, 223);
-        background: none repeat scroll 0 0 transparent;
-        position: absolute;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-    }
-    .social-icon a:after {    
-        background-color: rgb(1, 50, 64);
-        background: none repeat scroll 0 0 transparent;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-    } 
+  .Contact {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .contact-card {
+    padding: 0 1em;
+  }
+
+  .icon-frame {
+    background-color: rgb(1, 50, 64);
+  }
+
+  .icon-frame:hover {
+    background-color: rgb(226, 228, 223);
+  }
+
+  .social-icon:hover {
+    color: rgb(1, 50, 64);
+  }
+
+  .icon-frame a:after {    
+    background-color: rgb(226, 228, 223);
+    background: none repeat scroll 0 0 transparent;
+    position: absolute;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  
+  .social-icon a:after {    
+    background-color: rgb(1, 50, 64);
+    background: none repeat scroll 0 0 transparent;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  } 
 }
 
