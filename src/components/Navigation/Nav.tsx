@@ -1,31 +1,41 @@
 import React from 'react';
+import '../BaseCss/Base.css';
 import './Nav.css';
 import { Link } from 'react-router-dom';
 
-class Nav extends React.Component< {}, {}> {
-  
-  render() {
-  
-    return (
-      <nav className="nav-style">
+const Nav = () => {
+  return (
+    <nav className="nav-style row">
+      <ul className="nav-links col-6 col-lg-4 order-lg-first">
         <Link to='/'>
-            <h2>Logo</h2>
+          <li>Home</li>
         </Link>
-          <ul className="nav-links">
-            <Link to='/about'>
-                <li>About</li>
-            </Link>
-            <Link to='/shop'>
-                <li>Shop</li>
-            </Link>
-            <Link to='/admin'>
-                <li>Admin</li>
-            </Link>
-          </ul>
+        <Link to='/booking'>
+          <li>Booking</li>
+        </Link>
+      </ul>
 
-      </nav>
-    ); 
-  }
+      <Link className="nav-logo col-12 col-lg-4 order-first" to='/'>
+        <img
+          className="nav-crab-logo"
+          src="https://svgsilh.com/svg/2028176-9d8560.svg"
+          alt="crab logo"
+          height="60px"
+          width="auto"
+        />
+        <h1>La Casa Del Mar</h1>
+      </Link>
+
+      <ul className="nav-links col-6 col-lg-4 order-lg-12">
+        <Link to='/contact'>
+          <li>Contact Us</li>
+        </Link>
+        <Link to='/admin'>
+          <li>Admin</li>
+        </Link>
+      </ul>
+    </nav>
+  );
 }
 
 export default Nav;

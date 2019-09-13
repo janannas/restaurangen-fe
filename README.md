@@ -12,7 +12,7 @@
 
 - Alignment, follow these alignment styles for JSX syntax. :
 
-    ```jsx
+    ```tsx
     // bad
     <Foo superLongParam="bar"
          anotherSuperLongParam="baz" />
@@ -56,7 +56,7 @@
 
 - Always include a single space in your self-closing tag.
 
-     ```jsx
+     ```tsx
     // bad
     <Foo/>
 
@@ -78,7 +78,7 @@
 
 - Always self-close tags that have no children.
 
-    ```jsx
+    ```tsx
     // bad
     <Foo variant="stuff"></Foo>
 
@@ -88,7 +88,7 @@
 
 - If your component has multi-line properties, close its tag on a new line.
 
-    ```jsx
+    ```tsx
     // bad
     <Foo
       bar="bar"
@@ -106,7 +106,7 @@
 
 - If you have three or more properties, then put them on their own line both in the instance and in the render function.
 
-    ```jsx
+    ```tsx
     // it should look like this:
     let {
       imgSrc,
@@ -129,7 +129,7 @@
 
 - Destructure your props and state
 
-    ```jsx
+    ```tsx
     // it should look like this:
     let { breed, color, isGoodBoy } = this.props;
 
@@ -149,7 +149,7 @@
 
 - Bind handler using the ES6 arrow syntax, so inside the callback it has always the right context, ex:
 
-    ```jsx
+    ```tsx
     methodName = (myString: string) => {
     console.log(string);
     }
@@ -172,3 +172,30 @@
   12. getter methods for render like getSelectReason() or getFooterContent()
   13. Optional render methods like renderNavigation() or renderProfilePicture()
   14. render
+
+- When naming your classes, be as sepcific as possible and follow template "component name - class" to avoid overwriting eachother Example: className="contact-social-icon" or className="booking-form-input" etc.
+
+- Overal color scheme and Fonts:
+
+Colors:
+- Primary (Dark blue): rgb(1, 50, 64)
+- Secondary (Minty-gray): rgb(226, 228, 223)
+- Accent (Golden brown): rgb(157, 133, 96)
+- Second Secondary/Secondary accent (Peachy pink): rgb(234, 194, 182) 
+
+Fonts:
+- Logo, Headings: font-family: 'Cinzel', serif;
+- H1: font-weight: 700; H2-H6: font-weight: 500
+
+- Paragraphs, Other text: font-family: 'Lato', sans-serif;
+
+- Breakpoints for media query:
+
+    ```css
+    @media screen and (min-width: 768px) {
+
+    }
+    @media screen and (min-width: 1024px) {
+
+    }
+    ```
