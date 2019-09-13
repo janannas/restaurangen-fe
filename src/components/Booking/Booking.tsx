@@ -72,7 +72,6 @@ class Booking extends React.Component<{}, IBookingState> {
 				const data = result.data;
 
 				let configObj = data.reduce((acc: any, obj: any) => {
-
 					return { ...acc, [obj.key]: obj["value"] }
 				}, {});
 
@@ -242,7 +241,10 @@ class Booking extends React.Component<{}, IBookingState> {
 						</div>
 
 						<div className="col-12 col-md-6 col-lg-6">
-							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
+							<FormDetails
+								handleDetailSubmit={this.handleDetailSubmit}
+								GDPRMessage={GDPRMessage}
+							/>
 						</div>
 					</div>
 

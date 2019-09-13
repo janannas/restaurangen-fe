@@ -49,9 +49,9 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
 
   getBookings() {
     new ApiCalls()
-      .getAllBookings().then((result: any) => {
+      .getAllBookings()
+      .then((result: any) => {
         const isArr = Array.isArray(result.data);
-
         const storedInfo: IBookingItem[] = [];
 
         if (isArr) {
@@ -61,7 +61,6 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
           storedInfo.push(result.data);
           this.setState({ bookingInfo: storedInfo });
         }
-
       })
       .catch((error: string) => {
         console.log(error);
@@ -84,15 +83,15 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
             </thead>
 
             <tbody>
-              {this.state.bookingInfo.map((booking: IBookingItem) => (
-                <tr key={booking.booking_ID}>
+              {this.state.bookingInfo.map(({ booking_ID, name, guests, sitting }: IBookingItem) => (
+                <tr key={booking_ID}>
 
-                  <td>{booking.booking_ID}</td>
-                  <td>{booking.name}</td>
-                  <td>{booking.guests}</td>
-                  <td>{booking.sitting}</td>
+                  <td>{booking_ID}</td>
+                  <td>{name}</td>
+                  <td>{guests}</td>
+                  <td>{sitting}</td>
                   <td>
-                    <Link to={`accordion/${booking.booking_ID}`}>
+                    <Link to={`accordion/${booking_ID}`}>
                       <button
                         type="button"
                         className="btn admin-btn submit-form-button"
@@ -104,7 +103,7 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
                     <button
                       className="btn admin-btn submit-form-button"
                       id="delete-button"
-                      onClick={() => this.deleteBookingWithID(booking.booking_ID)}
+                      onClick={() => this.deleteBookingWithID(booking_ID)}
                     >
                       <FontAwesomeIcon icon='trash-alt' />
                     </button>
@@ -119,7 +118,6 @@ class Admin extends React.Component<IAdminProps, IAdminState> {
       </div>
     );
   }
-
 }
 
 export default Admin;

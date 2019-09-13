@@ -14,7 +14,6 @@ const Contact = () => {
 
 			<section className="row m-0 justify-content-center mb-3">
 				<div className="col-10 col-lg-5 mb-3 contact-details">
-
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
 							<a
@@ -56,7 +55,6 @@ const Contact = () => {
 
 				<div className="col-10 col-lg-7">
 					<form action="mailto:bookings@lacasadelmar.com" className="contact-card">
-
 						<div className="name-line">
 							<label htmlFor="fname"></label>
 							<input type="text"
@@ -94,7 +92,6 @@ const Contact = () => {
 						</textarea>
 
 						<button type="submit" className="btn submit-form-button m-3">SEND E-MAIL</button>
-
 					</form>
 				</div>
 
