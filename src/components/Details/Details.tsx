@@ -36,16 +36,13 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
     super(props);
 
     this.state = {
-
       formIsValid: false, //tracks the overall form validity
-
       booking: {
         booking_ID: 0,
         customer_ID: 0,
         guests: 0,
         sitting: ''
       },
-
       formControls: {
         name: {
           value: "",
@@ -81,7 +78,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
     this.getBooking();
   }
 
-  public getBooking() {
+  getBooking() {
     new ApiCalls()
       .getAllBookings().then((result: any) => {
         var tempArray: IBookingItem[] = [];
@@ -137,11 +134,9 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
               }
             }
           },
-
         });
 
         this.validateForm();
-
       })
       .catch(error => {
         console.log(error);
@@ -149,7 +144,6 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
   }
 
   handleInputChange = async (event: any) => {
-
     const name: keyof IDetailsState["formControls"] = event.target.name;
     const value = event.target.value;
 

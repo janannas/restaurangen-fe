@@ -4,24 +4,22 @@ import Calendar from 'react-calendar';
 
 const moment = require('moment');
 
-export interface ICalendarProps {
+interface ICalendarProps {
 	handleDate(date: string): any;
 }
 
-export interface ICalendarState {
+interface ICalendarState {
 	value: Date | Date[];
 }
 
 class BookingCalendar extends React.Component<ICalendarProps, ICalendarState> {
 	constructor(props: ICalendarProps) {
 		super(props);
-
 		this.state = { value: new Date() }
 	}
 
 	componentDidMount() {
 		let today = moment().format('YYYY-MM-DD')
-
 		this.handleDate(today);
 	}
 
@@ -34,13 +32,13 @@ class BookingCalendar extends React.Component<ICalendarProps, ICalendarState> {
 		this.handleDate(moment(value).format('YYYY-MM-DD'));
 	};
 
-	public render() {
+	render() {
 		const { value } = this.state;
 
 		return (
 			<div className="calendar">
-				<Calendar onChange=
-					{this.onChange}
+				<Calendar
+					onChange={this.onChange}
 					value={value}
 					minDate={moment().toDate()}
 				/>

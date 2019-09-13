@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import AvailableTables, { IAvailableTablesProp } from './AvailableTables';
+import AvailableTables, { IAvailableTablesProps } from './AvailableTables';
 
 describe('AvailableTables Component', () => {
-	let props: IAvailableTablesProp;
+	let props: IAvailableTablesProps;
 	let AvailableTablesInstance: any;
 
 	beforeAll(() => {
@@ -20,25 +20,25 @@ describe('AvailableTables Component', () => {
 			guests: 0,
 			handleTimeClick: jest.fn(),
 			handleSeatsClick: jest.fn()
-		}	
+		}
 	});
 
-  beforeEach(() => {
-    AvailableTablesInstance = mount<AvailableTables>(
-      <AvailableTables {...props} />
+	beforeEach(() => {
+		AvailableTablesInstance = mount<AvailableTables>(
+			<AvailableTables {...props} />
 		);
-  });
+	});
 
-  afterEach(() => {
+	afterEach(() => {
 		AvailableTablesInstance.unmount();
 	});
 
 	it('should render without crashing', () => {
 		shallow(<AvailableTables {...props} />);
 	});
-	
+
 	it('should contain set date', () => {
 		const test = shallow(<AvailableTables {...props} />);
-    expect(test.containsMatchingElement(<h3>2019-09-10</h3>)).toEqual(true);
-  });
+		expect(test.containsMatchingElement(<h3>2019-09-10</h3>)).toEqual(true);
+	});
 });

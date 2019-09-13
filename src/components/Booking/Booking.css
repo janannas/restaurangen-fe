@@ -4,7 +4,6 @@
 
 h3.displayed-date {
 	font-family: 'Cinzel', serif;
-	/* font-weight: bolder; */
 	margin: .5rem 0;
 	text-align: center;
 }
@@ -105,7 +104,6 @@ h4.sitting-time {
 
 .number-of-guests.hide {
 	max-height: 0;
-	/* overflow: hidden; */
 	visibility: hidden;
 	transition: all 0.5s ease-out;
 }
@@ -113,7 +111,6 @@ h4.sitting-time {
 .number-of-guests.show {
 	max-height: 2rem;
 	visibility: visible;
-	/* transition: all 0.15s ease-in; */
 }
 
 .number-of-guests > select {

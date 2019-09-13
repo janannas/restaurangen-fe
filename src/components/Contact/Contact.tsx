@@ -5,28 +5,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 require('bootstrap');
 
-
 const Contact = () => {
-  return (
-    <main className="Contact container-fluid">
-      <div className="row contact-heading">
-        <h2 className="col-12">CONTACT US</h2>
-      </div>
+	return (
+		<main className="Contact container-fluid">
+			<div className="row contact-heading">
+				<h2 className="col-12">CONTACT US</h2>
+			</div>
 
-      <section className="row m-0 justify-content-center mb-3">
+			<section className="row m-0 justify-content-center mb-3">
 				<div className="col-10 col-lg-5 mb-3 contact-details">
 					<div className="social-icons-wrapper">
 						<div className="icon-frame">
-								<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
+							<a href="https://www.facebook.com" aria-label="Find us on facebook"><FontAwesomeIcon className="social-icon" icon={['fab', 'facebook-f']} /></a>
 						</div>
 						<div className="icon-frame">
-								<a href="https://www.instagram.com" aria-label="Find us on instagram"><FontAwesomeIcon className="social-icon" icon={['fab', 'instagram']} /></a>
+							<a href="https://www.instagram.com" aria-label="Find us on instagram"><FontAwesomeIcon className="social-icon" icon={['fab', 'instagram']} /></a>
 						</div>
 						<div className="icon-frame">
-								<a href="https://www.twitter.com" aria-label="Find us on twitter"><FontAwesomeIcon className="social-icon" icon={['fab', 'twitter']} /></a>
+							<a href="https://www.twitter.com" aria-label="Find us on twitter"><FontAwesomeIcon className="social-icon" icon={['fab', 'twitter']} /></a>
 						</div>
 					</div>
-					
+
 					<div>
 						<p className="mb-0 bold">LA CASA DEL MAR</p>
 						<p className="mb-0">TULEGATAN 41</p>
@@ -59,9 +58,9 @@ const Contact = () => {
 					</form>
 				</div>
 
-      </section>
-    </main>
-  );
+			</section>
+		</main>
+	);
 }
 
 export default Contact;

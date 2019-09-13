@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface IAvailableTablesProp {
+export interface IAvailableTablesProps {
 	dateTime: {
 		date: string;
 		time: string;
@@ -15,9 +15,7 @@ export interface IAvailableTablesProp {
 	handleSeatsClick(guests: number): any;
 }
 
-const AvailableTables = (props: IAvailableTablesProp) => {
-
-
+const AvailableTables = (props: IAvailableTablesProps) => {
 	const handleTimeClick = async (time: string) => {
 		props.handleTimeClick(time);
 	}

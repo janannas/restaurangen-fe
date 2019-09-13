@@ -2,7 +2,7 @@ import * as React from "react";
 import './BookingConfiramtion.css';
 import { Link } from 'react-router-dom';
 
-export interface IBookingConfirmationProp {
+interface IBookingConfirmationProp {
 	name: string;
 	date: string;
 	time: string;

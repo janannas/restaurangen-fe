@@ -1,47 +1,56 @@
 .Footer {
-    background-color: rgb(226, 228, 223);
-    height: 650px;
-    text-align: center;
-    border: 10px solid rgb(157, 133, 96); 
+  background-color: rgb(226, 228, 223);
+  height: 650px;
+  text-align: center;
+  border: 10px solid rgb(157, 133, 96); 
 }
+
 .footer-text {
-    color: rgb(1, 50, 64);
-    padding: 10px 0;
-    height: 50%;
+  color: rgb(1, 50, 64);
+  padding: 10px 0;
+  height: 50%;
 }
+
 .footer-logo {
-    color: rgb(1, 50, 64);
-    padding: 10px 0 0 0;
+  color: rgb(1, 50, 64);
+  padding: 10px 0 0 0;
 }
+
 .footer-text p {
-    line-height: 10px;
+  line-height: 10px;
 }
+
 .map-container {
-    height: 50%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .Footer {
+    height: 700px;
+  }
+
+  .footer-text {
+    padding: 50px 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Footer {
+    height: 500px;
+  }
+
+  .footer-text {
+    height: 100%;
+    width: 50%;
+    padding: 100px 0;
+  }
+
+  .map-container {
+    height: 100%;
+    width: 50%;
     padding: 0;
     margin: 0;
-}
-@media screen and (min-width: 768px) {
-    .Footer {
-        height: 700px;
-    }
-    .footer-text {
-        padding: 50px 0;
-    }
-}
-@media screen and (min-width: 1024px) {
-    .Footer {
-        height: 500px;
-    }
-    .footer-text {
-        height: 100%;
-        width: 50%;
-        padding: 100px 0;
-    }
-    .map-container {
-        height: 100%;
-        width: 50%;
-        padding: 0;
-        margin: 0;
-    }
+  }
 }

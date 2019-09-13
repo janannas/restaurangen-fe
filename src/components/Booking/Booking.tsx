@@ -111,7 +111,6 @@ class Booking extends React.Component<{}, IBookingState> {
 
 			new ApiCalls().createBooking(obj)
 				.then((result: any) => {
-					// TODO: remove
 					console.log(result.data);
 
 					this.setState({ bookingSuccessful: true });
@@ -187,7 +186,7 @@ class Booking extends React.Component<{}, IBookingState> {
 		});
 
 		//If free seats are 0 or if picked guests are greater than free seats, set state to 0
-		if(seatsThisSitting === 0 || seatsThisSitting < this.state.guests){
+		if (seatsThisSitting === 0 || seatsThisSitting < this.state.guests) {
 			this.setState({
 				guests: 0
 			});
@@ -210,13 +209,15 @@ class Booking extends React.Component<{}, IBookingState> {
 			/>;
 		}
 
-		// OBS! -If h2 is removed/changed update test.tsx too
+		// If h2 is removed/changed update test.tsx too
 		return (
 			<main className="Booking container-fluid">
 				<div className="row booking-heading">
 					<h2 className="col-12">Place booking</h2>
 				</div>
+
 				<div className="booking-form container">
+
 					<div className="row">
 						<div className="col-12 col-md-6 col-lg-6">
 							<BookingCalendar handleDate={this.changeDate} />
@@ -229,10 +230,12 @@ class Booking extends React.Component<{}, IBookingState> {
 								guests={this.state.guests}
 							/>
 						</div>
+
 						<div className="col-12 col-md-6 col-lg-6">
 							<FormDetails handleDetailSubmit={this.handleDetailSubmit} GDPRMessage={GDPRMessage} />
 						</div>
 					</div>
+
 				</div>
 			</main>
 		);
